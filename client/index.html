@@ -14,10 +14,10 @@
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 </head>
-<body id="home">
+<body>
 <header>
 	<div class="wrapper">
-        <h1><a href="index.html" id="brand" title="ABC comp">ABC comp</a></h1>
+        <h1><a ng-href="#/" id="brand" title="ABC comp">ABC comp</a></h1>
         <nav>
             <ul>
                 <li>
@@ -58,7 +58,7 @@
         </nav>
     </div>
 </header>
-<aside id="top">
+    <aside id="top">
 	<div class="wrapper">
         <ul id="social">
             <li><a href="#" class="facebook" title="like us us on Facebook">like us us on Facebook</a></li>
@@ -67,12 +67,15 @@
         <form>
         	<input type="text" placeholder="Search ABC comp..." /><button type="submit">Search</button>
         </form>
-        <div id="action-bar"><a href="login.html">Login/Register</a> // <a href="viewbasket.html">Your bag (0)</a></div>
+        <div id="action-bar"><a ng-href="#/{{'login'}}">Login/Register</a> // <a href="viewbasket.html">Your bag (3) &nbsp; &pound;148</a></div>
     </div>
 </aside>
-<article>
-	<a href="search.html"><img src="images/photo.jpg" /></a>
-</article>
+    <div class="view-animate-container">
+    <div ng-view >
+        
+    </div>
+  </div>
+  
 <footer>
 	<div class="wrapper">
     	<span class="logo">ABC comp</span>
@@ -82,5 +85,9 @@
 </footer>
     
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+    <script src="_comun/app.js"></script>
+	<script src="es/alemarcha/mascota/registro/controller/registroCtrl.js"></script>
+	
 </body>
 </html>
