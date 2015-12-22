@@ -8,6 +8,11 @@ angular.module('adoptaTuMascotaApp').config(['$routeProvider',
         controller: 'RegistroCtrl',
         controllerAs: 'registro'
       }).
+    when('/element/:id', {
+        templateUrl: 'es/alemarcha/mascota/element/view/element.html',
+        controller: 'ElementCtrl',
+        controllerAs: 'element'
+      }).
       otherwise({
         templateUrl: 'es/alemarcha/mascota/main/view/central.html',
         controller: 'CentralCtrl',
