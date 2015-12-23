@@ -1,4 +1,4 @@
-angular.module('adoptaTuMascotaApp', ['ngRoute']);
+angular.module('adoptaTuMascotaApp', ['ngRoute','ngResource']);
 
 angular.module('adoptaTuMascotaApp').config(['$routeProvider',
   function($routeProvider) {
