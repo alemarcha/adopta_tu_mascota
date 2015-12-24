@@ -1,8 +1,8 @@
 module.exports.service_central = function (app) {
 	app.get('/api/pub/elements', function (req, res, next) {
-		var items=[];
+		var items={elementos:[]};
 		 for (var i = 1; i < 10; i++) {
-            vm.items.push({ 
+            items.elementos.push({ 
                 "id" : "id"+i,
                 "titulo" : "Titulo"+ i,
                 "valor"  : i
