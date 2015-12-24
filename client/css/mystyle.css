@@ -1,0 +1,7 @@
+.pagination.ng-scope{
+    display: flex;
+}
+
+.paging li{
+    padding-left: 10%!important;
+}

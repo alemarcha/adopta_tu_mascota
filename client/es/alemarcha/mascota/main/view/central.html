@@ -1,20 +1,26 @@
 <article id="grid">
 	<div id="breadcrumb"><a href="index.html">Home</a> > <a href="search.html">Dresses</a> > <h1>Summer Dress</h1></div>
     <header>
-        <div class="paging">
-            Page: <a onclick="javascript:return getPage(1);" href="">1</a>&nbsp; | &nbsp;2&nbsp; | &nbsp;<a onclick="javascript:return getPage(3);" href="">3</a>  |  <a onclick="javascript:return getPage('', '', '1');" href="">View All</a>
+         
+        <div class="paging"> 
+            
+                <dir-pagination-controls
+        max-size="5"
+        direction-links="true"
+        boundary-links="true" >
+    </dir-pagination-controls>
         </div>
         <form action="#" >
         <select onchange="javascript:addSort();" name="sortBy" id="sortBy">
-            <option value="">Default</option>
-            <option value="PriceHiLo">Price (High to Low)</option>
-            <option value="PriceLoHi">Price (Low to High)</option>
-            <option value="pID">Most Recent</option>
-        </select> &nbsp; Showing 26 - 50 of 78 Product(s)
+            <option value="">Todos</option>
+            <option value="PriceHiLo">Desaparecidos</option>
+            <option value="PriceLoHi">Encontrados</option>
+            <option value="pID">Se regalan</option>
+        </select> &nbsp; Mostrando 26 - 50 de 78 animales
         </form>
     </header>
     <ul id="items">
-        <li ng-repeat="item in central.items">
+        <li dir-paginate="item in central.items|orderBy:sortKey:reverse|filter:search|itemsPerPage:5">
             <a ng-href="#/element/{{item.id}}"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
             <a ng-href="#/element/{{item.id}}" class="title">{{item.titulo}}</a>
             <strong>&pound;{{item.valor}}</strong>
