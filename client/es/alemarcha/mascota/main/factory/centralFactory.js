@@ -9,7 +9,10 @@
         factory.paginationElements = $resource("/api/pub/elements/:fromPage/:numElements",{fromPage:"@fromPage",                     
                                                                                                  numElements:"@numElements"},{query: {cache: 
                                                                                                                                     true}});
+        factory.numTotalElements= $resource("/api/pub/elements/numTotal",{},{query: {cache: true}});
+
         return factory;
     }
+    
 	angular.module('adoptaTuMascotaApp').factory('centralFactory', centralFactory);
 }());
