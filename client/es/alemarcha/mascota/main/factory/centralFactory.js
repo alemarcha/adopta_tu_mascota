@@ -1,5 +1,5 @@
 (function () {
-	var centralFactory =  function ($resource)  {
+	 function centralFactory ($resource)  {
         
 
         var factory={};

@@ -1,11 +1,9 @@
 <article id="grid">
-	<div id="breadcrumb"><a href="index.html">Home</a> > <a href="search.html">Dresses</a> > <h1>Summer Dress</h1></div>
+	<div id="breadcrumb"><a ng-href="#/">Home</a> > <a href="search.html">Dresses</a> <h1>Summer Dress</h1></div>
     <header>
          
         <div class="paging"> 
-            
-            
-            <dir-pagination-controls boundary-links="true" on-page-change="central.pageChangeHandler(newPageNumber)" template-url="es/alemarcha/mascota/main/view/dirPagination.tpl.html" pagination-id="drinksPagination" ></dir-pagination-controls>
+            <dir-pagination-controls direction-links="true" boundary-links="true" on-page-change="central.pageChangeHandler(newPageNumber)"             template-url="es/alemarcha/mascota/main/view/dirPagination.tpl.html" max-size="7" pagination-id="drinksPagination" ></dir-  pagination-controls>
         </div>
         <form action="#" >
         <select onchange="javascript:addSort();" name="sortBy" id="sortBy">
@@ -17,7 +15,7 @@
         </form>
     </header>
     <ul id="items">
-        <li dir-paginate="item in central.items|itemsPerPage:5" current-page="central.currentPage" total-items="central.numTotalElements" pagination-id="drinksPagination">
+        <li dir-paginate="item in central.items|itemsPerPage:central.pageSize" current-page="central.currentPage" total-items="central.numTotalElements" pagination-id="drinksPagination">
             <a ng-href="#/element/{{item.id}}"><img src="images/thumb.png" alt="Elegant evening Dress"/></a>
             <a ng-href="#/element/{{item.id}}" class="title">{{item.titulo}}</a>
             <strong>&pound;{{item.valor}}</strong>
@@ -25,7 +23,7 @@
     </ul>
     <footer>
         <div class="paging">
-            Page: <a onclick="javascript:return getPage(1);" href="">1</a>&nbsp; | &nbsp;2&nbsp; | &nbsp;<a onclick="javascript:return getPage(3);" href="">3</a>  |  <a onclick="javascript:return getPage('', '', '1');" href="">View All</a>
+             <dir-pagination-controls direction-links="true" boundary-links="true" on-page-change="central.pageChangeHandler(newPageNumber)" template-url="es/alemarcha/mascota/main/view/dirPagination.tpl.html" max-size="7" pagination-id="drinksPagination" ></dir-pagination-controls>
         </div>
     </footer>
 </article>

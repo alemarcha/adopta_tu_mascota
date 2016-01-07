@@ -1,14 +1,13 @@
 (function () {
-    var elementCtrl = function ($scope, $routeParams, $http) {
-        //var urlBase = "http://localhost:3000/api/";
+    function elementCtrl ($scope, $routeParams, $http) {
         var vm = this;
-        vm.usuario = {};
-        vm.entrar = function () {
-                    $scope.nombre = vm.usuario.email;
-                    $scope.mensaje = 'recién entrado';
-                    alert("hola");
-                
-        }
+        
+        vm.id=$routeParams.id;
+        
+        console.log(vm.id);
+        alert(vm.id);
+        
+        
     }
     angular.module('adoptaTuMascotaApp').controller('ElementCtrl', elementCtrl);
 }());
