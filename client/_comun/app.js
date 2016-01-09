@@ -21,4 +21,10 @@ angular.module('adoptaTuMascotaApp').config(['$routeProvider',
         controller: 'CentralCtrl',
         controllerAs: 'central'
     });
+      
   }]);
+
+    angular.module('adoptaTuMascotaApp').run(
+    function ($rootScope) {
+        $rootScope.loading = false;
+    });

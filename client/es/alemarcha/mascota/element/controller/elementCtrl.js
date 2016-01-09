@@ -1,15 +1,20 @@
 (function () {
-    function elementCtrl ($scope, $routeParams, $http, elementFactory) {
+    function elementCtrl ($scope,$rootScope, $routeParams, $http, elementFactory) {
         var vm = this;
         vm.id=$routeParams.id;
         console.log(vm.id);
-        vm.showSpinner=true;
+        
+        
         console.log("empieza");
          var element = elementFactory.elementById.query({id:vm.id},function(){
             vm.showSpinner=false;
              console.log("aqui");
+        },function(){
+             console.log("ERROR");
              
-        });   
+         });   
     }
+    
+    
     angular.module('adoptaTuMascotaApp').controller('ElementCtrl', elementCtrl);
 }());

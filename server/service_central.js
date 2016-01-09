@@ -10,7 +10,7 @@ module.exports.service_central = function (app) {
             });
         }
         console.log(items);
-		res.json(items);
+		res.status(200).json(items);
 	});
 
     app.get('/api/pub/elements/numTotal', function (req, res, next) {
