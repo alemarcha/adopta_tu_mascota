@@ -7,7 +7,8 @@
         
         console.log("empieza");
          var element = elementFactory.elementById.query({id:vm.id},function(){
-            vm.showSpinner=false;
+            vm.elementoActual=element;
+            console.log(vm.elementoActual.titulo);
              console.log("aqui");
         },function(){
              console.log("ERROR");

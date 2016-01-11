@@ -12,20 +12,8 @@
 			return request;
 		};
 		interceptor.response = function (response) {
-            $log.info('RESPONSE SECURITY CLIENTE');
-            if (response.status === 401) {
-				$rootScope.mensaje = "No hay derecho!!!";
-				$log.info('401 SECURITY CLIENTE');			 
-                $location.url('/404');
-			} else if (response.status === 419) {
-				$rootScope.mensaje = "Estoy caduco!!!";
-				$cookieStore.remove("sessionId")
-				$location.url('/404');
-			} else if (response.status === 404) {
-                $log.info('404 SECURITY CLIENTE');			 
-                $rootScope.loading=false;
-				$location.url('/404');
-			}else if (response.status === 200) {
+            $log.info('RESPONSE SECURITY CLIENTE RESPONSE');
+           if (response.status === 200) {
                 $log.info('200 SECURITY CLIENTE');	
                 $rootScope.loading=false;
                 return $q.resolve(response);

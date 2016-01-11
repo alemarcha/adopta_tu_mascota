@@ -1,11 +1,11 @@
 
 <article id="mainview">
    
-    <div ng-hide="loading">
+    
     <div id="breadcrumb"><a href="index.html">Home</a> > <a href="search.html">Dresses</a> > <a href="search.html">Summer Dress</a> > Summer Dress</div>
     <div id="description">
-        <h1>Elegant evening Dress</h1>
-        <strong id="price"><span>previously &pound;299.00</span> &pound;249.00</strong><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat ultricies fringilla. Suspendisse iaculis tristique leo, id adipiscing massa aliquet ut. Etiam adipiscing auctor enim nec tincidunt. Suspendisse non orci id nisi cursus accumsan id vitae urna. Donec sit amet elit interdum eros venenatis viverra. Quisque placerat, nunc quis tristique congue, ante urna semper eros, eleifend tincidunt metus lacus sed nunc. Aliquam erat volutpat. </p>
+        <h1>{{element.elementoActual.titulo}}</h1>
+        <strong id="price"><span> {{element.elementoActual.autor}}</span> &pound;{{element.elementoActual.precio}}</strong><p>{{element.elementoActual.descripcion}} </p>
         <p>
             <select>
                 <option value="1" selected="selected">Select colour</option>
@@ -19,11 +19,11 @@
             </select>
             <button type="button">Size guide</button>
         </p>
-        <p><button type="submit" class="continue">Add to bag</button></p>
+        <p><button type="submit" class="continue">Añadir a favorito</button></p>
         <p><button type="button">Tell a friend</button></p>
         <div id="tabs">
             <ul>
-                <li><a href="#tabs-1" class="first">Delivery</a></li>
+                <li><a> Publicada {{element.elementoActual.fechaPublicacion}}</a></li>
                 <li><a href="#tabs-2">Returns</a></li>
                 <li><a href="#tabs-3">Info &amp; Care</a></li>
             </ul>
@@ -51,5 +51,5 @@
             <a href="#"><img src="images/thumb1.jpg" /></a><a href="#"><img src="images/thumb2.jpg" /></a><a href="#"><img src="images/thumb3.jpg" /></a>
         </div>
     </div>
-        </div>
+        
 </article>
