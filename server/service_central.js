@@ -33,6 +33,6 @@ module.exports.service_central = function (app) {
             });
         }
         console.log(items);
-		res.json(items);
+		setTimeout(function (){res.json(items),2000});
 	});
 }

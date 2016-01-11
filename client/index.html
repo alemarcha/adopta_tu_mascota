@@ -16,6 +16,7 @@
 <![endif]-->
 </head>
 <body>
+<div id="principal">
 <header>
 	<div class="wrapper">
         <h1><a ng-href="#/" id="brand" title="ABC comp">ABC comp</a></h1>
@@ -74,12 +75,12 @@
     <div class="view-animate-container">
         <span us-spinner="{radius:30, width:8, length: 16}" spinner-on="loading"></span>
         <div ng-hide="loading">
-    <div ng-view >
-        
+            <div ng-view >
+
+            </div>
+        </div>
     </div>
 </div>
-  </div>
-  
 <footer>
 	<div class="wrapper">
     	<span class="logo">alemarcha</span>
