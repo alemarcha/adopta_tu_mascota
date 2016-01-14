@@ -19,13 +19,13 @@
 
         function initialize () {
             centralFactory.numTotalElements.query(function(data){
-                vm.numTotalElements = data;
+                vm.numTotalElements = data.numTotal;
                 console.log('Numero total de elementos:' + data.numTotal);
             });
 
-            centralFactory.paginationElements.query({fromPage:vm.currentPage,numElements:vm.pageSize},function(){
-                console.log(firstElements);
-                vm.items=firstElements.elementos;
+            centralFactory.paginationElements.query({fromPage:vm.currentPage,numElements:vm.pageSize},function(data){
+                console.log(data.elementos);
+                vm.items=data.elementos;
             }); 
         }
         
