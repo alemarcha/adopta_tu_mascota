@@ -29,16 +29,6 @@
             }); 
         }
         
-        /*var numTotalElements = centralFactory.numTotalElements.query(function(){
-            vm.numTotalElements = numTotalElements.numTotal;
-            console.log('Numero total de elementos:' + numTotalElements.numTotal);
-        });
-
-        var firstElements = centralFactory.paginationElements.query({fromPage:vm.currentPage,numElements:vm.pageSize},function(){
-            console.log(firstElements);
-            vm.items=firstElements.elementos;
-
-        });*/  
         
         function pageChangeHandler(num) {
             console.log('drinks page changed to ' + num);
