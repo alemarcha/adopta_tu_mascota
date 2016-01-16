@@ -1,21 +1,29 @@
 (function () {
-    function elementCtrl ($scope,$rootScope, $routeParams, $http, elementFactory) {
+    angular
+        .module('adoptaTuMascotaApp')
+        .controller('ElementCtrl', elementCtrl);
+    
+    elementCtrl.$inject = ['$routeParams', 'elementFactory'];
+    
+    function elementCtrl ($routeParams, elementFactory) {
         var vm = this;
         vm.id=$routeParams.id;
         console.log(vm.id);
         
+        initialize();
         
         console.log("empieza");
-         var element = elementFactory.elementById.query({id:vm.id},function(){
-            vm.elementoActual=element;
+        function initialize(){
+         elementFactory.elementById.query({id:vm.id},function(data){
+            vm.elementoActual=data;
             console.log(vm.elementoActual.titulo);
              console.log("aqui");
-        },function(){
+        },function(error){
              console.log("ERROR");
              
-         });   
+         }); 
+        }
     }
     
     
-    angular.module('adoptaTuMascotaApp').controller('ElementCtrl', elementCtrl);
 }());
