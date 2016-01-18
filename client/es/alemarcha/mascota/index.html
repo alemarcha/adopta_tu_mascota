@@ -21,13 +21,13 @@
 	<div class="wrapper">
         <h1><a ng-href="#/" id="brand" title="ABC comp">ABC comp</a></h1>
         <nav>
-            <ul>
+            <ul ng-controller="MenuCtrl as menu">
                 <li>
-                  <a ng-href="#/">Home</a>
+                  <a ng-href="#/" ng-class="{activeMenu: menu.isActive('/')}">Home</a>
                 </li>
                 <li>
                   <a href="search.html">Tops</a>
-                  <ul class="sub-menu">
+                  <ul class="sub-menu" >
                         <li><a href="search.html">Tshirts</a></li>
                         <li><a href="search.html">Jumpers</a></li>
                         <li><a href="search.html">Cardigans</a></li>

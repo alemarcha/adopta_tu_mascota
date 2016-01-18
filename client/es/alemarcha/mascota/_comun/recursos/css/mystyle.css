@@ -167,3 +167,9 @@ ul { padding: 0; }
   background-color: #fff;
   cursor: default;
 }
+
+/** Menu **/
+.activeMenu{
+color: #ff5454!important;
+    background: #fff;
+  }
