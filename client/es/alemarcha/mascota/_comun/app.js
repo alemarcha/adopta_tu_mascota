@@ -13,6 +13,11 @@ angular.module('adoptaTuMascotaApp').config(['$routeProvider',
         controller: 'ElementCtrl',
         controllerAs: 'element'
     }).
+     when('/new', {
+        templateUrl: 'altaElemento/view/new.html',
+        controller: 'newElementCtrl',
+        controllerAs: 'newElement'
+    }).
     when('/404', {
         templateUrl: 'error/404/404.html'
     }).
