@@ -4,34 +4,41 @@
     	<h1>Nueva mascota</h1>
        	<p>
             <label for="name">Nombre:</label>
-            <input id="name" name="name" type="text" required="true"><span class="alert">*</span>
+            <input id="name" name="name" type="text" required="true" ng-model="newElement.element.name"><span class="alert">*</span>
         </p>
         <p>
             <label for="descript">Descripción:</label>
-            <input id="descript" name="descript" type="text" required="true"><span class="alert">*</span>
+            <input id="descript" name="descript" type="text" required="true" ng-model="newElement.element.description"><span class="alert">*</span>
     
         </p>
         <p>
             <label for="address">Dirección:</label>
-            <input id="address" name="address" type="text" required="true"><span class="alert">*</span>
+            <input id="address" name="address" type="text" required="true" ng-model="newElement.element.address"><span class="alert">*</span>  
         </p>
        
         <p>
             <label for="city">Ciudad:</label>
-            <input id="city" name="city" type="text" required="true"><span class="alert">*</span>
+            <input id="city" name="city" type="text" required="true" ng-model="newElement.element.city"><span class="alert">*</span>
         </p>
         <p>
             <label for="postalCode">Código postal:</label>
-            <input id="postalCode" name="postalCode" type="text" required="true"><span class="alert">*</span>
+            <input id="postalCode" name="postalCode" type="text" required="true" ng-model="newElement.element.cp"><span class="alert">*</span>
         </p>
         <p>
             <label for="email">Email:</label>
-            <input id="email" name="email" type="email" required="true"><span class="alert">*</span>
+            <input id="email" name="email" type="email" required="true" ng-model="newElement.element.email"><span class="alert">*</span>
         </p>
     	<p>
             <label for="phone">Teléfono:</label>
             <span style="display: none;" class="helper">Please enter your <strong>phone number</strong>.<br>We might need to contact you with regards to your order.</span>
-            <input id="phone" name="phone" type="tel" required="true"><span class="alert">*</span>
+            <input id="phone" name="phone" type="tel" required="true" ng-model="newElement.element.phone"><span class="alert">*</span>
+        </p>
+         
+    <p>
+          <label>&nbsp;</label><button type="submit" ng-click="newElement.create(newElement.element)" class="continue">Crear</button>
+        </p>
+        <p>
+          <label>&nbsp;</label><button type="button" type="reset" ng-click="newElement.initialize()" class="reset">Reset</button>
         </p>
     </form>
     <form id="ship">
@@ -130,8 +137,6 @@
        	  <label>&nbsp;</label><button type="submit" class="continue">Continue</button>
         </p>
     </form>
-    <p>
-          <button type="button">Go back</button>
-		</p>
+    
 </article>
 
