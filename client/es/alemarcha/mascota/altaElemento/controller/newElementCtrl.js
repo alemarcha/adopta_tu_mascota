@@ -9,6 +9,7 @@
         var vm = this;
         vm.create=create;
         vm.initialize=initialize;
+        vm.checkForm=checkForm;
         initialize();
         
         console.log("empieza creacion");
@@ -21,6 +22,13 @@
            // vm.element.cp=41500;
            // vm.element.email="alemarcha26@gmail.com";
            // vm.element.phone="955619720";
+        }
+
+        function checkForm(form){
+          console.log(form);
+          if(form.$valid){
+            create(vm.element);
+          }
         }
 
         function create(element){

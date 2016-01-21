@@ -1,6 +1,6 @@
 
 <article id="address">
-	<form>
+	<form name="formulario">
     	<h1>Nueva mascota</h1>
        	<p>
             <label for="name">Nombre:</label>
@@ -35,7 +35,7 @@
         </p>
          
     <p>
-          <label>&nbsp;</label><button type="submit" ng-click="newElement.create(newElement.element)" class="continue">Crear</button>
+          <label>&nbsp;</label><button type="submit" ng-click="newElement.checkForm(formulario)" class="continue">Crear</button>
         </p>
         <p>
           <label>&nbsp;</label><button type="button" type="reset" ng-click="newElement.initialize()" class="reset">Reset</button>
