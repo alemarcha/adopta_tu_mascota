@@ -1,7 +1,5 @@
 module.exports.service_central = function (app) {
     
-    var items={elementos:[]};
-
 	app.get('/api/pub/elements', function (req, res, next) {
 		var items={elementos:[]};
 		 for (var i = 1; i < 10; i++) {
@@ -28,13 +26,13 @@ module.exports.service_central = function (app) {
 		
 
 		for (var i = elemInicial; i <= elemFinal; i++) {
-            items.elementos.push({ 
+            app.items.elementos.push({ 
                 "id" : "id"+i,
                 "titulo" : "Titulo"+ i,
                 "valor"  : i
             });
         }
-        console.log(items);
-		setTimeout(function (){res.json(items),2000});
+        console.log(app.items);
+		setTimeout(function (){res.json(app.items),2000});
 	});
 }

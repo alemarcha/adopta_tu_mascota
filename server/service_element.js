@@ -10,4 +10,14 @@ module.exports.service_element = function (app) {
 		}
 
 	});
+
+	app.post('/api/pub/alta/element/', function (req, res, next) {
+		var element = req.body;
+		console.log(element)
+		console.log(element.elementData)
+		console.log(app.items.elementos);
+		console.log(app.items.elementos.length);
+		
+
+	});
 }

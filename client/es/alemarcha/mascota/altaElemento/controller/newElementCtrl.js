@@ -3,9 +3,9 @@
         .module('adoptaTuMascotaApp')
         .controller('NewElementCtrl', newElementCtrl);
     
-    newElementCtrl.$inject = ['$routeParams'];
+    newElementCtrl.$inject = ['$routeParams', 'altaElementoFactory'];
     
-    function newElementCtrl ($routeParams) {
+    function newElementCtrl ($routeParams, altaElementoFactory) {
         var vm = this;
         vm.create=create;
         vm.initialize=initialize;
@@ -33,7 +33,9 @@
 
         function create(element){
             console.log(element.name);
+             altaElementoFactory.insertElement.save({},element);
             initialize();
+
         }
     }
     
