@@ -1,6 +1,7 @@
 var app = require('./server/config.js').configApp();
 var items={elementos:[]};
 app.items=items;
+app.contador=0;
 //require('./server/seguridad.js').seguridad(app);
 console.log('ready');
 

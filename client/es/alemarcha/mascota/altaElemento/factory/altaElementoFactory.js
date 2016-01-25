@@ -10,7 +10,7 @@
         
         var factory={};
     
-        factory.insertElement = $resource("/api/pub/alta/element",{elementData:'@elementData'});
+        factory.insertElement = $resource("/api/pub/element/");
 
         return factory;
     }

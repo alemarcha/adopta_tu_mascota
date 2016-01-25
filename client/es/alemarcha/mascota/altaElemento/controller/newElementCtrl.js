@@ -32,8 +32,13 @@
         }
 
         function create(element){
-            console.log(element.name);
-             altaElementoFactory.insertElement.save({},element);
+            console.log("Nombre:"+element.name);
+            vm.entry = new altaElementoFactory.insertElement();
+            vm.entry.element= element;
+            
+             vm.entry.$save(function(data){
+                 console.log(data);
+             });
             initialize();
 
         }
