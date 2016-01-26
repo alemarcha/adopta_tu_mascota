@@ -1,7 +1,17 @@
 var app = require('./server/config.js').configApp();
 var items={elementos:[]};
 app.items=items;
-app.contador=0;
+
+for(i=0;i<100;i++){
+	if(i==0){
+		console.log("Aqui otra vez");
+	}
+	app.items.elementos.push({ 
+		"id" : "id"+i,
+		"titulo" : "Titulo "+ i,
+		"valor"  : i
+	});
+}
 //require('./server/seguridad.js').seguridad(app);
 console.log('ready');
 

@@ -14,7 +14,7 @@ module.exports.service_central = function (app) {
 	});
 
     app.get('/api/pub/elements/numTotal', function (req, res, next) {
-        var total={numTotal:app.contador};
+        var total={numTotal:app.items.elementos.length};
         res.json(total);
     });
     
@@ -23,17 +23,16 @@ module.exports.service_central = function (app) {
         var numElements = req.params.numElements;
         var elemFinal= fromPage * numElements;
         var elemInicial=elemFinal-numElements + 1;
-		
-        if(app.items == undefined || app.items.length == 0){
+		var itemsRes={elementos:[]};
+        
 		for (var i = elemInicial; i <= elemFinal; i++) {
-            app.items.elementos.push({ 
-                "id" : "id"+i,
-                "titulo" : "Titulo"+ i,
-                "valor"  : i
-            });
-        }
+            if(app.items.elementos.length<i){
+                break;
             }
-        console.log(app.items);
-		setTimeout(function (){res.json(app.items),2000});
+           itemsRes.elementos.push(app.items.elementos[i-1]);
+        }
+            
+        console.log(itemsRes);
+		setTimeout(function (){res.json(itemsRes),2000});
 	});
 }

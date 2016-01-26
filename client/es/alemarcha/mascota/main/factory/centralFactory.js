@@ -14,10 +14,10 @@
     
         factory.paginationElements = $resource("/api/pub/elements/:fromPage/:numElements",
                                                {fromPage:"@fromPage", numElements:"@numElements"},
-                                               {query: {cache: true}});
+                                               {query: {cache: false}});
         factory.numTotalElements= $resource("/api/pub/elements/numTotal",
                                             {},
-                                            {query: {cache: true}});
+                                            {query: {cache: false}});
 
         return factory;
     }

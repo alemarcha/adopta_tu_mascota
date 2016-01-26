@@ -1,4 +1,4 @@
-angular.module('adoptaTuMascotaApp', ['ngRoute','ngResource','angularUtils.directives.dirPagination','angularSpinner']);
+angular.module('adoptaTuMascotaApp', ['ngRoute','ngResource','angularUtils.directives.dirPagination','angularSpinner','growlNotifications']);
 
 angular.module('adoptaTuMascotaApp').config(['$routeProvider',
   function($routeProvider) {
