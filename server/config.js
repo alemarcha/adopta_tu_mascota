@@ -7,6 +7,7 @@ module.exports.configApp = function () {
 	
 	app.use(bodyParser());
 	app.use(express.static(__dirname + './../client/es/alemarcha/mascota'));
+    app.use('/bower_components', express.static(__dirname + './../bower_components'));
 
 	app.use(function (peticion, respuesta, siguiente) {
 		console.log("recibida petición: " + peticion.url);
