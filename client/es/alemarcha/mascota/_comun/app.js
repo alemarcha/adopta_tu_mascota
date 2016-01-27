@@ -32,4 +32,5 @@ angular.module('adoptaTuMascotaApp').config(['$routeProvider',
     angular.module('adoptaTuMascotaApp').run(
     function ($rootScope) {
         $rootScope.loading = false;
+        $rootScope.showGrowl= false;
     });

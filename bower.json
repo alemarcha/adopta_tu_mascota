@@ -1,0 +1,20 @@
+{
+  "name": "n",
+  "description": "Adopto mi mascota",
+  "main": "server.js",
+  "authors": [
+    "Alexis Martínez Chacón"
+  ],
+  "license": "BSD-2-Clause",
+  "keywords": [
+    "angular",
+    "node"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "homepage": "index.html",
+  "dependencies": {
+    "angular-growl-notifications": "~2.2.0"
+  }
+}

@@ -3,9 +3,9 @@
         .module('adoptaTuMascotaApp')
         .controller('NewElementCtrl', newElementCtrl);
     
-    newElementCtrl.$inject = ['$routeParams', 'altaElementoFactory'];
+    newElementCtrl.$inject = ['$routeParams', 'altaElementoFactory','$rootScope'];
     
-    function newElementCtrl ($routeParams, altaElementoFactory) {
+    function newElementCtrl ($routeParams, altaElementoFactory, $rootScope) {
         var vm = this;
         vm.create=create;
         vm.initialize=initialize;
@@ -38,6 +38,7 @@
             
              vm.entry.$save(function(data){
                  console.log(data);
+                 $rootScope.showGrowl=true;
              });
             initialize();
 
