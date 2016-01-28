@@ -214,3 +214,23 @@ growl-notification.fading.ng-leave {
 growl-notification.fading.ng-leave.ng-leave-active {
     opacity: 0;
 }
+
+/** QUITAR DE FIREFOX VALIDACIÓN FORM **/
+
+:invalid {
+  box-shadow: none;
+}
+
+:-moz-submit-invalid {
+  box-shadow: none;
+}
+
+:-moz-ui-invalid {
+  box-shadow:none;
+}
+
+/** subtitle lista inicial **/
+
+.subtitle{
+    overflow: hidden;
+}

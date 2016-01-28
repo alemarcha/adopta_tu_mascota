@@ -19,7 +19,7 @@
             <span class="sale" ng-show="{{item.valor%2 === 0}}">Sale</span>
             <a ng-href="#/element/{{item.id}}"><img src="_comun/recursos/images/thumb.png" alt="Elegant evening Dress"/></a>
             <a ng-href="#/element/{{item.id}}" class="title">{{item.titulo}}</a>
-            <strong>&pound;{{item.valor}}</strong>
+            <strong title="{{item.valor}}" class="subtitle" >&pound;{{item.valor}}</strong>
         </li>
     </ul>
     <footer>

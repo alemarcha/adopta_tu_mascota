@@ -1,16 +1,47 @@
-<article id="login">
+<article id="address">
+<div id="container" >
 	<form>
-    	<h1>Existing customers</h1>
+    	<h1>Entrar</h1>
         <p><label for="email">Email</label>
         <input ng-model="registro.usuario.email" type="email" name="email" /></p>
         <p><label for="pasword">Password</label>
         <input ng-model="registro.usuario.password" type="password" name="password" /></p>
         <p><button ng-click="registro.entrar();" >Sign in</button> <a href="#">Forgotten password?</a></p>
     </form>
-    <section>
-    	<h2>New to ABC comp?</h2>
-        <p><button type="button">Continue</button></p>
-    </section>
+        <form id="ship">
+    	<h1>Registrar</h1>
+           <p><label for="emailRegister">Email</label>
+        <input  type="email" name="emailRegister" disabled /><span class="alert">*</span></p>
+        <p><label for="paswordRegister">Password</label>
+        <input type="password" name="paswordRegister" disabled /><span class="alert">*</span></p>
+       	<p>
+            <label for="shipFName">Nombre:</label>
+            <input name="shipFName" type="text" disabled id="shipFName" required="true"><span class="alert">*</span>
+        </p>
+        <p>
+            <label for="shipLName">Apellidos:</label>
+            <input id="shipLName" type="text" disabled name="shipLName" required="true"><span class="alert">*</span>
+        </p>
+        <p>
+            <label for="shipAddress1">Dirección:</label>
+            <input name="shipAddress1" type="text" disabled id="shipAddress1" required="true"><span class="alert">*</span>
+        </p>
+        <p>
+            <label for="shipCity">Ciudad:</label>
+            <input name="shipCity" type="text" disabled id="shipCity" required="true"><span class="alert">*</span>
+        </p>
+        <p>
+            <label for="shipCountry">País:</label>
+           <input name="country" type="text" disabled id="country" required="true"><span class="alert">*</span></p>
+        </p>
+        <p>
+            <label for="shipZip">Código postal:</label>
+        <input name="shipZip" type="text" disabled id="shipZip" required="true"><span class="alert">*</span></p>
+        <p>
+       	  <label>&nbsp;</label><button type="submit" class="continue">Registrar</button>
+        </p>
+    </form>
+    </div>
 </article>
 
 
