@@ -3,7 +3,7 @@
 	<form name="formulario" ng-submit="newElement.checkForm(formulario)">
     	<h1>Nueva mascota</h1>
        	<p>
-            <label for="name">Nombre:</label>
+            <label for="name">Nombre: {{form.submitted}}</label>
             <input id="name" name="name" type="text" required="true" ng-model="newElement.element.name"><span class="alert">*</span>
         </p>
         <p>
@@ -35,7 +35,7 @@
         </p>
          
     <p>
-          <label>&nbsp;</label><button type="submit"  class="continue">Crear</button>
+          <label>&nbsp;</label><button type="submit" class="continue">Crear</button>
         </p>
         <p>
           <label>&nbsp;</label><button type="button" type="reset" ng-click="newElement.initialize()" class="reset">Reset</button>

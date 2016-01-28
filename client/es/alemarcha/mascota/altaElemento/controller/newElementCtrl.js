@@ -37,8 +37,9 @@
             vm.entry.element= element;
             
              vm.entry.$save(function(data){
-                 console.log(data);
-                 $rootScope.showGrowl=true;
+                console.log(data);
+                $rootScope.indexNotificacion++;
+                $rootScope.notifications[$rootScope.indexNotificacion++]="Se ha añadiddo correctamente " + element.name;
              });
             initialize();
 

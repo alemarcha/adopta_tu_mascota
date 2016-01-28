@@ -33,4 +33,6 @@ angular.module('adoptaTuMascotaApp').config(['$routeProvider',
     function ($rootScope) {
         $rootScope.loading = false;
         $rootScope.showGrowl= false;
+        $rootScope.indexNotificacion=0;
+        $rootScope.notifications={};
     });
