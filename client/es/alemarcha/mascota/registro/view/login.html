@@ -1,14 +1,14 @@
 <article id="address">
 <div id="container" >
-	<form>
+	<form ng-submit="registro.login();">
     	<h1>Entrar</h1>
         <p><label for="email">Email</label>
         <input ng-model="registro.usuario.email" type="email" name="email" /></p>
         <p><label for="pasword">Password</label>
         <input ng-model="registro.usuario.password" type="password" name="password" /></p>
-        <p><button ng-click="registro.entrar();" >Sign in</button> <a href="#">Forgotten password?</a></p>
+        <p><button >Sign in</button> <a href="#">Forgotten password?</a></p>
     </form>
-        <form id="ship">
+        <form id="ship" ng-submit="registro.register();">
     	<h1>Registrar</h1>
            <p><label for="emailRegister">Email</label>
         <input  type="email" name="emailRegister" disabled /><span class="alert">*</span></p>

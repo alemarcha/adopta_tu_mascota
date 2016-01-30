@@ -1,7 +1,20 @@
-angular.module('adoptaTuMascotaApp', ['ngRoute','ngResource','angularUtils.directives.dirPagination','angularSpinner','growlNotifications']);
+angular.module('adoptaTuMascotaApp', ['ngRoute','ngResource','angularUtils.directives.dirPagination','angularSpinner','growlNotifications','satellizer']);
 
-angular.module('adoptaTuMascotaApp').config(['$routeProvider',
-  function($routeProvider) {
+angular.module('adoptaTuMascotaApp').config(
+  function($routeProvider,$authProvider) {
+            
+    // No additional setup required for Twitter
+$authProvider.httpInterceptor = function() { return true; },
+$authProvider.baseUrl = '/api';
+$authProvider.loginUrl = '/private/auth/login';
+$authProvider.signupUrl = '/private/auth/register';
+$authProvider.tokenName = 'token';
+$authProvider.tokenPrefix = 'adoptaTuMascotaApp';
+$authProvider.authHeader = 'Authorization';
+$authProvider.authToken = 'Bearer';
+$authProvider.storageType = 'localStorage';
+      
+    // ROUTE
     $routeProvider.
     when('/login', {
         templateUrl: 'registro/view/login.html',
@@ -26,8 +39,9 @@ angular.module('adoptaTuMascotaApp').config(['$routeProvider',
         controller: 'CentralCtrl',
         controllerAs: 'central'
     });
+
       
-  }]);
+  });
 
     angular.module('adoptaTuMascotaApp').run(
     function ($rootScope) {

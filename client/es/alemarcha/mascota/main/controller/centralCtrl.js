@@ -3,21 +3,20 @@
         .module('adoptaTuMascotaApp')
         .controller('CentralCtrl', centralCtrl);
     
-    centralCtrl.$inject = ['$routeParams', 'centralFactory'];
+    centralCtrl.$inject = ['$routeParams', 'centralFactory', '$auth'];
 
-    function centralCtrl($routeParams, centralFactory) {
+    function centralCtrl($routeParams, centralFactory, $auth) {
         var vm = this;
-
-        vm.currentPage = 1;
-        vm.pageSize = 10;
-        vm.usuario = {};
-        vm.numElementInitial = (vm.currentPage * vm.pageSize)- vm.pageSize + 1;
-        vm.numElementFinal = (vm.currentPage * vm.pageSize);
         vm.pageChangeHandler = pageChangeHandler;
 
         initialize();
 
         function initialize () {
+            vm.currentPage = 1;
+            vm.pageSize = 10;
+            vm.numElementInitial = (vm.currentPage * vm.pageSize)- vm.pageSize + 1;
+            vm.numElementFinal = (vm.currentPage * vm.pageSize);
+            
             centralFactory.numTotalElements.query(function(data){
                 vm.numTotalElements = data.numTotal;
                 console.log('Numero total de elementos:' + data.numTotal);

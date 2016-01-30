@@ -15,6 +15,7 @@
   ],
   "homepage": "index.html",
   "dependencies": {
-    "angular-growl-notifications": "~2.2.0"
+    "angular-growl-notifications": "~2.2.0",
+    "satellizer": "~0.13.4"
   }
 }

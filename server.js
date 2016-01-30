@@ -15,6 +15,7 @@ for(i=0;i<100;i++){
 //require('./server/seguridad.js').seguridad(app);
 console.log('ready');
 
+require('./server/service_auth.js').service_auth(app);
 require('./server/service_central.js').service_central(app);
 require('./server/service_element.js').service_element(app);
 console.log('steady');
