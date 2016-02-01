@@ -11,7 +11,7 @@ html, body {
     display: table;
 }
 footer {
-    
+    background: #E7FBF7;
     clear: both;
     height: 100px;
     margin-top: 5%;
@@ -88,12 +88,12 @@ ul { padding: 0; }
   text-decoration: none;
   border: 1px solid #ddd;
   border-left-width: 0;
-  background-color: #f5f5f5;
+  background-color: #E7FBF7;
   color: #333333;
 }
 .pagination a:hover,
 .pagination .active a {
-  background-color: #f5f5f5;
+  background-color: #B0FDEC;
 
 }
 .pagination .active a {
@@ -171,7 +171,7 @@ ul { padding: 0; }
 /** Menu **/
 .activeMenu{
 color: #ff5454!important;
-    background: #fff;
+    background: #B0FDEC;
   }
 
   /** Growl notifications**/

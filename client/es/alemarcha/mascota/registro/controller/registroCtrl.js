@@ -25,6 +25,7 @@
             })
             .then(function(response) {
                 // Redirect user here after a successful log in.
+                alert(response.data[$auth.tokenName]);
                 $auth.setToken("alexis");
             })
             .catch(function(response) {
