@@ -3,9 +3,9 @@
     .module('adoptaTuMascotaApp')
     .controller('RegistroCtrl', registroCtrl);
     
-    registroCtrl.$inject = ['$routeParams','$auth','$location'];
+    registroCtrl.$inject = ['$routeParams','$auth','$location', 'SatellizerConfig'];
     
-    function registroCtrl($routeParams, $auth, $location) {
+    function registroCtrl($routeParams, $auth, $location, config) {
         var vm = this;
         vm.login = login;
         vm.register = register;
@@ -24,8 +24,9 @@
                 password: vm.usuario.password
             })
             .then(function(response) {
-                // Redirect user here after a successful log in.
-                alert(response.data[$auth.tokenName]);
+                // Redirect user here after a successful log in.+
+                alert($auth.tokenName);
+                alert(response.data[config.tokenName]);
                 $auth.setToken("alexis");
             })
             .catch(function(response) {

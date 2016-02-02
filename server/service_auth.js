@@ -14,7 +14,6 @@ module.exports.service_auth = function (app) {
 	app.post('/api/private/auth/login', function (req, res, next) {
 		var element = req.body;
         console.log("LOGIN SERVER");
-	
         var user = {email:"alemarcha@gmail.com"}
         res.send({ token: createJWT(user) });
 	});
