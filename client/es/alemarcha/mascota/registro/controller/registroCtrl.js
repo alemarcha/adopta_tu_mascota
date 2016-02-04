@@ -14,6 +14,7 @@
 
         function initialize () {
             vm.usuario = {};
+            alert($auth.getToken());
         }
             
         function login () {
@@ -25,9 +26,8 @@
             })
             .then(function(response) {
                 // Redirect user here after a successful log in.+
-                alert($auth.tokenName);
                 alert(response.data[config.tokenName]);
-                $auth.setToken("alexis");
+                $auth.setToken(response.data[config.tokenName]);
             })
             .catch(function(response) {
                 // Handle errors here, such as displaying a notification
