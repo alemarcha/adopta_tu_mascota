@@ -3,12 +3,16 @@
 		$httpProvider.interceptors.push(funcionInterceptoraSeguridad);
 	}
 
-	function funcionInterceptoraSeguridad($q, $log, $location, $rootScope) {
+	function funcionInterceptoraSeguridad($q, $log, $location, $rootScope, SatellizerConfig) {
 
 		var interceptor = {};
 		interceptor.request = function (request) {
             $log.info('REQUEST SECURITY CLIENTE');
             $rootScope.loading=true;
+ 			var tokenName = config.tokenPrefix ? config.tokenPrefix + '_' + config.tokenName : config.tokenName;
+            alert("Header: "+SatellizerConfig.authHeader);
+            alert("Token:"+ localStorage.getItem(tokenName));
+            request.headers[SatellizerConfig.authHeader] = localStorage.getItem();
 			return request;
 		};
 		interceptor.response = function (response) {
