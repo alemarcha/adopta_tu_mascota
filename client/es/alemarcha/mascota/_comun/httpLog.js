@@ -12,7 +12,8 @@
             return request ;
         };
         interceptor.responseError = function (response) {
-            $log.error("excepción: " + response.status + " de :" + response.config.url);
+            //$log.error("excepción: " + response.status + " de :" + response.config.url);
+            $log.error("excepción: " + response.status);
         }
 		return interceptor;
     }

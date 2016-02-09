@@ -14,6 +14,7 @@ module.exports.service_central = function (app) {
 	});
 
     app.get('/api/pub/elements/numTotal', function (req, res, next) {
+        
         var total={numTotal:app.items.elementos.length};
         res.json(total);
     });

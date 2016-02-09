@@ -9,10 +9,17 @@
 		interceptor.request = function (request) {
             $log.info('REQUEST SECURITY CLIENTE');
             $rootScope.loading=true;
- 			var tokenName = config.tokenPrefix ? config.tokenPrefix + '_' + config.tokenName : config.tokenName;
-            alert("Header: "+SatellizerConfig.authHeader);
-            alert("Token:"+ localStorage.getItem(tokenName));
-            request.headers[SatellizerConfig.authHeader] = localStorage.getItem();
+ 			var tokenName = SatellizerConfig.tokenPrefix ? SatellizerConfig.tokenPrefix + '_' + SatellizerConfig.tokenName : SatellizerConfig.tokenName;
+            var token=localStorage.getItem(tokenName);
+            console.log(tokenName);
+            console.log("Header: "+SatellizerConfig.authHeader);
+            console.log("Token:"+ localStorage.getItem(tokenName));
+             if (token) {
+              token = SatellizerConfig.authHeader === 'Authorization' ? 'Bearer ' + token : token;
+              
+            }
+            request.headers[SatellizerConfig.authHeader] = token;
+            console.log("Request recibida: "+JSON.stringify(request));
 			return request;
 		};
 		interceptor.response = function (response) {
