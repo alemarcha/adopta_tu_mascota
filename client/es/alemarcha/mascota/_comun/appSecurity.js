@@ -1,4 +1,9 @@
 (function () {
+
+angular
+.module('adoptaTuMascotaApp')
+.config(configuradorInterceptores);
+
 	function configuradorInterceptores($httpProvider) {
 		$httpProvider.interceptors.push(funcionInterceptoraSeguridad);
 	}
@@ -9,16 +14,23 @@
 		interceptor.request = function (request) {
             $log.info('REQUEST SECURITY CLIENTE');
             $rootScope.loading=true;
+            // Monta el nombre del token
  			var tokenName = SatellizerConfig.tokenPrefix ? SatellizerConfig.tokenPrefix + '_' + SatellizerConfig.tokenName : SatellizerConfig.tokenName;
+ 			// A partir del nombre del token lo recuperamos de local storage
             var token=localStorage.getItem(tokenName);
+            // Obtenemos el nombre de la cabecera
+            var authHeader=SatellizerConfig.authHeader;
             console.log(tokenName);
-            console.log("Header: "+SatellizerConfig.authHeader);
-            console.log("Token:"+ localStorage.getItem(tokenName));
+            console.log("Header: "+authHeader);
+            console.log("Token:"+ token);
+            // Si existe token
              if (token) {
-              token = SatellizerConfig.authHeader === 'Authorization' ? 'Bearer ' + token : token;
-              
+             // Creamos el token que vamos a enviar al servidor en las cabeceras
+              token = authHeader === 'Authorization' ? 'Bearer ' + token : token;
+             // Seteamos el token en la cabecera
+              request.headers[authHeader] = token;
             }
-            request.headers[SatellizerConfig.authHeader] = token;
+            
             console.log("Request recibida: "+JSON.stringify(request));
 			return request;
 		};
@@ -52,8 +64,4 @@
 	
 		return interceptor;
 	}
-    
-   
-
-	angular.module('adoptaTuMascotaApp').config(configuradorInterceptores);
 }());

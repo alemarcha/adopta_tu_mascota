@@ -1,7 +1,9 @@
 module.exports.service_auth = function (app) {
     var jwt = require('jwt-simple');
     var moment = require('moment');
+    
      var TOKEN_SECRET = process.env.TOKEN_SECRET || 'YOUR_UNIQUE_JWT_TOKEN_SECRET';
+
     function createJWT(user) {
   var payload = {
     sub: user._id,
