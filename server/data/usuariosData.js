@@ -2,12 +2,13 @@ var Q = require('q');
 var mongodb = require('./mongodb.js')
 var mongoCol = "Usuarios"
 
-exports.gettingByEmail = function (usuario) {
+exports.gettingByUsernameAndPassword = function (usuario, password) {
     var deferred = Q.defer();
     mongodb.connecting(mongoCol)
         .then(function (colDb) {
             colDb.find({
-                usuario: usuario
+                usuario: usuario,
+                password:password
             }).toArray(function (err, result) {
                 if (err) {
                     mongodb.rejectOnError(deferred, err);

@@ -25,9 +25,14 @@
                 password: vm.usuario.password
             })
             .then(function(response) {
-                // Redirect user here after a successful log in.+
+                // Redirect user here after a successful log in.+   
                 alert(response.data[config.tokenName]);
                 $auth.setToken(response.data[config.tokenName]);
+            },function(reason) {
+                // error: handle the error if possible and
+                //        resolve promiseB with newPromiseOrValue,
+                //        otherwise forward the rejection to promiseB
+                console.log("promise reject");
             })
             .catch(function(response) {
                 // Handle errors here, such as displaying a notification

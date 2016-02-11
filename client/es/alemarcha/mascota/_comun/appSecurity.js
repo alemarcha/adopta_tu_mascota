@@ -15,7 +15,7 @@ angular
             $log.info('REQUEST SECURITY CLIENTE');
             $rootScope.loading=true;
             // Monta el nombre del token
- 			var tokenName = SatellizerConfig.tokenPrefix ? SatellizerConfig.tokenPrefix + '_' + SatellizerConfig.tokenName : SatellizerConfig.tokenName;
+ 			var tokenName = SatellizerConfig.tokenPrefix ? SatellizerConfig.tokenPrefix + '_' + SatellizerConfig.tokenName :                  SatellizerConfig.tokenName;
  			// A partir del nombre del token lo recuperamos de local storage
             var token=localStorage.getItem(tokenName);
             // Obtenemos el nombre de la cabecera

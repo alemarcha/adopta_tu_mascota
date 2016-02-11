@@ -16,16 +16,21 @@ module.exports.service_auth = function (app) {
     
 	app.post('/api/private/auth/login', function (req, res, next) {
 		var element = req.body.email;
+        var pass = req.body.password;
         console.log("LOGIN SERVER" + element);
         var user = {email:"alemarcha@gmail.com"};
 
-        usuariosData.gettingByEmail(element)
+        usuariosData.gettingByUsernameAndPassword(element,pass)
                 .then(function (data) {
                     if (data) {
                         console.log('email ya registrado:' + JSON.stringify(data));
+                        res.send({ token: createJWT(user) });
                         //res.status(409).send('email ' + usuario.email + ' ya registrado');
                     } else {
                         console.log('registrando:' +data);
+                        
+                        res.status(401).send(data);
+                        
                         //usuariosData.posting(usuario)
                           //  .then(function (data) {
                             //    res.json(newSession(usuario.email));
@@ -37,9 +42,9 @@ module.exports.service_auth = function (app) {
                 })
                 .fail(function (err) {
                     console.log('fallog' + err);
-                    //res.status(500).send(err)
+                    res.status(500).send(err)
                 });
-        res.send({ token: createJWT(user) });
+        
 	});
 
     app.post('/api/private/auth/register', function (req, res, next) {
