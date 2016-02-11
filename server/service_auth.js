@@ -1,3 +1,4 @@
+var usuariosData = require('./data/usuariosData.js')
 module.exports.service_auth = function (app) {
     var jwt = require('jwt-simple');
     var moment = require('moment');
@@ -14,9 +15,30 @@ module.exports.service_auth = function (app) {
 }
     
 	app.post('/api/private/auth/login', function (req, res, next) {
-		var element = req.body;
-        console.log("LOGIN SERVER");
-        var user = {email:"alemarcha@gmail.com"}
+		var element = req.body.email;
+        console.log("LOGIN SERVER" + element);
+        var user = {email:"alemarcha@gmail.com"};
+
+        usuariosData.gettingByEmail(element)
+                .then(function (data) {
+                    if (data) {
+                        console.log('email ya registrado:' + JSON.stringify(data));
+                        //res.status(409).send('email ' + usuario.email + ' ya registrado');
+                    } else {
+                        console.log('registrando:' +data);
+                        //usuariosData.posting(usuario)
+                          //  .then(function (data) {
+                            //    res.json(newSession(usuario.email));
+                            //})
+                            //.fail(function (err) {
+                          //      res.status(500).send(err);
+                            //})
+                    };
+                })
+                .fail(function (err) {
+                    console.log('fallog' + err);
+                    //res.status(500).send(err)
+                });
         res.send({ token: createJWT(user) });
 	});
 
