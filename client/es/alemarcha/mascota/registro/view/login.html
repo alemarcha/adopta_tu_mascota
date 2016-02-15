@@ -11,32 +11,32 @@
         <form id="ship" ng-submit="registro.register();">
     	<h1>Registrar</h1>
            <p><label for="emailRegister">Email</label>
-        <input  type="email" name="emailRegister" disabled /><span class="alert">*</span></p>
+        <input  type="email" ng-model="registro.usuario.email" name="emailRegister" /><span class="alert">*</span></p>
         <p><label for="paswordRegister">Password</label>
-        <input type="password" name="paswordRegister" disabled /><span class="alert">*</span></p>
+        <input type="password" ng-model="registro.usuario.password"  name="paswordRegister" /><span class="alert">*</span></p>
        	<p>
             <label for="shipFName">Nombre:</label>
-            <input name="shipFName" type="text" disabled id="shipFName" required="true"><span class="alert">*</span>
+            <input name="shipFName" type="text" ng-model="registro.usuario.name"  id="shipFName" required="true"><span class="alert">*</span>
         </p>
         <p>
             <label for="shipLName">Apellidos:</label>
-            <input id="shipLName" type="text" disabled name="shipLName" required="true"><span class="alert">*</span>
+            <input id="shipLName" type="text" name="shipLName" required="true"><span class="alert">*</span>
         </p>
         <p>
             <label for="shipAddress1">Dirección:</label>
-            <input name="shipAddress1" type="text" disabled id="shipAddress1" required="true"><span class="alert">*</span>
+            <input name="shipAddress1" type="text" id="shipAddress1" required="true"><span class="alert">*</span>
         </p>
         <p>
             <label for="shipCity">Ciudad:</label>
-            <input name="shipCity" type="text" disabled id="shipCity" required="true"><span class="alert">*</span>
+            <input name="shipCity" type="text" id="shipCity" required="true"><span class="alert">*</span>
         </p>
         <p>
             <label for="shipCountry">País:</label>
-           <input name="country" type="text" disabled id="country" required="true"><span class="alert">*</span></p>
+           <input name="country" type="text" id="country" required="true"><span class="alert">*</span></p>
         </p>
         <p>
             <label for="shipZip">Código postal:</label>
-        <input name="shipZip" type="text" disabled id="shipZip" required="true"><span class="alert">*</span></p>
+        <input name="shipZip" type="text" id="shipZip" required="true"><span class="alert">*</span></p>
         <p>
        	  <label>&nbsp;</label><button type="submit" class="continue">Registrar</button>
         </p>

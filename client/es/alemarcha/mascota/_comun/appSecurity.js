@@ -46,17 +46,17 @@ angular
         
          interceptor.responseError = function (response) {
             $log.info('RESPONSE SECURITY CLIENTE');
-            if (response.status === 401) {
+            $rootScope.loading=false;
+      if (response.status === 401) {
 				$rootScope.mensaje = "No hay derecho!!!";
 				$log.info('401 SECURITY CLIENTE');			 
-                $location.url('/404');
+        $location.url('/login');
 			} else if (response.status === 419) {
 				$rootScope.mensaje = "Estoy caduco!!!";
 				$cookieStore.remove("sessionId")
 				$location.url('/404');
 			} else if (response.status === 404) {
                 $log.info('404 SECURITY CLIENTE');			 
-                $rootScope.loading=false;
 				$location.url('/404');
 			};
 			return $q.reject(response);

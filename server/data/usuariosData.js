@@ -22,3 +22,7 @@ exports.gettingByUsernameAndPassword = function (usuario, password) {
         });
     return deferred.promise;
 }
+
+exports.inserting = function (usuario) {
+    return mongodb.inserting(mongoCol, usuario);
+}
