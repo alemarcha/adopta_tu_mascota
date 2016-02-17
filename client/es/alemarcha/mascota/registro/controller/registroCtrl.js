@@ -53,18 +53,20 @@
         
         function register () {
             $auth.signup({usuario:{
-                    email: vm.usuario.email,
-                    password: vm.usuario.password,
-                    nombre: vm.usuario.name
+                    email: vm.usuarioRegisto.email,
+                    password: vm.usuarioRegisto.password,
+                    nombre: vm.usuarioRegisto.name
                 }
             })
             .then(function() {
                 // Si se ha registrado correctamente,
-                // Podemos redirigirle a otra parte
+                // Redirigimos a la pantalla de inicio y mostramos mensaje de registro
+                $rootScope.notifications[$rootScope.indexNotificacion++]="Usuario registrado correctamente" + $auth.getToken();
                 $location.url('/');
             })
             .catch(function(response) {
                 // Si ha habido errores, llegaremos a esta función
+                 $rootScope.notifications[$rootScope.indexNotificacion++]="Se ha producido un error";
             });   
         }
     }

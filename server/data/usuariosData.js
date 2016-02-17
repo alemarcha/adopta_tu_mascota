@@ -1,6 +1,7 @@
 var Q = require('q');
-var mongodb = require('./mongodb.js')
-var mongoCol = "Usuarios"
+var mongodb = require('./mongodb.js');
+var mongoCol = "Usuarios";
+
 
 exports.gettingByUsernameAndPassword = function (usuario, password) {
     var deferred = Q.defer();

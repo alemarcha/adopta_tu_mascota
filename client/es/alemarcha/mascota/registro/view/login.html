@@ -11,12 +11,12 @@
         <form id="ship" ng-submit="registro.register();">
     	<h1>Registrar</h1>
            <p><label for="emailRegister">Email</label>
-        <input  type="email" ng-model="registro.usuario.email" name="emailRegister" /><span class="alert">*</span></p>
+        <input  type="email" ng-model="registro.usuarioRegisto.email" name="emailRegister" /><span class="alert">*</span></p>
         <p><label for="paswordRegister">Password</label>
-        <input type="password" ng-model="registro.usuario.password"  name="paswordRegister" /><span class="alert">*</span></p>
+        <input type="password" ng-model="registro.usuarioRegisto.password"  name="paswordRegister" /><span class="alert">*</span></p>
        	<p>
             <label for="shipFName">Nombre:</label>
-            <input name="shipFName" type="text" ng-model="registro.usuario.name"  id="shipFName" required="true"><span class="alert">*</span>
+            <input name="shipFName" type="text" ng-model="registro.usuarioRegisto.name"  id="shipFName" required="true"><span class="alert">*</span>
         </p>
         <p>
             <label for="shipLName">Apellidos:</label>

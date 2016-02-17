@@ -42,8 +42,8 @@ module.exports.service_auth = function (app) {
         var element = req.body.usuario;
 
         console.log("REGISTER SERVER" + element);
-
-        usuariosData.inserting()
+        var user = {email:element.email};
+        usuariosData.inserting(element)
                 .then(function (data) {
                     if (data) {
                         console.log('email registrado:' + JSON.stringify(data));
@@ -58,7 +58,7 @@ module.exports.service_auth = function (app) {
                     console.log('fallog' + err);
                     res.status(500).send(err)
                 });
-        res.json(total);
+        
     });
     
     app.post('/api/private/auth/logout', function (req, res, next) {
