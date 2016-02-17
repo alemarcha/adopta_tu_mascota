@@ -1,7 +1,7 @@
 var Q = require('q');
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
-var mongoUrl = "mongodb://85.136.163.125:27017/aappAd0pt0MiMascota";
+var mongoUrl = "*";
 
 exports.ObjectId = mongodb.ObjectID;
 exports.connecting = connecting;
