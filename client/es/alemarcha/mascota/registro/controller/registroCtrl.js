@@ -31,12 +31,14 @@
                  //alert(response.data[config.tokenName]);
                  if (token) {
                     $auth.setToken(token);
+                    $rootScope.notifications[$rootScope.indexNotificacion++]="Usuario logueado correctamente";
                  } else {
                     alert("Usuario incorrecto");
+                    $rootScope.notifications[$rootScope.indexNotificacion++]="Usuario incorrecto";
                  }
                 }else{
                      alert("Usuario incorrecto");
-                     $rootScope.notifications[$rootScope.indexNotificacion++]="Usuario incorrecto ";
+                     $rootScope.notifications[$rootScope.indexNotificacion++]="Usuario incorrecto";
                 }
             },function(reason) {
                 // error: handle the error if possible and

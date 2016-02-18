@@ -20,13 +20,13 @@ module.exports.service_auth = function (app) {
         console.log("LOGIN SERVER" + element);
         var user = {email:element};
 
-        usuariosData.gettingByUsernameAndPassword(element,pass)
+        usuariosData.findingByEmailPassword(element,pass)
                 .then(function (data) {
-                    if (data) {
+                    if (data && data.length==1) {
                         console.log('email logueado:' + JSON.stringify(data));
                         res.send({ token: createJWT(user) });
                     } else {
-                        console.log('Email/contraseña no existe:' +data);
+                        console.log('Email/contraseña no existe:' +JSON.stringify(data));
                         
                         res.status(401).send(data);
                     };
