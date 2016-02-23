@@ -14,8 +14,6 @@
         </select> &nbsp; Mostrando {{central.numElementInitial}} - {{central.numElementFinal}} de {{central.numTotalElements}} animales
         </form>
     </header>
-<p ng-if="isAuthenticated()">autenticadp</p>
-<p ng-if="!isAuthenticated()">NO aute</p>
     <ul id="items">
         <li dir-paginate="item in central.items|itemsPerPage:central.pageSize" current-page="central.currentPage" total-items="central.numTotalElements" pagination-id="drinksPagination">
             <span class="sale" ng-show="{{item.valor%2 === 0}}">Sale</span>

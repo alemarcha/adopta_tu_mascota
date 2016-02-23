@@ -6,8 +6,8 @@
     navBarCtrl.$inject = ['$scope', '$auth'];
     
     function navBarCtrl($scope, $auth) {
-       $scope.isAuthenticated = function() {
-        alert("autenticando");
+       this.isAuthenticated = function() {
+        console.log("autenticando");
          return $auth.isAuthenticated();
      };
             

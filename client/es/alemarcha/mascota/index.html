@@ -62,7 +62,8 @@
     </div>
 </header>
 <aside id="top">
-   <div class="wrapper">
+
+   <div ng-controller="NavBarCtrl as navBarCtrl" class="wrapper">
     <ul id="social">
         <li><a href="#" class="facebook" title="like us us on Facebook">like us us on Facebook</a></li>
         <li><a href="#" class="twitter" title="follow us on twitter">follow us on twitter</a></li>
@@ -70,7 +71,8 @@
     <form>
        <input type="text" placeholder="Search ABC comp..." /><button type="submit">Search</button>
    </form>
-   <div id="action-bar"><a ng-href="#/{{'login'}}">Login/Register</a> // <a ng-href="#/{{'new'}}">Your bag (3) &nbsp; &pound;148</a></div>
+   <div ng-if="!navBarCtrl.isAuthenticated()" id="action-bar"><a ng-href="#/{{'login'}}">Login/Register</a> // <a ng-href="#/{{'new'}}">Your bag (3) &nbsp; &pound;148</a></div>
+   <div ng-if="navBarCtrl.isAuthenticated()" id="action-bar"><a ng-href="#/{{'login'}}">Mi perfil</a> // <a ng-href="#/{{'new'}}">Your bag (3) &nbsp; &pound;148</a></div>
 </div>
 </aside>
 <div class="view-animate-container">
