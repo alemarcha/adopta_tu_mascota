@@ -1,7 +1,7 @@
 var Q = require('q');
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
-var mongoUrl = "mongodb://ip:port/bddd";
+var mongoUrl = "mongodb://192.168.1.10:27017/aappAd0pt0MiMascota";
 //mongoCol es una collection
 exports.connecting = function (mongoCol) {
     var deferred = Q.defer();
