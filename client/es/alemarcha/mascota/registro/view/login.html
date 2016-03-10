@@ -1,43 +1,39 @@
 <article id="address">
 <div id="container" >
-	<form ng-submit="registro.login();">
+	<form id="formlogin" name="formLogin" ng-submit="registro.login(formLogin);">
     	<h1>Entrar</h1>
         <p><label for="email">Email</label>
-        <input ng-model="registro.usuario.email" type="email" name="email" /></p>
+        <input ng-model="registro.usuario.email" type="email" name="email" required="true" /><span class="alert">*</span></p>
         <p><label for="pasword">Password</label>
-        <input ng-model="registro.usuario.password" type="password" name="password" /></p>
-        <p><button >Sign in</button> <a href="#">Forgotten password?</a></p>
+        <input ng-model="registro.usuario.password" type="password" name="password" required="true" /><span class="alert">*</span></p>
+        <p><button >Entrar</button> <a href="#">Olvidé mi contraseña</a></p>
     </form>
-        <form id="ship" ng-submit="registro.register();">
+    <form id="ship" name="ship" ng-submit="registro.register(ship);">
     	<h1>Registrar</h1>
            <p><label for="emailRegister">Email</label>
-        <input  type="email" ng-model="registro.usuarioRegisto.email" name="emailRegister" /><span class="alert">*</span></p>
+        <input  type="email" ng-model="registro.usuarioRegisto.email" name="emailRegister"  required="true"/><span class="alert">*</span></p>
         <p><label for="paswordRegister">Password</label>
-        <input type="password" ng-model="registro.usuarioRegisto.password"  name="paswordRegister" /><span class="alert">*</span></p>
+        <input type="password" ng-model="registro.usuarioRegisto.password"  name="paswordRegister" required="true" /><span class="alert">*</span></p>
        	<p>
             <label for="shipFName">Nombre:</label>
             <input name="shipFName" type="text" ng-model="registro.usuarioRegisto.name"  id="shipFName" required="true"><span class="alert">*</span>
         </p>
         <p>
             <label for="shipLName">Apellidos:</label>
-            <input id="shipLName" type="text" name="shipLName" required="true"><span class="alert">*</span>
+            <input id="shipLName" type="text" name="shipLName" ng-model="registro.usuarioRegisto.lastname" required="true"><span class="alert">*</span>
         </p>
         <p>
             <label for="shipAddress1">Dirección:</label>
-            <input name="shipAddress1" type="text" id="shipAddress1" required="true"><span class="alert">*</span>
+            <input name="shipAddress1" type="text" id="shipAddress1" ng-model="registro.usuarioRegisto.address" required="true"><span class="alert">*</span>
         </p>
         <p>
             <label for="shipCity">Ciudad:</label>
-            <input name="shipCity" type="text" id="shipCity" required="true"><span class="alert">*</span>
+            <input name="shipCity" type="text" id="shipCity" ng-model="registro.usuarioRegisto.city" required="true"><span class="alert">*</span>
         </p>
         <p>
             <label for="shipCountry">País:</label>
-           <input name="country" type="text" id="country" required="true"><span class="alert">*</span></p>
+           <input name="country" type="text" id="country" ng-model="registro.usuarioRegisto.country" required="true"><span class="alert">*</span></p>
         </p>
-        <p>
-            <label for="shipZip">Código postal:</label>
-        <input name="shipZip" type="text" id="shipZip" required="true"><span class="alert">*</span></p>
-        <p>
        	  <label>&nbsp;</label><button type="submit" class="continue">Registrar</button>
         </p>
     </form>

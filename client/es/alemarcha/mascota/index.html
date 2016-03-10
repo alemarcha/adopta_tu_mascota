@@ -68,11 +68,9 @@
         <li><a href="#" class="facebook" title="like us us on Facebook">like us us on Facebook</a></li>
         <li><a href="#" class="twitter" title="follow us on twitter">follow us on twitter</a></li>
     </ul>
-    <form>
-       <input type="text" placeholder="Search ABC comp..." /><button type="submit">Search</button>
-   </form>
-   <div ng-if="!navBarCtrl.isAuthenticated()" id="action-bar"><a ng-href="#/{{'login'}}">Login/Register</a> // <a ng-href="#/{{'new'}}">Your bag (3) &nbsp; &pound;148</a></div>
-   <div ng-if="navBarCtrl.isAuthenticated()" id="action-bar"><a ng-href="#/{{'login'}}">Mi perfil</a> // <a ng-href="#/{{'new'}}">Your bag (3) &nbsp; &pound;148</a></div>
+    
+   <div ng-if="!navBarCtrl.isAuthenticated()" id="action-bar"><a ng-href="#/{{'login'}}">Login/Register</a></div>
+   <div ng-if="navBarCtrl.isAuthenticated()" id="action-bar"><a ng-href="#/{{'login'}}">Mi perfil</a> // <a ng-href="#/{{'login'}}">Cerrar sesión</a> // <a ng-href="#/{{'new'}}">Your bag (3) &nbsp; &pound;148</a></div>
 </div>
 </aside>
 <div class="view-animate-container">
@@ -127,6 +125,7 @@
 <script src="main/factory/centralFactory.js"></script>
 <script src="element/factory/elementFactory.js"></script>
 <script src="altaElemento/factory/altaElementoFactory.js"></script>
+<script src="navbar/factory/auth.js"></script>
 
 
 </body>

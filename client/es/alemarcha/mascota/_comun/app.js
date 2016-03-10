@@ -1,6 +1,6 @@
 angular.module('adoptaTuMascotaApp', ['ngRoute','ngResource','angularUtils.directives.dirPagination','angularSpinner','growlNotifications','satellizer']);
 
-angular.module('adoptaTuMascotaApp').config(
+angular.module('adoptaTuMascotaApp').config(['$routeProvider', '$authProvider',
   function($routeProvider,$authProvider) {
             
     // No additional setup required for Twitter
@@ -29,6 +29,9 @@ $authProvider.storageType = 'localStorage';
      when('/new', {
         templateUrl: 'altaElemento/view/new.html',
         controller: 'NewElementCtrl',
+        resolve:{
+        "check": function(authFactory) { authFactory.checkPermission() },
+        },
         controllerAs: 'newElement'
     }).
     when('/404', {
@@ -41,7 +44,7 @@ $authProvider.storageType = 'localStorage';
     });
 
       
-  });
+  }]);
 
     angular.module('adoptaTuMascotaApp').run(
     function ($rootScope) {
@@ -60,6 +63,8 @@ $authProvider.storageType = 'localStorage';
       }
       return deferred.promise;
     }
+
+    
 
     function loginRequired($q, $location, $auth) {
       var deferred = $q.defer();

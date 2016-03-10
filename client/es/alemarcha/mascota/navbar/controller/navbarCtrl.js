@@ -3,12 +3,19 @@
     .module('adoptaTuMascotaApp')
     .controller('NavBarCtrl', navBarCtrl);
     
-    navBarCtrl.$inject = ['$scope', '$auth'];
+    navBarCtrl.$inject = ['$rootScope', '$auth'];
     
-    function navBarCtrl($scope, $auth) {
+    function navBarCtrl($rootScope, $auth) {
        this.isAuthenticated = function() {
         console.log("autenticando");
-         return $auth.isAuthenticated();
+           // Con esto se comprueba que existe token en localStorage. Si no existe directamente no está logueado. Si existe hay que                     comprobar si el token es correcto
+         if($auth.isAuthenticated()){
+                $rootScope.auth=true;
+             return true;
+             }else{
+                
+                 return false;
+             }
      };
             
      

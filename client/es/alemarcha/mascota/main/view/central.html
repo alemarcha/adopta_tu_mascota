@@ -1,7 +1,6 @@
 <article id="grid">
 	<div id="breadcrumb"><a ng-href="#/">Home</a> > <a href="search.html">Dresses</a> <h1>Summer Dress</h1></div>
-    <header>
-         
+    <header>  
         <div class="paging"> 
             <dir-pagination-controls direction-links="true" boundary-links="true" on-page-change="central.pageChangeHandler(newPageNumber)"             template-url="main/view/dirPagination.tpl.html" max-size="7" pagination-id="drinksPagination" ></dir-pagination-controls>
         </div>
@@ -12,7 +11,9 @@
             <option value="PriceLoHi">Encontrados</option>
             <option value="pID">Se regalan</option>
         </select> &nbsp; Mostrando {{central.numElementInitial}} - {{central.numElementFinal}} de {{central.numTotalElements}} animales
+        <input type="text" placeholder="Search ABC comp..." /><button type="submit">Search</button>
         </form>
+        
     </header>
     <ul id="items">
         <li dir-paginate="item in central.items|itemsPerPage:central.pageSize" current-page="central.currentPage" total-items="central.numTotalElements" pagination-id="drinksPagination">
