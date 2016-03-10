@@ -9,6 +9,8 @@
         var vm = this;
         vm.login = login;
         vm.register = register;
+        vm.logout = logout;
+        vm.isAuthenticated = isAuthenticated;
         
         initialize();
 
@@ -34,6 +36,7 @@
                  if (token) {
                     $auth.setToken(token);
                     $rootScope.notifications[$rootScope.indexNotificacion++]="Usuario logueado correctamente";
+                     $location.url('/');
                  } else {
                     alert("Usuario incorrecto");
                     $rootScope.notifications[$rootScope.indexNotificacion++]="Usuario incorrecto";
@@ -110,6 +113,45 @@
                 $rootScope.notifications[$rootScope.indexNotificacion++] = "Complete los campos requeridos.";
             }
         }
+        
+            
+        function logout () {
+            
+            // Comprobamos que los campos requeridos estan rellenos
+           
+            
+                $auth.logout()
+                .then(function(response) {
+                   $rootScope.notifications[$rootScope.indexNotificacion++] = "Ha cerrado sesión correctamente";
+
+                })
+                .catch(function(response) {
+                    // Si ha habido errores durante el registro del usuario, llegaremos a esta función
+                     $rootScope.notifications[$rootScope.indexNotificacion++] = "Se ha producido un error. Inténtelo más tarde.";
+                });   
+         
     }
+    
+    function isAuthenticated () {
+        console.log("autenticando");
+           // Con esto se comprueba que existe token en localStorage. Si no existe directamente no está logueado. Si existe hay que                     comprobar si el token es correcto
+           $rootScope.auth=false;
+         if($auth.isAuthenticated()){
+                if(!$rootScope.usuarioLogged){
+                    //Consulta para obtener usuario a partir del token, solo si no existe el usuario ya
+                    $auth.usuarioLogged={"email":"aa","nombre":"fasfd"};
+                }
+             $rootScope.auth=true;
+             return true;
+        }else{
+                delete $rootScope.usuarioLoggedn;
+        }
+                
+           return false;
+                 
+             
+     }
+    }
+    
     
 }());

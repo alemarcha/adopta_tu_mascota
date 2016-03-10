@@ -63,14 +63,14 @@
 </header>
 <aside id="top">
 
-   <div ng-controller="NavBarCtrl as navBarCtrl" class="wrapper">
+   <div ng-controller="RegistroCtrl as registroCtrl" class="wrapper">
     <ul id="social">
         <li><a href="#" class="facebook" title="like us us on Facebook">like us us on Facebook</a></li>
         <li><a href="#" class="twitter" title="follow us on twitter">follow us on twitter</a></li>
     </ul>
     
-   <div ng-if="!navBarCtrl.isAuthenticated()" id="action-bar"><a ng-href="#/{{'login'}}">Login/Register</a></div>
-   <div ng-if="navBarCtrl.isAuthenticated()" id="action-bar"><a ng-href="#/{{'login'}}">Mi perfil</a> // <a ng-href="#/{{'login'}}">Cerrar sesión</a> // <a ng-href="#/{{'new'}}">Your bag (3) &nbsp; &pound;148</a></div>
+   <div ng-if="!registroCtrl.isAuthenticated()" id="action-bar"><a ng-href="#/{{'login'}}">Login/Register</a></div>
+   <div ng-if="registroCtrl.isAuthenticated()" id="action-bar"><a ng-href="#/{{'login'}}">Mi perfil</a> // <a ng-href="#" ng-click="registroCtrl.logout()">Cerrar sesión</a> // <a ng-href="#/{{'new'}}">Your bag (3) &nbsp; &pound;148</a></div>
 </div>
 </aside>
 <div class="view-animate-container">
@@ -119,13 +119,12 @@
 <script src="element/controller/elementCtrl.js"></script>
 <script src="main/controller/centralCtrl.js"></script>
 <script src="altaElemento/controller/newElementCtrl.js"></script>
-<script src="navbar/controller/navbarCtrl.js"></script>
 
 <!-- FACTORY -->
 <script src="main/factory/centralFactory.js"></script>
 <script src="element/factory/elementFactory.js"></script>
 <script src="altaElemento/factory/altaElementoFactory.js"></script>
-<script src="navbar/factory/auth.js"></script>
+<script src="registro/factory/auth.js"></script>
 
 
 </body>
