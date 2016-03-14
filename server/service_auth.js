@@ -1,18 +1,15 @@
 var usuariosData = require('./data/usuariosData.js')
 module.exports.service_auth = function (app) {
-    var jwt = require('jwt-simple');
-    var moment = require('moment');
-    
      var TOKEN_SECRET = process.env.TOKEN_SECRET || 'YOUR_UNIQUE_JWT_TOKEN_SECRET';
 
     function createJWT(user) {
-  var payload = {
-    sub: user._id,
-    iat: moment().unix(),
-    exp: moment().add(14, 'days').unix()
-  };
-  return jwt.encode(payload, TOKEN_SECRET);
-}
+      var payload = {
+        sub: user._id,
+        iat: app.moment().unix(),
+        exp: app.moment().add(14, 'days').unix()
+      };
+      return app.jwt.encode(payload, TOKEN_SECRET);
+    }
     
 	app.post('/api/private/auth/login', function (req, res, next) {
 		var element = req.body.email;
