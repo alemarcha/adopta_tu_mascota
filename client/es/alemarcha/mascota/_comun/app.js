@@ -6,7 +6,7 @@ angular.module('adoptaTuMascotaApp').config(['$routeProvider', '$authProvider',
     // No additional setup required for Twitter
 $authProvider.httpInterceptor = function() { return true; },
 $authProvider.baseUrl = '/api';
-$authProvider.loginUrl = '/private/auth/login';
+$authProvider.loginUrl = '/auth/login';
 $authProvider.signupUrl = '/private/auth/register';
 $authProvider.tokenName = 'token';
 $authProvider.tokenPrefix = 'adoptaTuMascotaApp';
