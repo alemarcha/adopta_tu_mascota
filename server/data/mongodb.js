@@ -8,6 +8,7 @@ exports.connecting = connecting;
 exports.finding = finding;
 exports.inserting = inserting;
 exports.updating = updating;
+exports.counting = counting;
 
 function connecting(mongoCol) {
     var deferred = Q.defer();
@@ -59,6 +60,27 @@ function updating(mongoCol, query, document) {
         })
         .fail(function (err) {
             callback2Promise(err, result, deferred);
+        });
+    return deferred.promise;
+}
+
+function counting(mongoCol, query) {
+    var deferred = Q.defer();
+    
+    connecting(mongoCol)
+        .then(function (colDb) {
+            colDb.count(query)(function (err, result) {
+                callback2Promise(err, result, deferred);
+            });
+        })
+        .fail(function (err) {
+            console.log("fail mongo" + err);
+            callback2Promise(err, result, deferred);
+        })
+        .catch(function(){
+        console.log("catch mongo");
+        deferred.reject();
+            
         });
     return deferred.promise;
 }

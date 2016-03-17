@@ -17,10 +17,14 @@
             vm.numElementInitial = (vm.currentPage * vm.pageSize)- vm.pageSize + 1;
             vm.numElementFinal = (vm.currentPage * vm.pageSize);
             
-            centralFactory.numTotalElements.query(function(data){
+            centralFactory.numTotalElements.query().$promise
+                .then(function(data){
+                console.log("exito");
                 vm.numTotalElements = data.numTotal;
                 console.log('Numero total de elementos:' + data.numTotal);
-            });
+            },function(err){
+                                       console.log("error");                           
+                                                                  });
 
             centralFactory.paginationElements.query({fromPage:vm.currentPage,numElements:vm.pageSize},function(data){
                 console.log(data.elementos);

@@ -19,8 +19,8 @@
         <li dir-paginate="item in central.items|itemsPerPage:central.pageSize" current-page="central.currentPage" total-items="central.numTotalElements" pagination-id="drinksPagination">
             <span class="sale" ng-show="{{item.valor%2 === 0}}">Sale</span>
             <a ng-href="#/element/{{item.id}}"><img src="_comun/recursos/images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a ng-href="#/element/{{item.id}}" class="title">{{item.titulo}}</a>
-            <strong title="{{item.valor}}" class="subtitle" >&pound;{{item.valor}}</strong>
+            <a ng-href="#/element/{{item.id}}" class="title">{{item.name}}</a>
+            <strong title="{{item.description}}" class="subtitle" >&pound;{{item.description}}</strong>
         </li>
     </ul>
     <footer>

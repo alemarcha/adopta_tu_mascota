@@ -58,7 +58,9 @@ angular
 			} else if (response.status === 404) {
                 $log.info('404 SECURITY CLIENTE');			 
 				$location.url('/404');
-			};
+			} else if (response.status === 500) {
+                $rootScope.notifications[$rootScope.indexNotificacion++]="Error 500";
+            };
 			return $q.reject(response);
 		}
 	
