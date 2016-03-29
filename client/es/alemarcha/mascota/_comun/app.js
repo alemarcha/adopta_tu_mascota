@@ -1,4 +1,4 @@
-angular.module('adoptaTuMascotaApp', ['ngRoute','ngResource','angularUtils.directives.dirPagination','angularSpinner','growlNotifications','satellizer']);
+angular.module('adoptaTuMascotaApp', ['ngRoute','ngResource','angularUtils.directives.dirPagination','angularSpinner','growlNotifications','satellizer','ngMap']);
 
 angular.module('adoptaTuMascotaApp').config(['$routeProvider', '$authProvider',
   function($routeProvider,$authProvider) {

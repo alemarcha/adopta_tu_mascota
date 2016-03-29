@@ -10,7 +10,7 @@
             <option value="PriceHiLo">Desaparecidos</option>
             <option value="PriceLoHi">Encontrados</option>
             <option value="pID">Se regalan</option>
-        </select> &nbsp; Mostrando {{central.numElementInitial}} - {{central.numElementFinal}} de {{central.numTotalElements}} animales
+        </select> &nbsp; Mostrando {{central.numElementInitial}} - {{central.numElementFinal}} de {{central.numTotalElements}} mascotas
         <input type="text" placeholder="Search ABC comp..." /><button type="submit">Search</button>
         </form>
         
@@ -18,8 +18,8 @@
     <ul id="items">
         <li dir-paginate="item in central.items|itemsPerPage:central.pageSize" current-page="central.currentPage" total-items="central.numTotalElements" pagination-id="drinksPagination">
             <span class="sale" ng-show="{{item.valor%2 === 0}}">Sale</span>
-            <a ng-href="#/element/{{item.id}}"><img src="_comun/recursos/images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a ng-href="#/element/{{item.id}}" class="title">{{item.name}}</a>
+            <a title="{{item.name}}" ng-href="#/element/{{item._id}}"><img src="_comun/recursos/images/thumb.png" alt="Elegant evening Dress"/></a>
+            <a ng-href="#/element/{{item._id}}" class="title">{{item.name}}</a>
             <strong title="{{item.description}}" class="subtitle" >&pound;{{item.description}}</strong>
         </li>
     </ul>

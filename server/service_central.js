@@ -5,9 +5,11 @@ module.exports.service_central = function (app) {
 		var items={elementos:[]};
 		  elementosData.findAllEnabled()
                 .then(function (data) {
+              
                     console.log('Recuperando elementos' + data);
                     items.elementos=data;
                     res.status(200).json(items);
+                  
                    
                 })
                 .fail(function (err) {

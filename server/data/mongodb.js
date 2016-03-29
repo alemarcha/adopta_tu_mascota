@@ -24,14 +24,18 @@ function connecting(mongoCol) {
 
 function finding(mongoCol, query) {
     var deferred = Q.defer();
+    console.log("En el finding");
     connecting(mongoCol)
         .then(function (colDb) {
             colDb.find(query).toArray(function (err, result) {
                 callback2Promise(err, result, deferred);
+                console.log("En el finding OK" + JSON.stringify(result));
             });
         })
         .fail(function (err) {
             callback2Promise(err, result, deferred);
+        
+        console.log("En el finding fails");
         });
     return deferred.promise;
 }
@@ -69,7 +73,7 @@ function counting(mongoCol, query) {
     
     connecting(mongoCol)
         .then(function (colDb) {
-            colDb.count(query)(function (err, result) {
+            colDb.count(query,function (err, result) {
                 callback2Promise(err, result, deferred);
             });
         })

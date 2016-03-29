@@ -15,9 +15,13 @@
         console.log("empieza");
         function initialize(){
          elementFactory.elementById.query({id:vm.id},function(data){
-            vm.elementoActual=data;
-            console.log(vm.elementoActual.titulo);
-             console.log("aqui");
+             if(data){
+                vm.elementoActual=data;
+                console.log(vm.elementoActual.titulo);
+                console.log("aqui");
+            }else{
+                
+            }
         },function(error){
              console.log("ERROR");
              

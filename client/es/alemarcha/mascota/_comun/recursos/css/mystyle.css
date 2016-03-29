@@ -233,4 +233,6 @@ growl-notification.fading.ng-leave.ng-leave-active {
 
 .subtitle{
     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }

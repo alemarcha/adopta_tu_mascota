@@ -7,6 +7,12 @@ exports.findAllEnabled = function () {
     return mongodb.finding(mongoCol);
 }
 
+exports.find = function (idElemento) {
+    console.log("Buscando elemento 2: "+idElemento);
+    return mongodb.finding(mongoCol,{_id:new mongodb.ObjectId(idElemento)});
+}
+
+
 exports.inserting = function (mascota) {
     return mongodb.inserting(mongoCol, mascota);
 }

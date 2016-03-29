@@ -91,7 +91,9 @@ body#home {min-height:100%;min-width:100%;overflow:hidden;}
 /*** Main product view ***/
 #mainview #breadcrumb {margin-bottom:10px;}
 #description {float:right;width:500px;}
-	#description h1 {font-family: 'Terminal Dosis', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size:2em;font-weight:300;}
+	#description h1 {font-family: 'Terminal Dosis', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: xx-large;
+    font-weight: bold;
+    line-height: initial;}
 	#description p {padding:0px 0px 14px 0px;}
 	#price {font-size:1.333em;display:block;color:#ff5454;padding:14px 0px;}
 		#price span {color:#333;font-size:0.722em;float:right;}

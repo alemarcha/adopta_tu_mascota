@@ -15,10 +15,11 @@
   ],
   "homepage": "index.html",
   "dependencies": {
-    "angular" : "1.4.9",
-    "angular-route" : "1.4.9",
-    "angular-resource" : "1.4.9",
+    "angular": "1.4.9",
+    "angular-route": "1.4.9",
+    "angular-resource": "1.4.9",
     "angular-growl-notifications": "~2.2.0",
-    "satellizer": "~0.13.4"
+    "satellizer": "~0.13.4",
+    "ngmap": "~1.16.7"
   }
 }
