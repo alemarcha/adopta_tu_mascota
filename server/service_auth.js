@@ -32,6 +32,16 @@ module.exports.service_auth = function (app) {
                 });
         
 	});
+    
+    	app.get('/api/private/auth/loginToken', function (req, res, next) {
+        
+            
+            //console.log(req.params.token);
+            
+                    res.status(200);
+        
+        
+	});
 
     app.post('/api/private/auth/register', function (req, res, next) {
         var element = req.body.usuario;

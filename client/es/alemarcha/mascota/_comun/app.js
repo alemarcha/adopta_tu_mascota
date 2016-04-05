@@ -37,6 +37,9 @@ $authProvider.storageType = 'localStorage';
     when('/404', {
         templateUrl: 'error/404/404.html'
     }).
+    when('/401', {
+        templateUrl: 'error/401/401.html'
+    }).
     otherwise({
         templateUrl: 'main/view/central.html',
         controller: 'CentralCtrl',
@@ -45,6 +48,12 @@ $authProvider.storageType = 'localStorage';
 
       
   }]);
+
+angular.module('adoptaTuMascotaApp').run(['$rootScope', '$route','authFactory', function($rootScope, $route,authFactory) {
+ $rootScope.$on('$routeChangeSuccess', function() {
+        authFactory.isAuthenticated();
+    });
+}]);
 
     angular.module('adoptaTuMascotaApp').run(
     function ($rootScope) {

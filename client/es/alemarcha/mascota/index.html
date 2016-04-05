@@ -6,6 +6,7 @@
             <link rel="stylesheet" href="_comun/recursos/css/style.css" />
             <link rel="stylesheet" href="_comun/recursos/css/mystyle.css" />
             <link href='https://fonts.googleapis.com/css?family=Terminal+Dosis' rel='stylesheet' type='text/css'>
+             <link rel="icon" type="image/png" href="_comun/recursos/images/Tourism-icon-3.png" sizes="32x32">
             <meta name="description" content="Aplicación donde podrás buscar una nueva mascota" />
             <meta name="author" content="Alexis Martínez Chacón" />
             <meta name="application-name" content="AdoptaTuMascotaJS" />
@@ -16,7 +17,7 @@
           <![endif]-->
       </head>
       <body>
-        <div id="principal">
+        <div id="principal" ng-cloak>
             <header>
                <div class="wrapper">
                 <h1><a ng-href="#/" id="brand" title="ABC comp">ABC comp</a></h1>
@@ -63,21 +64,20 @@
 </header>
 <aside id="top">
 
-   <div ng-controller="RegistroCtrl as registroCtrl" class="wrapper">
+   <div ng-controller="RegistroCtrl as registroCtrl" class="wrapper" ng-cloak>
     <ul id="social">
         <li><a href="#" class="facebook" title="like us us on Facebook">like us us on Facebook</a></li>
         <li><a href="#" class="twitter" title="follow us on twitter">follow us on twitter</a></li>
     </ul>
-    
-   <div ng-if="!registroCtrl.isAuthenticated()" id="action-bar"><a ng-href="#/{{'login'}}">Login/Register</a></div>
-   <div ng-if="registroCtrl.isAuthenticated()" id="action-bar"><a ng-href="#/{{'login'}}">Mi perfil</a> // <a ng-href="#" ng-click="registroCtrl.logout()">Cerrar sesión</a> // <a ng-href="#/{{'new'}}">Your bag (3) &nbsp; &pound;148</a></div>
+   <div ng-if="!auth" id="action-bar"><a ng-href="#/{{'login'}}">Login/Register</a></div>
+   <div ng-if="auth" id="action-bar"><a ng-href="#/{{'login'}}">Mi perfil</a> // <a ng-href="#" ng-click="registroCtrl.logout()">Cerrar sesión</a> // <a ng-href="#/{{'new'}}">Your bag (3) &nbsp; &pound;148</a></div>
 </div>
 </aside>
-<div class="view-animate-container">
+<div class="view-animate-container" ng-cloak>
     <growl-notifications></growl-notifications>
     <div ng-repeat="(id, notification) in notifications track by id">
-        <growl-notification ttl="10000">
-        {{notification}}
+        <growl-notification ttl="10000" ng-bind="notification">
+        
     </growl-notification>
 </div>
 <span us-spinner="{radius:30, width:8, length: 16}" spinner-on="loading"></span>

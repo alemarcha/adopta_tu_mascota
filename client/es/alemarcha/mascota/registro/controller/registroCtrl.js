@@ -3,9 +3,9 @@
     .module('adoptaTuMascotaApp')
     .controller('RegistroCtrl', registroCtrl);
     
-    registroCtrl.$inject = ['$routeParams','$auth','$location', 'SatellizerConfig','$rootScope'];
+    registroCtrl.$inject = ['$routeParams','$auth','$location', 'SatellizerConfig','$rootScope','authFactory'];
     
-    function registroCtrl($routeParams, $auth, $location, config, $rootScope) {
+    function registroCtrl($routeParams, $auth, $location, config, $rootScope, authFactory) {
         var vm = this;
         vm.login = login;
         vm.register = register;
@@ -139,12 +139,21 @@
          if($auth.isAuthenticated()){
                 if(!$rootScope.usuarioLogged){
                     //Consulta para obtener usuario a partir del token, solo si no existe el usuario ya
-                    $auth.usuarioLogged={"email":"aa","nombre":"fasfd"};
-                }
+                    //alert($auth.getToken());
+                    $rootScope.usuarioLogged;
+//            authFactory.getUserByToken.query().$promise
+//                .then(function(data){
+//                console.log("exito");
+//            },function(err){
+//                console.log("error num total");                           
+//                                                              
+//            });
+
+            
              $rootScope.auth=true;
              return true;
         }else{
-                delete $rootScope.usuarioLoggedn;
+                delete $rootScope.usuarioLogged;
         }
                 
            return false;
@@ -152,6 +161,6 @@
              
      }
     }
-    
+    }
     
 }());
