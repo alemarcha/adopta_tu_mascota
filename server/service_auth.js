@@ -1,4 +1,5 @@
 var usuariosData = require('./data/usuariosData.js')
+var mongodb = require('./data/mongodb.js');
 module.exports.service_auth = function (app) {     
     function createJWT(user) {
       var payload = {
@@ -13,13 +14,12 @@ module.exports.service_auth = function (app) {
 		var element = req.body.email;
         var pass = req.body.password;
         console.log("LOGIN SERVER" + element);
-        var user = {email:element};
 
         usuariosData.findingByEmailPassword(element,pass)
                 .then(function (data) {
                     if (data && data.length==1) {
                         console.log('email logueado:' + JSON.stringify(data));
-                        res.send({ token: createJWT(user) });
+                        res.send({ token: createJWT(data[0]) });
                     } else {
                         console.log('Email/contraseña no existe:' +JSON.stringify(data));
                         
@@ -34,13 +34,26 @@ module.exports.service_auth = function (app) {
 	});
     
     	app.get('/api/private/auth/loginToken', function (req, res, next) {
-        
+            var token = req.headers.authorization.split(" ")[1];
+            var payload=app.jwt.decode(token, app.token_secret);
+            var id=payload.sub
             
-            //console.log(req.params.token);
+             usuariosData.find({_id:new mongodb.ObjectId(id)})
+                .then(function (data) {
+                    if (data && data.length==1) {
+                        console.log('Usuario token:' + JSON.stringify(data));
+                        res.status(200).send(data[0]);
+                    } else {
+                        console.log('Email/contraseña no existe:' +JSON.stringify(data));
+                        
+                        res.status(401).send(data);
+                    };
+                })
+                .fail(function (err) {
+                    console.log('fallog' + err);
+                    res.status(500).send(err)
+                });
             
-                    res.status(200);
-        
-        
 	});
 
     app.post('/api/private/auth/register', function (req, res, next) {

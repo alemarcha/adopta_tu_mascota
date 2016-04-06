@@ -10,6 +10,10 @@ exports.findingByEmailPassword = function (email, password) {
     });
 }
 
+exports.find = function (query) {
+    return mongodb.finding(mongoCol, query);
+}
+
 exports.inserting = function (usuario) {
     return mongodb.inserting(mongoCol, usuario);
 }

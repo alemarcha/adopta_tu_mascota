@@ -9,7 +9,7 @@ module.exports.service_middleware = function (app) {
             var token = peticion.headers.authorization.split(" ")[1];
             //var token = peticion.headers.authorization;
             var payload=app.jwt.decode(token, app.token_secret);
-            console.log("id" + payload.sub);
+            console.log("ID" + payload.sub);
             console.log("exp" + payload.exp);
             console.log("iat" + payload.iat);
             if (payload.exp <= app.moment().unix()) {

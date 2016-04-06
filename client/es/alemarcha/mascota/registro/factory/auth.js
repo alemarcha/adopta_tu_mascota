@@ -25,41 +25,56 @@
     
     factory.getUserByToken = $resource("/api/private/auth/loginToken",
                                         {},
-                                        {query: {cache:true}});
+                                        {query: {cache:false}});
          
     factory.isAuthenticated = function  () {
         console.log("autenticando");
            // Con esto se comprueba que existe token en localStorage. Si no existe directamente no está logueado. Si existe hay que                     comprobar si el token es correcto
-           $rootScope.auth=false;
+           
          if($auth.isAuthenticated()){
                 if(!$rootScope.usuarioLogged){
                     //Consulta para obtener usuario a partir del token, solo si no existe el usuario ya
                     //alert($auth.getToken());
                     $rootScope.usuarioLogged;
-//            authFactory.getUserByToken.query().$promise
-//                .then(function(data){
-//                console.log("exito");
-//            },function(err){
-//                console.log("error num total");                           
-//                                                              
-//            });
-
-            
-             $rootScope.auth=true;
-             return true;
-        }else{
-                delete $rootScope.usuarioLogged;
-        }
+            factory.getUserByToken.query().$promise
+                .then(function(data){
+                if(data){
+                    alert("exito");
+                    $rootScope.usuarioLogged=data;
+                    $rootScope.auth=true;    
+                    console.log("Usuario: "+JSON.stringify(data));
+                }else{
+                    eliminaVariablesLogueoSession();
+                }
                 
-           return false;
-                 
-             
+                
+            },function(err){
+                eliminaVariablesLogueoSession();
+                alert("NO exito");
+                console.log("error num total");                                                                   
+            }).catch(function(response) {
+                    // Si ha habido errores durante el registro del usuario, llegaremos a esta función
+                     $rootScope.notifications[$rootScope.indexNotificacion++] = "Se ha producido un error. Inténtelo más tarde.";
+                });     
+            }else{
+                $rootScope.auth=true;
+                alert("no se hace nada porque ya existe");
+            }
+     }else{
+         eliminaVariablesLogueoSession();
      }
     }
     
+    function eliminaVariablesLogueoSession(){
+        $rootScope.auth=false;
+         delete $rootScope.usuarioLogged;
+    }
     
         return factory;
     }
+    
+    
+    
     
     
     

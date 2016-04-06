@@ -10,7 +10,7 @@
         vm.login = login;
         vm.register = register;
         vm.logout = logout;
-        vm.isAuthenticated = isAuthenticated;
+        
         
         initialize();
 
@@ -36,7 +36,7 @@
                  if (token) {
                     $auth.setToken(token);
                     $rootScope.notifications[$rootScope.indexNotificacion++]="Usuario logueado correctamente";
-                     $location.url('/');
+                    $location.url('/');
                  } else {
                     alert("Usuario incorrecto");
                     $rootScope.notifications[$rootScope.indexNotificacion++]="Usuario incorrecto";
@@ -94,7 +94,7 @@
                      if (token) {
                         $auth.setToken(token);
                         $rootScope.notifications[$rootScope.indexNotificacion++] = "Usuario registrado correctamente" + $auth.getToken();
-                         $location.url('/');
+                        $location.url('/');
                      } else {
                         $rootScope.notifications[$rootScope.indexNotificacion++] = "Se ha producido un error";
                      }
@@ -109,7 +109,7 @@
                 });   
             }else{
                 // Si los campos no se han rellenado correctamente
-                 form.$valid=false;   
+                form.$valid=false;   
                 $rootScope.notifications[$rootScope.indexNotificacion++] = "Complete los campos requeridos.";
             }
         }
@@ -123,6 +123,8 @@
                 $auth.logout()
                 .then(function(response) {
                    $rootScope.notifications[$rootScope.indexNotificacion++] = "Ha cerrado sesión correctamente";
+                    delete $rootScope.usuarioLogged;
+                    $rootScope.auth=false;
 
                 })
                 .catch(function(response) {
@@ -132,35 +134,6 @@
          
     }
     
-    function isAuthenticated () {
-        console.log("autenticando");
-           // Con esto se comprueba que existe token en localStorage. Si no existe directamente no está logueado. Si existe hay que                     comprobar si el token es correcto
-           $rootScope.auth=false;
-         if($auth.isAuthenticated()){
-                if(!$rootScope.usuarioLogged){
-                    //Consulta para obtener usuario a partir del token, solo si no existe el usuario ya
-                    //alert($auth.getToken());
-                    $rootScope.usuarioLogged;
-//            authFactory.getUserByToken.query().$promise
-//                .then(function(data){
-//                console.log("exito");
-//            },function(err){
-//                console.log("error num total");                           
-//                                                              
-//            });
-
-            
-             $rootScope.auth=true;
-             return true;
-        }else{
-                delete $rootScope.usuarioLogged;
-        }
-                
-           return false;
-                 
-             
-     }
-    }
     }
     
 }());
