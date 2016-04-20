@@ -236,3 +236,6 @@ growl-notification.fading.ng-leave.ng-leave-active {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+.formularioEstilo {float:left;width:auto;margin:10px 0px;padding:49px;}
+.formularioEstilo form{margin-bottom: 5%;}

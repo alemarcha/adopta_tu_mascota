@@ -24,26 +24,13 @@
                 <nav>
                     <ul ng-controller="MenuCtrl as menu">
                         <li>
-                          <a ng-href="#/" ng-class="{activeMenu: menu.isActive('/')}">Home</a>
+                          <a ng-href="#/" ng-class="{activeMenu: menu.isActive('/')}">Inicio</a>
                       </li>
                       <li>
-                          <a href="search.html">Tops</a>
-                          <ul class="sub-menu" >
-                            <li><a href="search.html">Tshirts</a></li>
-                            <li><a href="search.html">Jumpers</a></li>
-                            <li><a href="search.html">Cardigans</a></li>
-                            <li><a href="search.html">Knitwear</a></li>
-                        </ul>
+                          <a href="search.html">Perfil</a>
                     </li>
                     <li>
-                       <a href="search.html">Dresses</a>
-                       <ul class="sub-menu">
-                        <li><a href="search.html">Bridal dress</a></li>
-                        <li><a href="search.html">Cocktail dress</a></li>
-                        <li><a href="search.html">Maxi dress</a></li>
-                        <li><a href="search.html">Shift dress</a></li>
-                        <li><a href="search.html">Warp dress</a></li>
-                    </ul>
+                       <a href="search.html">Favoritos</a>
                 </li>
                 <li>
                     <a href="search.html">Accessories</a>
@@ -70,7 +57,7 @@
         <li><a href="#" class="twitter" title="follow us on twitter">follow us on twitter</a></li>
     </ul>
    <div ng-if="!auth" id="action-bar"><a ng-href="#/{{'login'}}">Login/Register</a></div>
-   <div ng-if="auth" id="action-bar"><a ng-href="#/{{'login'}}">Mi perfil</a> // Bienvenido {{usuarioLogged.nombre}}  <a ng-href="#" ng-click="registroCtrl.logout()">Cerrar sesión</a> // <a ng-href="#/{{'new'}}">Your bag (3) &nbsp; &pound;148</a></div>
+   <div ng-if="auth" id="action-bar">Bienvenido {{usuarioLogged.nombre}}  <a ng-href="#" ng-click="registroCtrl.logout()">Cerrar sesión</a> // <a ng-href="#/{{'new'}}">Your bag (3) &nbsp; &pound;148</a></div>
 </div>
 </aside>
 <div class="view-animate-container" ng-cloak>

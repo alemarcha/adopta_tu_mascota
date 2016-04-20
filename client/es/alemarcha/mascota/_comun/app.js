@@ -29,9 +29,7 @@ $authProvider.storageType = 'localStorage';
      when('/new', {
         templateUrl: 'altaElemento/view/new.html',
         controller: 'NewElementCtrl',
-        resolve:{
-        "check": function(authFactory) { authFactory.checkPermission() },
-        },
+        access: {restricted: true},
         controllerAs: 'newElement'
     }).
     when('/404', {
@@ -49,11 +47,48 @@ $authProvider.storageType = 'localStorage';
       
   }]);
 
-angular.module('adoptaTuMascotaApp').run(['$rootScope', '$route','authFactory', function($rootScope, $route,authFactory) {
- $rootScope.$on('$routeChangeSuccess', function() {
-        authFactory.isAuthenticated();
-    });
-}]);
+angular.module('adoptaTuMascotaApp').run(['$rootScope', '$location','$route','authFactory','$auth', function($rootScope, $location, $route,authFactory,$auth) {
+     $rootScope.$on('$routeChangeStart', function(e, curr, prev) { 
+    
+      // Show a loading message until promises aren't resolved
+        $rootScope.loading=true;
+
+         
+         if($auth.isAuthenticated()){
+                
+         authFactory.isAuthenticated().then(function(data){
+            if (curr.access && curr.access.restricted){
+             
+                 if(!$rootScope.auth===true) {
+                         $location.path('/login');
+                         $route.reload();
+
+                 }else{
+                     alert("adelante");
+                 }
+             }
+         }, function(data) {
+
+        // Since this segment of the promise signals that the user is not
+        // logged in, if the page is not publicly accessible, redirect to login
+        
+            $location.path('/login');
+
+         }).catch(function(response) {
+                    $location.path('/login');
+         });  
+
+     }else{
+         //eliminaVariablesLogueoSession();
+      $location.path('/login');
+     }
+         
+     });
+  }]);
+    
+  
+
+ 
 
     angular.module('adoptaTuMascotaApp').run(
     function ($rootScope) {
@@ -63,24 +98,5 @@ angular.module('adoptaTuMascotaApp').run(['$rootScope', '$route','authFactory', 
         $rootScope.notifications={};
     });
 
-     function skipIfLoggedIn($q, $auth) {
-      var deferred = $q.defer();
-      if ($auth.isAuthenticated()) {
-        deferred.reject();
-      } else {
-        deferred.resolve();
-      }
-      return deferred.promise;
-    }
 
-    
-
-    function loginRequired($q, $location, $auth) {
-      var deferred = $q.defer();
-      if ($auth.isAuthenticated()) {
-        deferred.resolve();
-      } else {
-        $location.path('/login');
-      }
-      return deferred.promise;
-    }
+//CUANDO ACCEDO A NEW POR EJEMPLO TENIENDO PERMISOS NO PUEDE APARECER LA PANTALLA SI AL FINAL NO VA A MOSTRARSE. TIENE QUE APARECER CARGANDO

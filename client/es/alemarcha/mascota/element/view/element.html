@@ -42,12 +42,12 @@
                 <p>Dry clean only, cashmere or silk so be careful, mkaybi</p>
             </section>
         </div>
-        {{element.elementoActual.address}}
+         <input ng-model="element.elementoActual.address"/>
         
         <div map-lazy-load="https://maps.google.com/maps/api/js">
       <ng-map zoom="15" center="{{element.elementoActual.address}}" style="width:600px; height:400px">
       <marker position="{{element.elementoActual.address}}" ></marker>
-<marker position="Puerta del sol, Madrid" ></marker>
+<marker position="{{element.elementoActual.address}}" ></marker>
 
       
       

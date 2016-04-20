@@ -15,7 +15,7 @@
         console.log("empieza");
         function initialize(){
          elementFactory.elementById.query({id:vm.id},function(data){
-             if(data){
+            if(data){
                 vm.elementoActual=data;
                 console.log(vm.elementoActual.titulo);
                 console.log("aqui");

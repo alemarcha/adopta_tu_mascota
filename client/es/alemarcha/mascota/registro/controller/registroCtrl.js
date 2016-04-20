@@ -20,6 +20,7 @@
         }
             
         function login (form) {
+            $rootScope.auth=false;    
             // Comprobamos que los campos requeridos estan rellenos
             if(vm.usuario.email 
                     && vm.usuario.password){
@@ -34,6 +35,7 @@
                  var token = response.data[config.tokenName];
                  //alert(response.data[config.tokenName]);
                  if (token) {
+                    $rootScope.auth=true;    
                     $auth.setToken(token);
                     $rootScope.notifications[$rootScope.indexNotificacion++]="Usuario logueado correctamente";
                     $location.url('/');
