@@ -79,8 +79,10 @@ angular.module('adoptaTuMascotaApp').run(['$rootScope', '$location','$route','au
          });  
 
      }else{
+         if (curr.access && curr.access.restricted){
          //eliminaVariablesLogueoSession();
       $location.path('/login');
+         }
      }
          
      });
