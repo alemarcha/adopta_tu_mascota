@@ -1,54 +1,59 @@
-
 <article id="address">
 
-<div id="container"  class="formularioEstilo">
-	<form name="formulario" ng-submit="newElement.checkForm(formulario)">
-    	<h1>Nueva mascota</h1>
-       	<p>
-            <label for="name">Nombre: {{form.submitted}}</label>
-            <input id="name" name="name" type="text" required="true" ng-model="newElement.element.name"><span class="alert">*</span>
-        </p>
-        <p>
-            <label for="descript">Descripción:</label>
-            <textarea id="descript" name="descript" type="text" required="true" cols="50" rows="10" ng-model="newElement.element.description"  ></textarea><span class="alert">*</span>
-    
-        </p>
-        <p>
-            <label for="address">Dirección:</label>
-            <input id="address" name="address" type="text" required="true" ng-model="newElement.element.address"><span class="alert">*</span>  
-        </p>
-       
-        <p>
-            <label for="email">Email:</label>
-            <input id="email" name="email" type="email" required="true" ng-model="newElement.element.email"><span class="alert">*</span>
-        </p>
-    	<p>
-            <label for="phone">Teléfono:</label>
-            <span style="display: none;" class="helper">Please enter your <strong>phone number</strong>.<br>We might need to contact you with regards to your order.</span>
-            <input id="phone" name="phone" type="tel" required="true" ng-model="newElement.element.phone"><span class="alert">*</span>
-        </p>
-         
-    <p>
-          <label>&nbsp;</label><button type="submit" class="continue">Crear</button>
-        </p>
-        <p>
-          <label>&nbsp;</label><button type="button" type="reset" ng-click="newElement.initialize()" class="reset">Reset</button>
-        </p>
-    </form>
-    
+    <div id="container" class="formularioEstilo">
+        <form name="formulario" ng-submit="newElement.checkForm(formulario)">
+            <h1>Nueva mascota</h1>
+            <p>
+                <label for="name">Nombre: {{form.submitted}}</label>
+                <input id="name" name="name" type="text" required="true" ng-model="newElement.element.name"><span class="alert">*</span>
+            </p>
+            <p>
+                <label for="descript">Descripción:</label>
+                <textarea id="descript" name="descript" type="text" required="true" cols="50" rows="10" ng-model="newElement.element.description"></textarea><span class="alert">*</span>
+
+            </p>
+            <p>
+                <label for="address">Dirección:</label>
+                <select name="type" id="singleSelect" ng-model="newElement.element.type" ng-options="option.categoria for option in  newElement.options track by option.id">
+                </select>
+            </p>
+            <p>
+                <label for="address">Dirección:</label>
+                <input id="address" name="address" type="text" required="true" ng-model="newElement.element.address"><span class="alert">*</span>
+            </p>
+
+            <p>
+                <label for="email">Email:</label>
+                <input id="email" name="email" type="email" required="true" ng-model="newElement.element.email"><span class="alert">*</span>
+            </p>
+            <p>
+                <label for="phone">Teléfono:</label>
+                <span style="display: none;" class="helper">Please enter your <strong>phone number</strong>.<br>We might need to contact you with regards to your order.</span>
+                <input id="phone" name="phone" type="tel" required="true" ng-model="newElement.element.phone"><span class="alert">*</span>
+            </p>
+
+            <p>
+                <label>&nbsp;</label>
+                <button type="submit" class="continue">Crear</button>
+            </p>
+            <p>
+                <label>&nbsp;</label>
+                <button type="button" type="reset" ng-click="newElement.initialize()" class="reset">Reset</button>
+            </p>
+        </form>
 
 
-<section>
-    
-    <div map-lazy-load="https://maps.google.com/maps/api/js">
-      <ng-map zoom="15" center="{{newElement.element.address}}" style="width:600px; height:400px">
-      <marker position="{{newElement.element.address}}" ></marker>
-      <marker position="{{newElement.element.address}}" ></marker>
-      </ng-map>
-    </div>
+
+        <section>
+
+            <div map-lazy-load="https://maps.google.com/maps/api/js">
+                <ng-map zoom="15" center="{{newElement.element.address}}" style="width:600px; height:400px">
+                    <marker position="{{newElement.element.address}}"></marker>
+                    <marker position="{{newElement.element.address}}"></marker>
+                </ng-map>
+            </div>
     </div>
     </section>
-    
+
     </div>
 </article>
-

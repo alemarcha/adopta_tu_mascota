@@ -3,13 +3,15 @@ var mongodb = require('./mongodb.js');
 var mongoCol = "mascotas";
 
 
-exports.findAllEnabled = function () {
-    return mongodb.finding(mongoCol);
+exports.findAllEnabled = function (query, skip, limit) {
+    return mongodb.findingAllEnabled(mongoCol, query, skip, limit);
 }
 
 exports.find = function (idElemento) {
-    console.log("Buscando elemento 2: "+idElemento);
-    return mongodb.finding(mongoCol,{_id:new mongodb.ObjectId(idElemento)});
+    console.log("Buscando elemento 2: " + idElemento);
+    return mongodb.finding(mongoCol, {
+        _id: new mongodb.ObjectId(idElemento)
+    });
 }
 
 
