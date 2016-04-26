@@ -1,8 +1,10 @@
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
+
 #principal {
     min-height: 100%;
 }
@@ -10,6 +12,7 @@ html, body {
 #container {
     display: table;
 }
+
 footer {
     background: #E7FBF7;
     clear: both;
@@ -19,162 +22,198 @@ footer {
     position: relative;
     width: 100%;
 }
-.pagination.ng-scope{
+
+.pagination.ng-scope {
     display: flex;
 }
-.classPaging{
-        
+
+.classPaging {
     border-color: transparent;
     border-width: thick;
 }
 
+
 /* Styles pagination */
 
 .my-controller {
-  border: 1px solid #fcc;
-  padding: 5px;
-  margin: 3px;
-}
-.my-controller small {
-  color: #c99;
-}
-.other-controller {
-  border: 1px solid #ccf;
-  padding: 5px;
-  margin: 3px;
-}
-.other-controller small {
-  color: #99c;
-}
-.third-controller {
-  border: 1px solid #cfc;
-  padding: 5px;
-  margin: 3px;
-}
-.third-controller small {
-  color: #9c9;
+    border: 1px solid #fcc;
+    padding: 5px;
+    margin: 3px;
 }
 
-h2 { padding-top: 20px; }
-h2:first-of-type { padding-top: 0; }
-ul { padding: 0; }
+.my-controller small {
+    color: #c99;
+}
+
+.other-controller {
+    border: 1px solid #ccf;
+    padding: 5px;
+    margin: 3px;
+}
+
+.other-controller small {
+    color: #99c;
+}
+
+.third-controller {
+    border: 1px solid #cfc;
+    padding: 5px;
+    margin: 3px;
+}
+
+.third-controller small {
+    color: #9c9;
+}
+
+h2 {
+    padding-top: 20px;
+}
+
+h2:first-of-type {
+    padding-top: 0;
+}
+
+ul {
+    padding: 0;
+}
 
 .pagination {
-  height: 24px;
-  margin: 0;
+    height: 24px;
+    margin: 0;
 }
-.pagination ul {
-  display: inline-block;
-  *display: inline;
-  /* IE7 inline-block hack */
 
-  *zoom: 1;
-  margin-left: 0;
-  margin-bottom: 0;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+.pagination ul {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    margin-left: 0;
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
+
 .pagination li {
-  display: inline;
+    display: inline;
 }
+
 .pagination a {
-  float: left;
-  padding: 0 14px;
-  line-height: 24px;
-  text-decoration: none;
-  border: 1px solid #ddd;
-  border-left-width: 0;
-  background-color: #E7FBF7;
-  color: #333333;
+    float: left;
+    padding: 0 14px;
+    line-height: 24px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-left-width: 0;
+    background-color: #E7FBF7;
+    color: #333333;
 }
+
 .pagination a:hover,
 .pagination .active a {
-  background-color: #B0FDEC;
+    background-color: #B0FDEC;
+}
 
-}
 .pagination .active a {
-  cursor: default;
-  font-weight: bold;
+    cursor: default;
+    font-weight: bold;
 }
+
 .pagination .disabled span,
 .pagination .disabled a,
 .pagination .disabled a:hover {
-  color: #999999;
-  background-color: transparent;
-  cursor: default;
+    color: #999999;
+    background-color: transparent;
+    cursor: default;
 }
+
 .pagination li:first-child a {
-  border-left-width: 1px;
-  -webkit-border-radius: 3px 0 0 3px;
-  -moz-border-radius: 3px 0 0 3px;
-  border-radius: 3px 0 0 3px;
+    border-left-width: 1px;
+    -webkit-border-radius: 3px 0 0 3px;
+    -moz-border-radius: 3px 0 0 3px;
+    border-radius: 3px 0 0 3px;
 }
+
 .pagination li:last-child a {
-  -webkit-border-radius: 0 3px 3px 0;
-  -moz-border-radius: 0 3px 3px 0;
-  border-radius: 0 3px 3px 0;
+    -webkit-border-radius: 0 3px 3px 0;
+    -moz-border-radius: 0 3px 3px 0;
+    border-radius: 0 3px 3px 0;
 }
+
 .pagination-centered {
-  text-align: center;
+    text-align: center;
 }
+
 .pagination-right {
-  text-align: right;
+    text-align: right;
 }
+
 .pager {
-  margin-left: 0;
-  margin-bottom: 18px;
-  list-style: none;
-  text-align: center;
-  *zoom: 1;
+    margin-left: 0;
+    margin-bottom: 18px;
+    list-style: none;
+    text-align: center;
+    *zoom: 1;
 }
+
 .pager:before,
 .pager:after {
-  display: table;
-  content: "";
+    display: table;
+    content: "";
 }
+
 .pager:after {
-  clear: both;
+    clear: both;
 }
+
 .pager li {
-  display: inline;
+    display: inline;
 }
+
 .pager a {
-  display: inline-block;
-  padding: 5px 14px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  border-radius: 15px;
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
 }
+
 .pager a:hover {
-  text-decoration: none;
-  background-color: #f5f5f5;
+    text-decoration: none;
+    background-color: #f5f5f5;
 }
+
 .pager .next a {
-  float: right;
+    float: right;
 }
+
 .pager .previous a {
-  float: left;
+    float: left;
 }
+
 .pager .disabled a,
 .pager .disabled a:hover {
-  color: #999999;
-  background-color: #fff;
-  cursor: default;
+    color: #999999;
+    background-color: #fff;
+    cursor: default;
 }
 
-/** Menu **/
-.activeMenu{
-color: #ff5454!important;
-    background: #B0FDEC;
-  }
 
-  /** Growl notifications**/
+/** Menu **/
+
+.activeMenu {
+    color: #ff5454!important;
+    background: #B0FDEC;
+}
+
+
+/** Growl notifications**/
+
 growl-notifications {
     position: fixed;
     top: 50px;
@@ -196,46 +235,71 @@ growl-notifications growl-notification {
     border-left-color: #b29f90;
 }
 
-growl-notification.fading.ng-move{
+growl-notification.fading.ng-move {
     opacity: 0;
-    -webkit-transition: 1s linear all; /* Safari/Chrome */
-    transition: 1s linear all; /* All other modern browsers and IE10+ */
+    -webkit-transition: 1s linear all;
+    /* Safari/Chrome */
+    transition: 1s linear all;
+    /* All other modern browsers and IE10+ */
 }
 
 growl-notification.fading.ng-move.ng-move-active {
     opacity: 1;
 }
+
 growl-notification.fading.ng-leave {
     opacity: 1;
-    -webkit-transition: 1s linear all; /* Safari/Chrome */
-    transition: 1s linear all; /* All other modern browsers and IE10+ */
+    -webkit-transition: 1s linear all;
+    /* Safari/Chrome */
+    transition: 1s linear all;
+    /* All other modern browsers and IE10+ */
 }
 
 growl-notification.fading.ng-leave.ng-leave-active {
     opacity: 0;
 }
 
+
 /** QUITAR DE FIREFOX VALIDACIÓN FORM **/
 
 :invalid {
-  box-shadow: none;
+    box-shadow: none;
 }
 
 :-moz-submit-invalid {
-  box-shadow: none;
+    box-shadow: none;
 }
 
 :-moz-ui-invalid {
-  box-shadow:none;
+    box-shadow: none;
 }
+
 
 /** subtitle lista inicial **/
 
-.subtitle{
+.subtitle {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-.formularioEstilo {float:left;width:auto;margin:10px 0px;padding:49px;}
-.formularioEstilo form{margin-bottom: 5%;}
+.formularioEstilo {
+    float: left;
+    width: auto;
+    margin: 10px 0px;
+    padding: 49px;
+}
+
+.formularioEstilo form {
+    margin-bottom: 5%;
+}
+
+.fechas {
+    font-style: oblique;
+}
+
+.favorito {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}

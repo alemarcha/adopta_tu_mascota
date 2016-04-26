@@ -20,6 +20,11 @@
     "angular-resource": "1.4.9",
     "angular-growl-notifications": "~2.2.0",
     "satellizer": "~0.13.4",
-    "ngmap": "~1.16.7"
+    "ngmap": "~1.16.7",
+    "moment": "~2.13.0",
+    "angular-moment": "~0.10.3",
+    "moment-timezone": "~0.5.3",
+    "jstz-detect": "~1.0.5",
+    "angular-socialshare": "angularjs-socialshare#~2.1.3"
   }
 }

@@ -4,7 +4,7 @@
         <form name="formulario" ng-submit="newElement.checkForm(formulario)">
             <h1>Nueva mascota</h1>
             <p>
-                <label for="name">Nombre: {{form.submitted}}</label>
+                <label for="name">Nombre:</label>
                 <input id="name" name="name" type="text" required="true" ng-model="newElement.element.name"><span class="alert">*</span>
             </p>
             <p>
@@ -13,9 +13,13 @@
 
             </p>
             <p>
-                <label for="address">Dirección:</label>
-                <select name="type" id="singleSelect" ng-model="newElement.element.type" ng-options="option.categoria for option in  newElement.options track by option.id">
-                </select>
+                <label for="address">Categoría:</label>
+                <select name="type" id="singleSelect" ng-model="newElement.element.type" ng-options="option.categoria for option in  newElement.options track by option.id" required>
+                </select><span class="alert">*</span>
+            </p>
+            <p>
+                <label for="name">Raza:</label>
+                <input id="raza" name="raza" type="text" required="true" ng-model="newElement.element.raza"><span class="alert">*</span>
             </p>
             <p>
                 <label for="address">Dirección:</label>
