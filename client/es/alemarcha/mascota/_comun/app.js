@@ -1,4 +1,4 @@
-angular.module('adoptaTuMascotaApp', ['ngRoute', 'ngResource', 'angularUtils.directives.dirPagination', 'angularSpinner', 'growlNotifications', 'satellizer', 'ngMap', 'angularMoment', '720kb.socialshare']);
+angular.module('adoptaTuMascotaApp', ['ngRoute', 'ngResource', 'angularUtils.directives.dirPagination', 'angularSpinner', 'growlNotifications', 'satellizer', 'ngMap', 'angularMoment', '720kb.socialshare', 'ngFileUpload']);
 
 angular.module('adoptaTuMascotaApp').config(['$routeProvider', '$authProvider',
   function ($routeProvider, $authProvider) {

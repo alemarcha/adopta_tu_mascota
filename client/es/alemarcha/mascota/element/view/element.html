@@ -3,7 +3,8 @@
     <div id="container">
         <div id="breadcrumb"><a href="index.html">Home</a> > <a href="search.html">Dresses</a> > <a href="search.html">Summer Dress</a> > Summer Dress</div>
         <div id="description">
-            <h1>{{element.elementoActual.name}} <button class="fa fa-star favorito"/></h1>
+            <h1>{{element.elementoActual.name}}</h1>
+
             <ul>
 
                 <li title="{{element.elementoActual.dateFormat}}" class="fechas">
@@ -11,8 +12,20 @@
                 <li>Autor: {{element.elementoActual.usuario.nombre}} {{element.elementoActual.usuario.apellidos}}</li>
                 <li><a href="#tabs-2">{{element.elementoActual.type.categoria}} </a> / <a href="#tabs-2">{{element.elementoActual.raza}} </a></li>
             </ul>
-            <p>{{element.elementoActual.description}} </p>
 
+            <p>{{element.elementoActual.description}} </p>
+            <p class="compartir">
+                <a class="ssk ssk-icon ssk-twitter" socialshare socialshare-provider="twitter" socialshare-text="Compartiendo noticia {{element.elementoActual.name}}" socialshare-hashtags="angularjs, angular-socialshare" socialshare-url="http://adoptomimascota.com">
+                </a>
+                <a class="ssk ssk-icon ssk-facebook" socialshare socialshare-provider="facebook" socialshare-type="sharer" socialshare-text="720kb" socialshare-url="https://adoptomimascota.com/" socialshare-popup-height="300" socialshare-popup-width="400" socialshare-trigger="click">
+                </a>
+                <a class="ssk ssk-icon ssk-google-plus" socialshare socialshare-provider="google" socialshare-url="http://720kb.net" socialshare-popup-height="300" socialshare-popup-width="400" socialshare-media="https://www.google.it/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" socialshare-trigger="click">
+                </a>
+                <a class="ssk ssk-icon ssk-linkedin" socialshare socialshare-provider="linkedin" socialshare-text="{{test.testValue}}" socialshare-url="http://720kb.net" socialshare-description="720kb linkedin summary" socialshare-source="720kb" socialshare-popup-height="300" socialshare-popup-width="400" socialshare-trigger="click">
+                </a>
+                <a class="ssk ssk-icon ssk-tumblr" socialshare socialshare-provider="tumblr" socialshare-type="link" socialshare-text="720kb" socialshare-url="http://720kb.net" socialshare-popup-height="300" socialshare-popup-width="540" socialshare-trigger="click">
+                </a>
+            </p>
             <h1>Contacto</h1>
             <ul>
                 <li>Telefono: {{element.elementoActual.phone}}</li>
@@ -27,11 +40,6 @@
                 </ng-map>
             </div>
 
-            <p>
-                <a class="fa fa-twitter fa-3" ng-href="javascript: return false;" socialshare socialshare-provider="twitter" socialshare-text="Compartiendo noticia {{element.elementoActual.name}}" socialshare-hashtags="angularjs, angular-socialshare" socialshare-url="http://adoptomimascota.com">
-
-                </a>
-            </p>
         </div>
         <div id="images">
             <a href="_comun/recursos/images/main.jpg"><img src="_comun/recursos/images/main.jpg"></a>

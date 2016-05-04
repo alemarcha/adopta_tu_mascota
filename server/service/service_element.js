@@ -52,4 +52,24 @@ module.exports.service_element = function (app) {
                 res.status(500).send(err)
             });
     });
+
+
+    app.post('/api/priv/element/upload', function (req, res) {
+        var sampleFile;
+
+        if (!req.files) {
+            res.send('No files were uploaded.');
+            return;
+        }
+        console.log(__dirname);
+
+        sampleFile = req.files.file;
+        sampleFile.mv(__dirname + '/imgs/' + sampleFile.name, function (err) {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.send('File uploaded!');
+            }
+        });
+    });
 }

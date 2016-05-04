@@ -3,13 +3,14 @@
         .module('adoptaTuMascotaApp')
         .controller('NewElementCtrl', newElementCtrl);
 
-    newElementCtrl.$inject = ['$routeParams', 'altaElementoFactory', '$rootScope'];
+    newElementCtrl.$inject = ['$routeParams', 'altaElementoFactory', '$rootScope', 'Upload'];
 
-    function newElementCtrl($routeParams, altaElementoFactory, $rootScope) {
+    function newElementCtrl($routeParams, altaElementoFactory, $rootScope, Upload) {
         var vm = this;
         vm.create = create;
         vm.initialize = initialize;
         vm.checkForm = checkForm;
+        vm.upload = upload;
         initialize();
 
         console.log("empieza creacion");
@@ -51,6 +52,21 @@
             });
             initialize();
 
+        }
+
+        function upload(file) {
+            Upload.upload({
+                url: '/api/priv/element/upload',
+                data: {
+                    file: file
+                },
+            }).then(function (response) {
+                console.log("Subido");
+            }, function (response) {
+                console.log("NO SUBIDO");
+            }, function (evt) {
+                console.log("NO SUBIDO 2" + evt);
+            });
         }
     }
 

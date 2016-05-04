@@ -48,6 +48,7 @@
 
 
 
+
         <section>
 
             <div map-lazy-load="https://maps.google.com/maps/api/js">
@@ -58,6 +59,13 @@
             </div>
     </div>
     </section>
+    <form name="myForm" encType="multipart/form-data">
+        <input type="file" name="file" ngf-select ng-model="newElement.image" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+        <img ngf-thumbnail="newElement.image" />
+        <button ng-click="newElement.upload(newElement.image)">Submit</button>
+        
+    </form>
+
 
     </div>
 </article>

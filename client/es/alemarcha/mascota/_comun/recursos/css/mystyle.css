@@ -303,3 +303,7 @@ growl-notification.fading.ng-leave.ng-leave-active {
     border: none;
     box-shadow: none;
 }
+
+h1 {
+    color: tomato;
+}
