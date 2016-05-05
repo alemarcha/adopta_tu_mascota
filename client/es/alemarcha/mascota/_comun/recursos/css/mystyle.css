@@ -307,3 +307,9 @@ growl-notification.fading.ng-leave.ng-leave-active {
 h1 {
     color: tomato;
 }
+
+.fotosSubiendo {
+    height: 100px;
+    width: 100px;
+    margin-right: 1%;
+}

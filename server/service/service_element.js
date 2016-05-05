@@ -61,15 +61,36 @@ module.exports.service_element = function (app) {
             res.send('No files were uploaded.');
             return;
         }
-        console.log(__dirname);
 
-        sampleFile = req.files.file;
-        sampleFile.mv(__dirname + '/imgs/' + sampleFile.name, function (err) {
-            if (err) {
-                res.status(500).send(err);
-            } else {
-                res.send('File uploaded!');
-            }
-        });
+        console.log(req.files);
+        console.log(__dirname);
+        var files = req.files;
+
+        for (var key in files) {
+            var n = Date.now();
+            sampleFile = files[key];
+            sampleFile.mv(__dirname + '/imgs/' +
+                n + '_' + makeid() + '_' + sampleFile.name,
+                function (err) {
+                    if (err) {
+                        res.status(500).send(err);
+                    } else {
+
+                    }
+                });
+        }
+        res.send('Files uploaded!');
+
+
     });
+
+    function makeid() {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (var i = 0; i < 10; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
+    }
 }

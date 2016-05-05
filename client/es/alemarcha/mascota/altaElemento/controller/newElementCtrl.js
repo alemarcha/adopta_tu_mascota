@@ -45,20 +45,25 @@
             vm.entry = new altaElementoFactory.insertElement();
             vm.entry.element = element;
 
+
             vm.entry.$save(function (data) {
                 console.log(data);
                 $rootScope.indexNotificacion++;
                 $rootScope.notifications[$rootScope.indexNotificacion++] = "Se ha añadiddo correctamente " + element.name;
+                upload(vm.images);
+                vm.images.remove;
             });
+
+
             initialize();
 
         }
 
-        function upload(file) {
+        function upload(files) {
             Upload.upload({
                 url: '/api/priv/element/upload',
                 data: {
-                    file: file
+                    files: files
                 },
             }).then(function (response) {
                 console.log("Subido");
