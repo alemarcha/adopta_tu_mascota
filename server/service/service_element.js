@@ -43,8 +43,8 @@ module.exports.service_element = function (app) {
 
         elementosData.inserting(element)
             .then(function (data) {
-                console.log('Creado elemento' + data);
-                res.status(200).send();
+                console.log('Creado elemento' + JSON.stringify(data.ops[0]));
+                res.status(200).send(data.ops[0]);
 
             })
             .fail(function (err) {
@@ -62,22 +62,33 @@ module.exports.service_element = function (app) {
             return;
         }
 
-        console.log(req.files);
+        console.log(req);
         console.log(__dirname);
         var files = req.files;
+        var id = req.body.id;
+        console.log("id elemento: " + id);
 
         for (var key in files) {
             var n = Date.now();
             sampleFile = files[key];
-            sampleFile.mv(__dirname + '/imgs/' +
-                n + '_' + makeid() + '_' + sampleFile.name,
-                function (err) {
-                    if (err) {
-                        res.status(500).send(err);
-                    } else {
+            var dir = __dirname + '/imgs/' + id + '/';
+            console.log("Directorio: " + dir)
 
-                    }
-                });
+            app.mkdirp(dir, function (err) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    sampleFile.mv(dir + '_' + makeid() + '_' + sampleFile.name,
+                        function (err) {
+                            if (err) {
+                                res.status(500).send(err);
+                            } else {
+
+                            }
+                        });
+                }
+            });
+
         }
         res.send('Files uploaded!');
 

@@ -50,7 +50,9 @@
                 console.log(data);
                 $rootScope.indexNotificacion++;
                 $rootScope.notifications[$rootScope.indexNotificacion++] = "Se ha añadiddo correctamente " + element.name;
-                upload(vm.images);
+                //console.log(JSON.stringify(data.element));
+                console.log("Id nuevo elemento" + data._id);
+                upload(vm.images, data._id);
                 vm.images.remove;
             });
 
@@ -59,13 +61,16 @@
 
         }
 
-        function upload(files) {
+        function upload(files, id) {
+            console.log("upload id" + id);
             Upload.upload({
                 url: '/api/priv/element/upload',
                 data: {
+                    id: id,
                     files: files
                 },
             }).then(function (response) {
+                vm.images = [];
                 console.log("Subido");
             }, function (response) {
                 console.log("NO SUBIDO");

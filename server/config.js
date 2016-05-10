@@ -5,6 +5,7 @@ module.exports.configApp = function () {
     var jwt = require('jwt-simple');
     var moment = require('moment');
     var fileUpload = require('express-fileupload');
+    var mkdirp = require('mkdirp');
 
     var TOKEN_SECRET = process.env.TOKEN_SECRET || 'YOUR_UNIQUE_JWT_TOKEN_SECRET';
 
@@ -12,6 +13,7 @@ module.exports.configApp = function () {
     app.jwt = jwt;
     app.moment = moment;
     app.token_secret = TOKEN_SECRET;
+    app.mkdirp = mkdirp;
 
     app.use(bodyParser());
     app.use(fileUpload());
