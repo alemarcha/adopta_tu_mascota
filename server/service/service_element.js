@@ -1,4 +1,6 @@
 var elementosData = require('../data/elementosData.js')
+var mongodb = require('../data/mongodb.js');
+var Q = require('q');
 module.exports.service_element = function (app) {
 
 
@@ -37,6 +39,8 @@ module.exports.service_element = function (app) {
 
     app.post('/api/pub/element/', function (req, res, next) {
         var element = req.body.element;
+
+        console.log("Body:" + JSON.stringify(req.body));
         console.log("Body:" + element.name)
 
 
@@ -44,6 +48,24 @@ module.exports.service_element = function (app) {
         elementosData.inserting(element)
             .then(function (data) {
                 console.log('Creado elemento' + JSON.stringify(data.ops[0]));
+                res.status(200).send(data.ops[0]);
+
+            })
+            .fail(function (err) {
+                console.log('fallog' + err);
+                res.status(500).send(err)
+            });
+    });
+
+    app.put('/api/pub/element/', function (req, res, next) {
+        var element = req.body.element;
+        console.log("Body:" + element.name)
+
+
+
+        elementosData.updating(element)
+            .then(function (data) {
+                console.log('Actualizado elemento' + JSON.stringify(data.ops[0]));
                 res.status(200).send(data.ops[0]);
 
             })
@@ -62,38 +84,99 @@ module.exports.service_element = function (app) {
             return;
         }
 
-        console.log(req);
-        console.log(__dirname);
+        //console.log(req);
+        //console.log(__dirname);
         var files = req.files;
-        var id = req.body.id;
-        console.log("id elemento: " + id);
+        var filePrincipal = req.body.principal;
+        console.log(files);
+        console.log(filePrincipal);
+        console.log(req.body);
+        var elemento = JSON.parse(req.body.info);
 
+        //   console.log(JSON.stringify(elemento));
+        var id = elemento._id;
+        // console.log("id elemento: " + id);
+
+        var dir = __dirname + '/imgs/' + id + '/';
+        console.log("Directorio destino: " + dir);
         for (var key in files) {
-            var n = Date.now();
+            var principal = false;
             sampleFile = files[key];
-            var dir = __dirname + '/imgs/' + id + '/';
-            console.log("Directorio: " + dir)
+            console.log(key);
+            if (key.includes(filePrincipal)) {
+                principal = true;
+            }
+            subirFichero(sampleFile, elemento, dir, id, principal).then(function (data) {
+                    console.log("Exito en: " + data);
+                })
+                .fail(function (err) {
+                    console.log("No Exito en: " + data);
+                });
 
-            app.mkdirp(dir, function (err) {
-                if (err) {
-                    console.error(err);
-                } else {
-                    sampleFile.mv(dir + '_' + makeid() + '_' + sampleFile.name,
-                        function (err) {
-                            if (err) {
-                                res.status(500).send(err);
-                            } else {
-
-                            }
-                        });
-                }
-            });
 
         }
-        res.send('Files uploaded!');
 
+
+        res.status(200).send(elemento);
 
     });
+
+    function subirFichero(sampleFile, elemento, dir, id, principal) {
+        var deferred = Q.defer();
+        app.mkdirp(dir, function (err) {
+            if (err) {
+                console.error(err);
+            } else {
+                console.log(sampleFile.name);
+                var name = makeid() + '_' + sampleFile.name;
+                console.log(name);
+                var pathToFile = dir + name;
+                sampleFile.mv(pathToFile,
+                    function (err) {
+                        if (err) {
+                            callback2Promise(err, data, deferred);
+                            res.status(500).send(err);
+                        } else {
+                            app.gm(pathToFile)
+                                .resize(172, 261, '!')
+                                .gravity('center')
+                                .extent(172, 261)
+                                .write(dir + '_' + 'preview' + '_' + name, function (err) {
+                                    if (!err) {
+                                        elemento._id = new mongodb.ObjectId(id);
+                                        if (principal) {
+                                            var imagen = {};
+                                            imagen.name = name;
+
+                                            if (!elemento.imagenes) {
+                                                elemento.imagenes = [];
+                                            }
+                                            elemento.imagenes.push(imagen);
+                                        } else {
+                                            var imagenPrincipal = name;
+                                            elemento.imagenPrincipal = imagenPrincipal;
+
+                                        }
+                                        elementosData.updating(elemento, {
+                                                _id: new mongodb.ObjectId(id)
+                                            })
+                                            .then(function (data) {
+                                                console.log('Actualizado elemento' + name);
+                                                callback2Promise(err, data, deferred);
+                                            })
+                                            .fail(function (err) {
+                                                console.log('Error actualiando' + name);
+                                                //res.status(500).send(err)
+                                                callback2Promise(err, data, deferred);
+                                            });
+                                    }
+                                });
+                        }
+                    });
+            }
+        });
+        return deferred.promise;
+    }
 
     function makeid() {
         var text = "";
@@ -103,5 +186,14 @@ module.exports.service_element = function (app) {
             text += possible.charAt(Math.floor(Math.random() * possible.length));
 
         return text;
+    }
+
+    function callback2Promise(err, result, deferred) {
+        if (err) {
+            console.error(err);
+            deferred.reject(err);
+        } else {
+            deferred.resolve(result);
+        }
     }
 }

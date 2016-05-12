@@ -31,6 +31,20 @@
                         // Cogemos el date de BD en timezone UTC y lo convertimos a la hora local. Usamos la libreria jstz para obtener el timezone del browser.
                         vm.elementoActual.fromNow = testDateUtc.tz(jstz.determine().name()).fromNow();
                         vm.elementoActual.dateFormat = testDateUtc.tz(jstz.determine().name()).format('DD/MM/YYYY HH:mm:ss');
+                        vm.images = [];
+                        if (vm.elementoActual.imagenPrincipal) {
+                            vm.images.push({
+                                thumb: '/imgs/' + vm.id + '/_preview_' + vm.elementoActual.imagenPrincipal,
+                                img: '/imgs/' + vm.id + '/' + vm.elementoActual.imagenPrincipal
+                            });
+                        }
+                        for (var i in vm.elementoActual.imagenes) {
+                            vm.images.push({
+                                thumb: '/imgs/' + vm.id + '/_preview_' + vm.elementoActual.imagenes[i].name,
+                                img: '/imgs/' + vm.id + '/' + vm.elementoActual.imagenes[i].name
+                            });
+                        }
+
                     } else {
 
                     }

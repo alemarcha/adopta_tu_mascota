@@ -51,8 +51,8 @@
                 $rootScope.indexNotificacion++;
                 $rootScope.notifications[$rootScope.indexNotificacion++] = "Se ha añadiddo correctamente " + element.name;
                 //console.log(JSON.stringify(data.element));
-                console.log("Id nuevo elemento" + data._id);
-                upload(vm.images, data._id);
+                console.log("Id nuevo elemento" + JSON.parse(JSON.stringify(data)));
+                upload(vm.images, vm.imagePrincipal, data);
                 vm.images.remove;
             });
 
@@ -61,21 +61,28 @@
 
         }
 
-        function upload(files, id) {
-            console.log("upload id" + id);
+        function upload(files, filePrincipal, elemento) {
+            //console.log("upload id" + id);
+            filePrincipal[0].principal = true;
             Upload.upload({
                 url: '/api/priv/element/upload',
                 data: {
-                    id: id,
-                    files: files
+                    files: files,
+                    filePrincipal: filePrincipal,
+                    principal: 'filePrincipal',
+                    info: Upload.json(elemento)
                 },
             }).then(function (response) {
                 vm.images = [];
+                vm.imagePrincipal = [];
                 console.log("Subido");
             }, function (response) {
-                console.log("NO SUBIDO");
+                console.log("NO SUBIDO: " + response);
+                $rootScope.notifications[$rootScope.indexNotificacion++] = "Se ha producido un error al adjuntar las imágenes. Intente añadirlas más tarde. ";
             }, function (evt) {
-                console.log("NO SUBIDO 2" + evt);
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('progress: ' + progressPercentage + '% ');
+
             });
         }
     }

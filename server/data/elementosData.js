@@ -22,3 +22,7 @@ exports.inserting = function (mascota) {
 exports.counting = function () {
     return mongodb.counting(mongoCol);
 }
+
+exports.updating = function (mascota, query) {
+    return mongodb.updating(mongoCol, query, mascota);
+}

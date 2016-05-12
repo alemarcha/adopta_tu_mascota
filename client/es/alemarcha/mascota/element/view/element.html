@@ -41,14 +41,19 @@
             </div>
 
         </div>
+
         <div id="images">
-            <a href="_comun/recursos/images/main.jpg"><img src="_comun/recursos/images/main.jpg"></a>
-            <p>Rollover to zoom. Click to enlarge.</p>
-            <span class="sale" ng-show="{{element.elementoActual.precio%2 === 0}}">Sale</span>
+
+
+
+            <img class="imagenPrincipalElemento" ng-if="element.elementoActual.imagenPrincipal" ng-src="/imgs/{{element.elementoActual._id}}/{{element.elementoActual.imagenPrincipal}}" onerror="this.src='_comun/recursos/images/thumb1.jpg'" alt="Elegant evening Dress" /><img ng-if="!element.elementoActual.imagenPrincipal" ng-src="_comun/recursos/images/main.jpg" alt="Elegant evening Dress" />
+
+            <span class="sale">Nuevo</span>
+            <p>Más imagenes.</p>
             <div id="productthumbs">
-                <a href="#"><img src="_comun/recursos/images/thumb1.jpg" /></a>
-                <a href="#"><img src="_comun/recursos/images/thumb2.jpg" /></a>
-                <a href="#"><img src="_comun/recursos/images/thumb3.jpg" /></a>
+                <ng-gallery images="element.images" thumbs-num="11">
+                </ng-gallery>
+
             </div>
         </div>
     </div>

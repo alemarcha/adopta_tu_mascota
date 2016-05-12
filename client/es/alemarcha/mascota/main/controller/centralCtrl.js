@@ -18,7 +18,7 @@
 
             centralFactory.numTotalElements.query().$promise
                 .then(function (data) {
-                    console.log("exito");
+                   // console.log("exito");
                     vm.numTotalElements = data.numTotal;
                     if (vm.numTotalElements < vm.pageSize) {
                         vm.pageSize = vm.numTotalElements;
@@ -35,7 +35,7 @@
 
 
         function pageChangeHandler(num) {
-            console.log('drinks page changed to ' + num);
+          //  console.log('drinks page changed to ' + num);
             vm.currentPage = num;
             vm.numElementInitial = (vm.currentPage * vm.pageSize) - vm.pageSize + 1;
             vm.numElementFinal = (vm.currentPage * vm.pageSize);
@@ -44,8 +44,9 @@
                 numElements: vm.pageSize
             }, function (data) {
 
-                console.log(data);
+                //console.log(data);
                 vm.items = data.elementos;
+                
                 vm.numTotalPage = data.numTotalPage;
                 // Hacemos esto despues de la consulta, ya que cuando el numero total es menor que multiplo de pageSize y estamos en la última página, solo muestre en el texto pageSize elements
                 if (vm.numTotalPage < vm.pageSize) {
