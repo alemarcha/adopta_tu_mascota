@@ -36,6 +36,14 @@ angular.module('adoptaTuMascotaApp').config(['$routeProvider', '$authProvider',
             },
             controllerAs: 'newElement'
         }).
+        when('/editarElemento/:id', {
+            templateUrl: 'editarElemento/view/editarElemento.html',
+            controller: 'EditarElementoCtrl',
+            access: {
+                restricted: true
+            },
+            controllerAs: 'editarElementoCtrl'
+        }).
         when('/404', {
             templateUrl: 'error/404/404.html'
         }).

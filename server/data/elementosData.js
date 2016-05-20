@@ -3,8 +3,8 @@ var mongodb = require('./mongodb.js');
 var mongoCol = "mascotas";
 
 
-exports.findAllEnabled = function (query, skip, limit) {
-    return mongodb.findingAllEnabled(mongoCol, query, skip, limit);
+exports.findAllEnabled = function (query, skip, limit, sortby) {
+    return mongodb.findingAllEnabled(mongoCol, query, skip, limit, sortby);
 }
 
 exports.find = function (idElemento) {

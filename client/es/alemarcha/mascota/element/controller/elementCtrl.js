@@ -3,9 +3,9 @@
         .module('adoptaTuMascotaApp')
         .controller('ElementCtrl', elementCtrl);
 
-    elementCtrl.$inject = ['$routeParams', 'elementFactory', 'moment'];
+    elementCtrl.$inject = ['$routeParams', 'elementFactory', 'elementService'];
 
-    function elementCtrl($routeParams, elementFactory) {
+    function elementCtrl($routeParams, elementFactory, elementService) {
         var vm = this;
         vm.id = $routeParams.id;
         console.log(vm.id);
@@ -29,8 +29,10 @@
                         moment.locale(window.navigator.userLanguage || window.navigator.language);
                         var testDateUtc = moment.utc(data.date);
                         // Cogemos el date de BD en timezone UTC y lo convertimos a la hora local. Usamos la libreria jstz para obtener el timezone del browser.
-                        vm.elementoActual.fromNow = testDateUtc.tz(jstz.determine().name()).fromNow();
-                        vm.elementoActual.dateFormat = testDateUtc.tz(jstz.determine().name()).format('DD/MM/YYYY HH:mm:ss');
+                        vm.fromNow = testDateUtc.tz(jstz.determine().name()).fromNow();
+                        vm.dateFormat = testDateUtc.tz(jstz.determine().name()).format('DD/MM/YYYY HH:mm:ss');
+
+                        // Añadimos las imagenes con la ruta correcta tanto la principal como las preview con su ruta original
                         vm.images = [];
                         if (vm.elementoActual.imagenPrincipal) {
                             vm.images.push({
@@ -44,6 +46,10 @@
                                 img: '/imgs/' + vm.id + '/' + vm.elementoActual.imagenes[i].name
                             });
                         }
+
+                        // Seteamos en el service el dato en el caso de que se quiera modificar(SOLO DEBERIAMOS HACERLO SI ES POSIBLE, ES DECIR SOLO EN EL CASO DE QUE SEA EL CREADOR EL QUE ESTÁ ACCEDIENDO)
+
+                        elementService.set(vm.elementoActual);
 
                     } else {
 

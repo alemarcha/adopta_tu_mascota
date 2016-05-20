@@ -40,7 +40,7 @@
 
         function create(element) {
             //console.log("Nombre:"+element.name);
-            element.date = new Date();
+            element.date_creacion = new Date();
             element.usuario = $rootScope.usuarioLogged;
             vm.entry = new altaElementoFactory.insertElement();
             vm.entry.element = element;
@@ -53,17 +53,11 @@
                 //console.log(JSON.stringify(data.element));
                 console.log("Id nuevo elemento" + JSON.parse(JSON.stringify(data)));
                 upload(vm.images, vm.imagePrincipal, data);
-                vm.images.remove;
             });
-
-
-            initialize();
-
         }
 
         function upload(files, filePrincipal, elemento) {
             //console.log("upload id" + id);
-            filePrincipal[0].principal = true;
             Upload.upload({
                 url: '/api/priv/element/upload',
                 data: {
@@ -75,6 +69,7 @@
             }).then(function (response) {
                 vm.images = [];
                 vm.imagePrincipal = [];
+                initialize();
                 console.log("Subido");
             }, function (response) {
                 console.log("NO SUBIDO: " + response);
@@ -84,6 +79,8 @@
                 console.log('progress: ' + progressPercentage + '% ');
 
             });
+
+
         }
     }
 

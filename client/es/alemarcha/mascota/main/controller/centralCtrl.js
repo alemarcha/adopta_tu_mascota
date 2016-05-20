@@ -41,7 +41,8 @@
             vm.numElementFinal = (vm.currentPage * vm.pageSize);
             centralFactory.paginationElements.query({
                 fromPage: vm.currentPage,
-                numElements: vm.pageSize
+                numElements: vm.pageSize,
+                sortby : 'date_creacion'
             }, function (data) {
 
                 //console.log(data);

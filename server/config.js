@@ -8,6 +8,7 @@ module.exports.configApp = function () {
     var mkdirp = require('mkdirp');
     var gm = require('gm');
     var forEach = require('async-foreach').forEach;
+    var async = require('async');
 
     var TOKEN_SECRET = process.env.TOKEN_SECRET || 'YOUR_UNIQUE_JWT_TOKEN_SECRET';
 
@@ -25,6 +26,7 @@ module.exports.configApp = function () {
     app.mkdirp = mkdirp;
     app.gm = gm;
     app.forEach = forEach;
+    app.async = async;
 
     app.use(bodyParser());
     app.use(fileUpload());

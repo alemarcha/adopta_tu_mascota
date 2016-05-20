@@ -41,12 +41,13 @@ function finding(mongoCol, query) {
     return deferred.promise;
 }
 
-function findingAllEnabled(mongoCol, query, skip, limit) {
+function findingAllEnabled(mongoCol, query, skip, limit, sortby) {
     var deferred = Q.defer();
     console.log("En el finding");
+    console.log("Sort2: "+JSON.stringify(sortby));
     connecting(mongoCol)
         .then(function (colDb) {
-            colDb.find().skip(skip).limit(limit).toArray(function (err, result) {
+            colDb.find().skip(skip).limit(limit).sort(sortby).toArray(function (err, result) {
                 callback2Promise(err, result, deferred);
                 console.log("En el finding OK" + JSON.stringify(result));
             });
@@ -84,7 +85,11 @@ function updating(mongoCol, query, document) {
         })
         .fail(function (err) {
             callback2Promise(err, result, deferred);
-        });
+        }).catch(function () {
+        console.log("catch mongo");
+        deferred.reject();
+
+    });
     return deferred.promise;
 }
 

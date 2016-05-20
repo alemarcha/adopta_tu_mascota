@@ -39,6 +39,9 @@
                             <a href="search.html">Favoritos</a>
                         </li>
                         <li>
+                            <a ng-href="#/{{'new'}}">Nuevo</a>
+                        </li>
+                        <li>
                             <a href="search.html">Accessories</a>
                             <ul class="sub-menu">
                                 <li><a href="search.html">Shoes</a></li>
@@ -63,7 +66,7 @@
                     <li><a href="#" class="twitter" title="follow us on twitter">follow us on twitter</a></li>
                 </ul>
                 <div ng-if="!auth" id="action-bar"><a ng-href="#/{{'login'}}">Login/Register</a></div>
-                <div ng-if="auth" id="action-bar">Bienvenido {{usuarioLogged.nombre}} <a ng-href="#" ng-click="registroCtrl.logout()">Cerrar sesión</a> // <a ng-href="#/{{'new'}}">Your bag (3) &nbsp; &pound;148</a></div>
+                <div ng-if="auth" id="action-bar">Bienvenido {{usuarioLogged.nombre}} <a ng-href="#" ng-click="registroCtrl.logout()">Cerrar sesión</a></div>
             </div>
         </aside>
         <div class="view-animate-container" ng-cloak>
@@ -124,12 +127,17 @@
     <script src="element/controller/elementCtrl.js"></script>
     <script src="main/controller/centralCtrl.js"></script>
     <script src="altaElemento/controller/newElementCtrl.js"></script>
+    <script src="editarElemento/controller/editarElementoCtrl.js"></script>
 
     <!-- FACTORY -->
     <script src="main/factory/centralFactory.js"></script>
     <script src="element/factory/elementFactory.js"></script>
     <script src="altaElemento/factory/altaElementoFactory.js"></script>
+    <script src="editarElemento/factory/editarElementoFactory.js"></script>
     <script src="registro/factory/auth.js"></script>
+
+    <!-- SERVICE -->
+    <script src="element/service/elementService.js"></script>
 
 
 </body>

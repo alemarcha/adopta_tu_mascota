@@ -6,9 +6,10 @@
             <h1>{{element.elementoActual.name}}</h1>
 
             <ul>
-
-                <li title="{{element.elementoActual.dateFormat}}" class="fechas">
-                    {{element.elementoActual.fromNow}} </li>
+                <li title="Editar" class="fechas"><a ng-href="#/{{'editarElemento'}}/{{element.id}}">
+                    Editar</a> </li>
+                <li title="{{element.dateFormat}}" class="fechas">
+                    {{element.fromNow}} </li>
                 <li>Autor: {{element.elementoActual.usuario.nombre}} {{element.elementoActual.usuario.apellidos}}</li>
                 <li><a href="#tabs-2">{{element.elementoActual.type.categoria}} </a> / <a href="#tabs-2">{{element.elementoActual.raza}} </a></li>
             </ul>
@@ -34,7 +35,7 @@
             </ul>
 
             <div map-lazy-load="https://maps.google.com/maps/api/js">
-                <ng-map zoom="15" center="{{element.elementoActual.address}}" style="width:600px; height:400px">
+                <ng-map zoom="15" center="{{element.elementoActual.address}}" style="height:400px">
                     <marker position="{{element.elementoActual.address}}"></marker>
                     <marker position="{{element.elementoActual.address}}"></marker>
                 </ng-map>
@@ -42,19 +43,19 @@
 
         </div>
 
-        <div id="images">
+            <div id="images">
 
 
 
-            <img class="imagenPrincipalElemento" ng-if="element.elementoActual.imagenPrincipal" ng-src="/imgs/{{element.elementoActual._id}}/{{element.elementoActual.imagenPrincipal}}" onerror="this.src='_comun/recursos/images/thumb1.jpg'" alt="Elegant evening Dress" /><img ng-if="!element.elementoActual.imagenPrincipal" ng-src="_comun/recursos/images/main.jpg" alt="Elegant evening Dress" />
+                <img class="imagenPrincipalElemento" ng-if="element.elementoActual.imagenPrincipal" ng-src="/imgs/{{element.elementoActual._id}}/{{element.elementoActual.imagenPrincipal}}" onerror="this.src='_comun/recursos/images/thumb1.jpg'" alt="Elegant evening Dress" /><img ng-if="!element.elementoActual.imagenPrincipal" ng-src="_comun/recursos/images/main.jpg" alt="Elegant evening Dress" />
 
-            <span class="sale">Nuevo</span>
-            <p>Más imagenes.</p>
-            <div id="productthumbs">
-                <ng-gallery images="element.images" thumbs-num="11">
-                </ng-gallery>
+                <span class="sale">Nuevo</span>
+                <p>Más imagenes.</p>
+                <div id="productthumbs">
+                    <ng-gallery images="element.images" thumbs-num="11">
+                    </ng-gallery>
 
+                </div>
             </div>
-        </div>
     </div>
 </article>
