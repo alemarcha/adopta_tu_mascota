@@ -9,3 +9,5 @@ sudo apt-get install graphicsmagick
 sudo apt-get install imagemagick
 --mac
 brew install graphicsmagick
+
+git clone -b desarrollo --single-branch https://github.com/alemarcha/adopta_tu_mascota.git
