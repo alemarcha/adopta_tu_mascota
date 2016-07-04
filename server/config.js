@@ -14,12 +14,11 @@ module.exports.configApp = function () {
 
     var app = express();
     //Here we are configuring express to use body-parser as middle-ware.
-    app.use(bodyParser.urlencoded({
-        extended: false
-    }));
-    app.use(bodyParser.json({
-        type: 'application/*+json'
-    }));
+
+    app.use(bodyParser.urlencoded());
+    app.use(bodyParser.json());
+
+
     app.jwt = jwt;
     app.moment = moment;
     app.token_secret = TOKEN_SECRET;

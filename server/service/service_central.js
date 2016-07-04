@@ -21,12 +21,24 @@ module.exports.service_central = function (app) {
 
     });
 
-    app.get('/api/pub/elements/numTotal', function (req, res, next) {
+    app.post('/api/pub/elements/numTotal', function (req, res, next) {
+        var datos=req.body.element;
+
+        var filterby = datos.filter;
+        console.log(JSON.stringify(filterby));
+        for(var filter in filterby){
+            console.log(filter);
+        }
+
+        var itemsRes = {
+            elementos: [],
+            numTotalPage: 0
+        };
 
         var total = {
             numTotal: 0
         };
-        elementosData.counting()
+        elementosData.counting(filterby)
             .then(function (data) {
                 console.log('counting' + JSON.stringify(data));
                 total.numTotal = data;
@@ -42,15 +54,22 @@ module.exports.service_central = function (app) {
 
     });
 
-    app.get('/api/pub/elements/:fromPage/:numElements/:sortby', function (req, res, next) {
-        var fromPage = req.params.fromPage;
-        var numElements = req.params.numElements;
-        var sortby = req.params.sortby;
+    app.post('/api/pub/elementsPagination/', function (req, res, next) {
+        var datos=req.body.element;
+
+        var fromPage = datos.fromPage;
+        var numElements = datos.numElements;
+        var sortby = datos.sortby;
+        var filterby = datos.filter;
         var elemFinal = fromPage * numElements;
         var elemInicial = elemFinal - numElements;
         // Definimos el json para ordenar por el campo que recibamos
         var sortbyJson = {};
         sortbyJson[sortby] = -1;
+        console.log(JSON.stringify(filterby));
+        for(var filter in filterby){
+            console.log(filter);
+        }
 
         var itemsRes = {
             elementos: [],
@@ -63,7 +82,7 @@ module.exports.service_central = function (app) {
         //            }
         //           itemsRes.elementos.push(app.items.elementos[i-1]);
         //        }
-        elementosData.findAllEnabled({}, elemInicial, elemFinal, sortbyJson)
+        elementosData.findAllEnabled(elemInicial, elemFinal, sortbyJson, filterby)
             .then(function (data) {
                 console.log('Recuperando elementos' + JSON.stringify(data));
                 itemsRes.elementos = data;

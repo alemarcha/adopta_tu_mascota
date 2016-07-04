@@ -320,4 +320,8 @@ h1 {
     padding-top: 49px;
 }
 
-#imagesEditarPerfil p {background:#fff;padding:5px 0px;margin:0px 20px 10px 0px;text-align:center;}
+#imagesEditarPerfil p {
+    background: #fff;
+    padding: 5px 0px;
+    text-align: center;
+}

@@ -33,7 +33,7 @@
 
             <p>
                 <label for="address">Dirección:</label>
-                <input id="address" name="address" type="text" required="true"
+                <input id="address2" name="address2" type="text" required="true"
                        ng-model="editarElementoCtrl.element.address"><span class="alert">*</span>
             </p>
 
@@ -51,9 +51,11 @@
             </p>
 
             <p>
-                <label for="email">Imagen principal:</label>
-                <input type="file" name="filePrincipal" ngf-select ngf-multiple="false" multiple="false"
-                       ngf-keep="false" ng-model="editarElementoCtrl.imagePrincipal" accept="image/*" ngf-max-size="2MB"
+                <label for="filePrincipal">Imagen principal:</label>
+                <input type="file" name="filePrincipal" id="filePrincipal" ngf-select ngf-multiple="false"
+                       multiple="false"
+                       ngf-keep="false" ng-model="editarElementoCtrl.imagePrincipal" accept="image/*"
+                       ngf-max-size="10MB"
                        ngf-select-disabled="true" ngf-model-invalid="errorFile">
             </p>
 
@@ -64,14 +66,15 @@
             </div>
 
             <p>
-                <label for="email">Otras imágenes:</label>
-                <input type="file" name="file" ngf-select ngf-multiple="true" multiple="true" ngf-keep="true"
-                       ng-model="editarElementoCtrl.images" accept="image/*" ngf-max-size="2MB"
+                <label for="file">Otras imágenes:</label>
+                <input type="file" id="file" name="file" ngf-select ngf-multiple="true" multiple="true" ngf-keep="true"
+                       ng-model="editarElementoCtrl.images" accept="image/*" ngf-max-size="10MB"
                        ngf-select-disabled="true" ngf-model-invalid="errorFile">
             </p>
 
             <div>
-                <img ng-repeat="n in editarElementoCtrl.images track by $index" class="fotosSubiendo" ngf-thumbnail="n" />
+                <img ng-repeat="n in editarElementoCtrl.images track by $index" class="fotosSubiendo"
+                     ngf-thumbnail="n"/>
             </div>
 
             <!--            <button ng-click="editarElementoCtrl.upload(editarElementoCtrl.image)">Submit</button>-->
@@ -95,15 +98,17 @@
     <div id="imagesEditarPerfil">
 
 
-            <img ng-if="editarElementoCtrl.element.imagenPrincipal" ng-src="/imgs/{{editarElementoCtrl.id}}/_preview_{{editarElementoCtrl.element.imagenPrincipal}}"
-                 onerror="this.src='_comun/recursos/images/thumb1.jpg'" alt="Elegant evening Dress"/><img
-                ng-if="!editarElementoCtrl.element.imagenPrincipal" ng-src="_comun/recursos/images/thumb1.jpg" alt="Elegant evening Dress"/>
+        <img ng-if="editarElementoCtrl.element.imagenPrincipal"
+             ng-src="/imgs/{{editarElementoCtrl.id}}/_preview_{{editarElementoCtrl.element.imagenPrincipal}}"
+             onerror="this.src='_comun/recursos/images/thumb1.jpg'" alt="Elegant evening Dress"/><img
+            ng-if="!editarElementoCtrl.element.imagenPrincipal" ng-src="_comun/recursos/images/thumb1.jpg"
+            alt="Elegant evening Dress"/>
 
-            <p>Más imagenes.</p>
-            <div id="productthumbs">
-                <ng-gallery images="editarElementoCtrl.otrasImagenesActual" thumbs-num="11">
-                </ng-gallery>
+        <p>Más imagenes.</p>
 
+        <div id="productthumbs">
+            <ng-gallery images="editarElementoCtrl.otrasImagenesActual" thumbs-num="11">
+            </ng-gallery>
 
         </div>
 

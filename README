@@ -11,3 +11,9 @@ sudo apt-get install imagemagick
 brew install graphicsmagick
 
 git clone -b desarrollo --single-branch https://github.com/alemarcha/adopta_tu_mascota.git
+
+
+##### COMANDOS #####
+
+CADDY
+./caddy -conf="./CaddyFile"

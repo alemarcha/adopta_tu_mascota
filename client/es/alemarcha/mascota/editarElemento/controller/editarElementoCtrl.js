@@ -4,9 +4,9 @@
         .controller('EditarElementoCtrl', editarElementoCtrl);
 
     editarElementoCtrl.$inject = ['$routeParams', 'altaElementoFactory', '$rootScope', 'Upload', 'editarElementoFactory'
-        , 'elementService', 'elementFactory', '$http'];
+        , 'elementService', 'elementFactory', '$http','$location'];
 
-    function editarElementoCtrl($routeParams, altaElementoFactory, $rootScope, Upload, editarElementoFactory, elementService, elementFactory, $http) {
+    function editarElementoCtrl($routeParams, altaElementoFactory, $rootScope, Upload, editarElementoFactory, elementService, elementFactory, $http, $location) {
         var vm = this;
         vm.id = $routeParams.id;
         //vm.create = create;
@@ -18,7 +18,7 @@
         console.log("empieza creacion");
 
         function initialize() {
-
+            vm.otrasImagenesActual = [];
             altaElementoFactory.getTiposMascotas.query(
                 function (data) {
                     if (data) {
@@ -30,28 +30,28 @@
 
                 });
 
-                elementFactory.elementById.query({
-                        id: vm.id
-                    }, function (data) {
-                        if (data) {
-                            vm.element = data;
-                            alert(JSON.stringify(vm.element));
-                            vm.otrasImagenesActual = [];
-                            for (var i in vm.element.imagenes) {
-                                vm.otrasImagenesActual.push({
-                                    thumb: '/imgs/' + vm.id + '/_preview_' + vm.element.imagenes[i].name,
-                                    img: '/imgs/' + vm.id + '/' + vm.element.imagenes[i].name
-                                });
-                            }
+            elementFactory.elementById.query({
+                    id: vm.id
+                }, function (data) {
+                    if (data) {
+                        vm.element = data;
+                        alert(JSON.stringify(vm.element));
 
-                        } else {
-
+                        for (var i in vm.element.imagenes) {
+                            vm.otrasImagenesActual.push({
+                                thumb: '/imgs/' + vm.id + '/_preview_' + vm.element.imagenes[i].name,
+                                img: '/imgs/' + vm.id + '/' + vm.element.imagenes[i].name
+                            });
                         }
-                    },
-                    function (error) {
-                        console.log("ERROR");
 
-                    });
+                    } else {
+
+                    }
+                },
+                function (error) {
+                    console.log("ERROR");
+
+                });
 
         }
 
@@ -68,7 +68,7 @@
             element.date_modificacion = new Date();
             vm.entry = new altaElementoFactory.insertElement();
             vm.entry.element = element;
-            vm.entry._id=element._id;
+            vm.entry._id = element._id;
 
             vm.entry.$update(function (data) {
                 console.log(data);
@@ -93,10 +93,9 @@
                     info: Upload.json(elemento)
                 },
             }).then(function (response) {
-                vm.images = [];
-                vm.imagePrincipal = [];
-                initialize();
-                console.log("Subido");
+                alert("Subido");
+                $location.url('/element/'+vm.id);
+
             }, function (response) {
                 console.log("NO SUBIDO: " + response);
                 $rootScope.notifications[$rootScope.indexNotificacion++] = "Se ha producido un error al adjuntar las imágenes. Intente añadirlas más tarde. ";
