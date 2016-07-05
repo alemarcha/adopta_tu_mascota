@@ -47,9 +47,11 @@
 
                 vm.dataJson.fromPage = vm.currentPage;
                 vm.dataJson.numElements = vm.pageSize;
+                vm.dataJson.sortby = "date_creacion";
 
                 vm.entry = new centralFactory.paginationElements();
                 vm.entry.element = vm.dataJson;
+
                 vm.entry.$save(function (data) {
 
                         //console.log(data);
@@ -69,15 +71,11 @@
             function addSort(){
                 vm.currentPage=1;
                 filter = {};
+
                 if(vm.orden==1){
-
-
-
                     filter["type.id"] = 1;
 
-
                 }else if(vm.orden==2){
-
                     filter["raza"] = 'aaa';
                 }
 

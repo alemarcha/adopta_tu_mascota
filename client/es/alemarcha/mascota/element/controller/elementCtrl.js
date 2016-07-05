@@ -28,7 +28,7 @@
 
                         // Cogemos el locale del navegador para poner el texto
                         moment.locale(window.navigator.userLanguage || window.navigator.language);
-                        var testDateUtc = moment.utc(data.date);
+                        var testDateUtc = moment.utc(data.date_creacion);
                         if(testDateUtc) {
                             // Cogemos el date de BD en timezone UTC y lo convertimos a la hora local. Usamos la libreria jstz para obtener el timezone del browser.
                             vm.fromNow = testDateUtc.tz(jstz.determine().name()).fromNow();

@@ -21,8 +21,9 @@
         <li dir-paginate="item in central.items|itemsPerPage:central.pageSize" current-page="central.currentPage" total-items="central.numTotalElements" pagination-id="drinksPagination">
             <span class="sale" ng-show="{{item.valor%2 === 0}}">Sale</span>
             <a title="{{item.name}}" ng-href="#/element/{{item._id}}"><img ng-if="item.imagenPrincipal" ng-src="/imgs/{{item._id}}/_preview_{{item.imagenPrincipal}}" onerror="this.src='_comun/recursos/images/thumb1.jpg'" alt="Elegant evening Dress" /><img ng-if="!item.imagenPrincipal" ng-src="_comun/recursos/images/thumb1.jpg" alt="Elegant evening Dress" /></a>
-            <a ng-href="#/element/{{item._id}}" class="title">{{item.name}}</a>
-            <strong title="{{item.description}}" class="subtitle">&pound;{{item.description}}</strong>
+            <strong ><a ng-href="#/element/{{item._id}}" class="title">{{item.name}}</a></strong>
+            <strong >{{item.date_creacion | date:'dd/MM/yyyy HH:mm:ss'}}</strong>
+
         </li>
     </ul>
     <footer>

@@ -82,10 +82,10 @@ body#home {min-height:100%;min-width:100%;overflow:hidden;}
 #items li {float:left;width:172px;padding:10px;height:333px;position:relative;}
 	#items li span {position:absolute;top:20px;right:0px;padding:5px;line-height:normal;text-align:right;color:#fff;background:#ff5454;font-family: 'Terminal Dosis', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;text-transform:uppercase;-webkit-animation: delay 1.5s;-moz-animation: delay 1.5s;}
 	#items a {display:block;text-decoration:none;}
-	#items a.title {height:40px;}
+
 		#items a img {width:170px;border:1px solid #fff;-webkit-box-shadow:0px 0px 5px 0px rgba(180, 160, 145, 0.2);-moz-box-shadow:0px 0px 5px 0px rgba(180, 160, 145, 0.2);box-shadow:0px 0px 5px 0px rgba(180, 160, 145, 0.2);}
 		#items a:hover img {-webkit-box-shadow:0px 0px 5px 0px rgba(180, 160, 145, 0.8);-moz-box-shadow:0px 0px 5px 0px rgba(180, 160, 145, 0.8);box-shadow:0px 0px 5px 0px rgba(180, 160, 145, 0.8);}
-	#items strong {border-bottom: 1px solid #ececec;display:block;padding-bottom:5px;}
+	#items strong {display:block;padding-bottom:5px;}
 		#items strong em {float:right;font-weight:normal;font-size:0.833em;}
 
 /*** Main product view ***/
