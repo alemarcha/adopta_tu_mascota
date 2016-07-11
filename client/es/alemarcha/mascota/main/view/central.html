@@ -6,11 +6,9 @@
             <dir-pagination-controls direction-links="true" on-page-change="central.pageChangeHandler(newPageNumber)" template-url="main/view/dirPagination.tpl.html" max-size="8" pagination-id="drinksPagination"></dir-pagination-controls>
         </div>
         <form action="#">
-            <select ng-model="central.orden" ng-change="central.addSort();" name="sortBy" id="sortBy">
-                <option value="0">Sin orden</option>
-                <option value="1">Dia publicación</option>
-                <option value="2">Encontrados</option>
-                <option value="3">Se regalan</option>
+            <select ng-model="central.filtro" ng-change="central.addFilter();" name="sortBy" id="sortBy"
+                    ng-options="option.categoria for option in central.options track by option.id"
+                    ng-model="central.filter">
             </select> &nbsp;{{central.numElementInitial}} - {{central.numElementFinal}} de {{central.numTotalElements}}
             <input type="text" placeholder="Search ABC comp..." />
             <button type="submit">Search</button>

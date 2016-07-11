@@ -3,12 +3,12 @@
             .module('adoptaTuMascotaApp')
             .controller('CentralCtrl', centralCtrl);
 
-        centralCtrl.$inject = ['$routeParams', 'centralFactory', '$auth'];
+        centralCtrl.$inject = ['$routeParams', 'centralFactory', '$auth','altaElementoFactory'];
 
-        function centralCtrl($routeParams, centralFactory, $auth) {
+        function centralCtrl($routeParams, centralFactory, $auth, altaElementoFactory) {
             var vm = this;
             vm.pageChangeHandler = pageChangeHandler;
-            vm.addSort = addSort;;
+            vm.addFilter = addFilter;
 
             initialize();
 
@@ -17,6 +17,16 @@
                 vm.pageSize = 10;
                 vm.dataJson = {};
                 vm.dataJson.filter={};
+                altaElementoFactory.getTiposMascotas.query(
+                    function (data) {
+                        if (data) {
+                            vm.options = data;
+                        }
+                    },
+                    function (error) {
+                        console.log("ERROR");
+                    });
+
                 numTotalElements();
                 pageChangeHandler(vm.currentPage);
             }
@@ -68,14 +78,14 @@
 
             };
 
-            function addSort(){
+            function addFilter(){
                 vm.currentPage=1;
                 filter = {};
 
-                if(vm.orden==1){
+                if(vm.filtro.id == 1){
                     filter["type.id"] = 1;
 
-                }else if(vm.orden==2){
+                }else if(vm.filtro.id == 2){
                     filter["raza"] = 'aaa';
                 }
 
