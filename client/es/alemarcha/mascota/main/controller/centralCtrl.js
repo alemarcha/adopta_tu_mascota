@@ -81,12 +81,13 @@
             function addFilter(){
                 vm.currentPage=1;
                 filter = {};
+                if(vm.filtro){
+                    if(vm.filtro.id == 1){
+                        filter["type.id"] = 1;
 
-                if(vm.filtro.id == 1){
-                    filter["type.id"] = 1;
-
-                }else if(vm.filtro.id == 2){
-                    filter["raza"] = 'aaa';
+                    }else if(vm.filtro.id == 2){
+                        filter["raza"] = 'aaa';
+                    }
                 }
 
                 vm.dataJson.filter = filter;

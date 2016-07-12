@@ -76,20 +76,14 @@ module.exports.service_central = function (app) {
             numTotalPage: 0
         };
 
-        //		for (var i = elemInicial; i <= elemFinal; i++) {
-        //            if(app.items.elementos.length<i){
-        //                break;
-        //            }
-        //           itemsRes.elementos.push(app.items.elementos[i-1]);
-        //        }
         elementosData.findAllEnabled(elemInicial, elemFinal, sortbyJson, filterby)
             .then(function (data) {
                 console.log('Recuperando elementos' + JSON.stringify(data));
                 itemsRes.elementos = data;
                 itemsRes.numTotalPage = data.length;
-                setTimeout(function () {
-                    res.json(itemsRes), 2000
-                });
+
+                    res.json(itemsRes)
+
 
             })
             .fail(function (err) {
