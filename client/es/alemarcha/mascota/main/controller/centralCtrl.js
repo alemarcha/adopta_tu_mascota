@@ -9,6 +9,7 @@
             var vm = this;
             vm.pageChangeHandler = pageChangeHandler;
             vm.addFilter = addFilter;
+            vm.addSearch = addSearch;
 
             initialize();
 
@@ -17,6 +18,7 @@
                 vm.pageSize = 10;
                 vm.dataJson = {};
                 vm.dataJson.filter={};
+                vm.dataJson.search={};
                 altaElementoFactory.getTiposMascotas.query(
                     function (data) {
                         if (data) {
@@ -80,7 +82,7 @@
 
             function addFilter(){
                 vm.currentPage=1;
-                filter = {};
+                var filter = {};
                 if(vm.filtro){
                     if(vm.filtro.id == 1){
                         filter["type.id"] = 1;
@@ -91,6 +93,13 @@
                 }
 
                 vm.dataJson.filter = filter;
+                numTotalElements();
+                pageChangeHandler(vm.currentPage);
+            }
+
+            function addSearch(){
+                vm.currentPage=1;
+                vm.dataJson.search = vm.search;
                 numTotalElements();
                 pageChangeHandler(vm.currentPage);
             }

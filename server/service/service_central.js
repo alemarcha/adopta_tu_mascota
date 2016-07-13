@@ -1,6 +1,6 @@
 var elementosData = require('../data/elementosData.js')
 module.exports.service_central = function (app) {
-
+    var fields_query=['name','description','address','raza'];
     app.get('/api/pub/elements', function (req, res, next) {
         var items = {
             elementos: []
@@ -25,9 +25,16 @@ module.exports.service_central = function (app) {
         var datos=req.body.element;
 
         var filterby = datos.filter;
+        var search = datos.search;
         console.log(JSON.stringify(filterby));
-        for(var filter in filterby){
-            console.log(filter);
+        if(search && search.length>0){
+            var regex_query = new RegExp(".*"+search+".*");
+
+            console.log(JSON.stringify(search));
+            fields_query.forEach(function(entry) {
+                    filterby[entry] = regex_query;
+                }
+            );
         }
 
         var itemsRes = {
@@ -61,15 +68,26 @@ module.exports.service_central = function (app) {
         var numElements = datos.numElements;
         var sortby = datos.sortby;
         var filterby = datos.filter;
+        var search = datos.search;
         var elemFinal = fromPage * numElements;
         var elemInicial = elemFinal - numElements;
         // Definimos el json para ordenar por el campo que recibamos
         var sortbyJson = {};
         sortbyJson[sortby] = -1;
-        console.log(JSON.stringify(filterby));
-        for(var filter in filterby){
-            console.log(filter);
+        var arraySearch = [];
+        if(search && search.length>0){
+            var regex_query = new RegExp(".*"+search+".*");
+
+            console.log(JSON.stringify(search));
+            fields_query.forEach(function(entry) {
+                    var key_value = {};
+                    key_value[entry] = regex_query;
+                    arraySearch.push(key_value);
+                }
+            );
+            filterby["$or"] = arraySearch;
         }
+
 
         var itemsRes = {
             elementos: [],
@@ -82,7 +100,7 @@ module.exports.service_central = function (app) {
                 itemsRes.elementos = data;
                 itemsRes.numTotalPage = data.length;
 
-                    res.json(itemsRes)
+                res.json(itemsRes)
 
 
             })

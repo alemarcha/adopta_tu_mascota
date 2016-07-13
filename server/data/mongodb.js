@@ -49,6 +49,7 @@ function findingAllEnabled(mongoCol, skip, limit, sortby, filterby) {
         .then(function (colDb) {
             if (filterby) {
                 console.log('Entrando en el filtro: ' + JSON.stringify(filterby) + ' skip ' + skip + ' sort ' + JSON.stringify( sortby )+ ' limit ' + limit);
+                console.log("Consulta: colDb.find("+JSON.stringify(filterby)+").skip("+skip+").limit("+limit+").sort("+JSON.stringify(sortby)+")");
                 colDb.find(filterby).skip(skip).limit(limit).sort(sortby).toArray(function (err, result) {
                     callback2Promise(err, result, deferred);
                     console.log("En el finding OK" + JSON.stringify(result));

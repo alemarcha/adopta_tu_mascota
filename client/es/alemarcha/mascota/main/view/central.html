@@ -6,13 +6,13 @@
             <dir-pagination-controls direction-links="true" on-page-change="central.pageChangeHandler(newPageNumber)" template-url="main/view/dirPagination.tpl.html" max-size="8" pagination-id="drinksPagination"></dir-pagination-controls>
         </div>
         <form action="#">
+            <input type="text" ng-model="central.search" placeholder="Buscar..." ng-keyup="central.addSearch()"/>
             <select ng-model="central.filtro" ng-change="central.addFilter();" name="sortBy" id="sortBy"
                     ng-options="option.categoria for option in central.options track by option.id"
                     ng-model="central.filter">
                 <option value="">Sin filtros</option>
             </select> &nbsp;{{central.numElementInitial}} - {{central.numElementFinal}} de {{central.numTotalElements}}
-            <input type="text" placeholder="Search ABC comp..." />
-            <button type="submit">Search</button>
+
         </form>
 
     </header>
