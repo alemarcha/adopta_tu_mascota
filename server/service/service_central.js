@@ -27,14 +27,9 @@ module.exports.service_central = function (app) {
         var filterby = datos.filter;
         var search = datos.search;
         console.log(JSON.stringify(filterby));
-        if(search && search.length>0){
-            var regex_query = new RegExp(".*"+search+".*");
-
-            console.log(JSON.stringify(search));
-            fields_query.forEach(function(entry) {
-                    filterby[entry] = regex_query;
-                }
-            );
+        var arraySearch = addSearch(search);
+        if(arraySearch && arraySearch.length>0){
+            filterby["$or"] = arraySearch;
         }
 
         var itemsRes = {
@@ -74,20 +69,10 @@ module.exports.service_central = function (app) {
         // Definimos el json para ordenar por el campo que recibamos
         var sortbyJson = {};
         sortbyJson[sortby] = -1;
-        var arraySearch = [];
-        if(search && search.length>0){
-            var regex_query = new RegExp(".*"+search+".*");
-
-            console.log(JSON.stringify(search));
-            fields_query.forEach(function(entry) {
-                    var key_value = {};
-                    key_value[entry] = regex_query;
-                    arraySearch.push(key_value);
-                }
-            );
+        var arraySearch = addSearch(search);
+        if(arraySearch && arraySearch.length>0){
             filterby["$or"] = arraySearch;
         }
-
 
         var itemsRes = {
             elementos: [],
@@ -111,4 +96,23 @@ module.exports.service_central = function (app) {
 
 
     });
+
+    function addSearch(search){
+        var arraySearch = [];
+        if(search && search.length>0){
+            var regex_query = new RegExp(".*"+search+".*");
+
+            console.log(JSON.stringify(search));
+            fields_query.forEach(function(entry) {
+                    var key_value = {};
+                    key_value[entry] = regex_query;
+                    arraySearch.push(key_value);
+                }
+            );
+            return arraySearch;
+
+        }
+
+
+    }
 }

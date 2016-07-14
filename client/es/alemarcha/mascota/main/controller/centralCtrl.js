@@ -30,11 +30,12 @@
                     });
 
                 numTotalElements();
-                pageChangeHandler(vm.currentPage);
+
             }
 
             function numTotalElements() {
                 vm.entry = new centralFactory.numTotalElements();
+                vm.pageSize = 10;
                 vm.entry.element = vm.dataJson;
                 vm.entry.$save()
                     .then(function (data) {
@@ -44,7 +45,9 @@
                             vm.pageSize = vm.numTotalElements;
                             vm.numElementInitial = (vm.currentPage * vm.pageSize) - vm.pageSize + 1;
                             vm.numElementFinal = (vm.currentPage * vm.pageSize);
+
                         }
+                        pageChangeHandler(vm.currentPage);
                         console.log('Numero total de elementos:' + data.numTotal);
                     }, function (err) {
                         console.log("error num total");
@@ -84,24 +87,20 @@
                 vm.currentPage=1;
                 var filter = {};
                 if(vm.filtro){
-                    if(vm.filtro.id == 1){
-                        filter["type.id"] = 1;
+                    if(vm.filtro.id){
+                        filter["type.id"] = vm.filtro.id;
 
-                    }else if(vm.filtro.id == 2){
-                        filter["raza"] = 'aaa';
                     }
                 }
-
                 vm.dataJson.filter = filter;
                 numTotalElements();
-                pageChangeHandler(vm.currentPage);
             }
 
             function addSearch(){
                 vm.currentPage=1;
                 vm.dataJson.search = vm.search;
                 numTotalElements();
-                pageChangeHandler(vm.currentPage);
+
             }
         }
     }
