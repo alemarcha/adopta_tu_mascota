@@ -23,9 +23,10 @@
 </head>
 
 <body>
-    <div id="principal" ng-cloak>
+    <div id="principal" >
+
         <header>
-            <div class="wrapper">
+            <div class="wrapper" ng-cloak>
                 <h1><a ng-href="#/" id="brand" title="ABC comp">ABC comp</a></h1>
                 <nav>
                     <ul ng-controller="MenuCtrl as menu">
@@ -66,7 +67,9 @@
                     <li><a href="#" class="twitter" title="follow us on twitter">follow us on twitter</a></li>
                 </ul>
                 <div ng-if="!auth" id="action-bar"><a ng-href="#/{{'login'}}">Login/Register</a></div>
-                <div ng-if="auth" id="action-bar">Bienvenido {{usuarioLogged.nombre}} <a ng-href="#" ng-click="registroCtrl.logout()">Cerrar sesión</a></div>
+                <div ng-if="auth" id="action-bar" class="colorText"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;
+                     Bienvenido {{usuarioLogged.nombre}} <a ng-href="#" ng-click="registroCtrl.logout()"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;
+                        Cerrar sesión</a></div>
             </div>
         </aside>
         <div class="view-animate-container" ng-cloak>
@@ -108,6 +111,7 @@
     <script src="/bower_components/ng-file-upload/ng-file-upload.min.js"></script>
     <script src="/bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
     <script type="text/javascript" src="/bower_components/ngGallery/src/js/ngGallery.js"></script>
+
 
     <script src="_comun/recursos/js/dirPagination.js"></script>
     <script src="_comun/recursos/js/spin.js"></script>

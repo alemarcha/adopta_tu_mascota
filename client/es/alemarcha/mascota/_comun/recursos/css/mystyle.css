@@ -1,3 +1,6 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
 html,
 body {
     height: 100%;
@@ -299,9 +302,6 @@ growl-notification.fading.ng-leave.ng-leave-active {
     box-shadow: none;
 }
 
-h1 {
-    color: tomato;
-}
 
 .fotosSubiendo {
     height: 100px;
@@ -324,4 +324,12 @@ h1 {
     background: #fff;
     padding: 5px 0px;
     text-align: center;
+}
+
+.colorText{
+    color:black;
+}
+
+.tituloCentral{
+    font-size: medium;
 }

@@ -48,9 +48,10 @@
 
             <h1>Contacto</h1>
             <ul>
-                <li>Telefono: {{element.elementoActual.phone}}</li>
-                <li>Email: {{element.elementoActual.email}}</li>
-                <li>Dirección: {{element.elementoActual.address}}</li>
+                <li><i class="fa fa-phone fa-2x fa-fw" aria-hidden="true"></i>&nbsp;{{element.elementoActual.phone}}</li>
+                <li><i class="fa fa-envelope fa-2x fa-fw" aria-hidden="true"></i>&nbsp;
+                    {{element.elementoActual.email}}</li>
+                <li><i class="fa fa-street-view fa-2x fa-fw" aria-hidden="true"></i>&nbsp;{{element.elementoActual.address}}</li>
             </ul>
 
             <div map-lazy-load="https://maps.google.com/maps/api/js">
