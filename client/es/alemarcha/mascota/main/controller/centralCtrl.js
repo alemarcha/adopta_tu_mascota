@@ -3,9 +3,9 @@
             .module('adoptaTuMascotaApp')
             .controller('CentralCtrl', centralCtrl);
 
-        centralCtrl.$inject = ['$routeParams', 'centralFactory', '$auth','altaElementoFactory'];
+        centralCtrl.$inject = ['$routeParams', 'centralFactory', '$auth','altaElementoFactory','CONSTANTS'];
 
-        function centralCtrl($routeParams, centralFactory, $auth, altaElementoFactory) {
+        function centralCtrl($routeParams, centralFactory, $auth, altaElementoFactory, CONSTANTS) {
             var vm = this;
             vm.pageChangeHandler = pageChangeHandler;
             vm.addFilter = addFilter;
@@ -18,6 +18,7 @@
                 vm.pageSize = 10;
                 vm.dataJson = {};
                 vm.dataJson.filter={};
+                vm.numTotalElements=0;
                 vm.dataJson.search={};
                 altaElementoFactory.getTiposMascotas.query(
                     function (data) {
@@ -37,6 +38,7 @@
                 vm.entry = new centralFactory.numTotalElements();
                 vm.pageSize = 10;
                 vm.entry.element = vm.dataJson;
+
                 vm.entry.$save()
                     .then(function (data) {
                         // console.log("exito");
@@ -50,8 +52,10 @@
                         pageChangeHandler(vm.currentPage);
                         console.log('Numero total de elementos:' + data.numTotal);
                     }, function (err) {
-                        console.log("error num total");
+                        $rootScope.indexNotificacion++;
+                        $rootScope.notifications[$rootScope.indexNotificacion++] = CONSTANTS.ERROR;
                     });
+                return;
             }
 
             function pageChangeHandler(num) {
@@ -97,9 +101,11 @@
             }
 
             function addSearch(){
+
                 vm.currentPage=1;
                 vm.dataJson.search = vm.search;
                 numTotalElements();
+                return false;
 
             }
         }
