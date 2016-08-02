@@ -9,6 +9,7 @@ module.exports.configApp = function () {
     var gm = require('gm');
     var forEach = require('async-foreach').forEach;
     var async = require('async');
+    var sha1 = require('sha1');
 
     var TOKEN_SECRET = process.env.TOKEN_SECRET || 'YOUR_UNIQUE_JWT_TOKEN_SECRET';
 
@@ -26,6 +27,7 @@ module.exports.configApp = function () {
     app.gm = gm;
     app.forEach = forEach;
     app.async = async;
+    app.sha1 = sha1;
 
     app.use(bodyParser());
     app.use(fileUpload());

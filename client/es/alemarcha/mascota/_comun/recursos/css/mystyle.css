@@ -14,6 +14,7 @@ body {
 
 #container {
     display: table;
+    padding-top: 30px;
 }
 
 footer {
@@ -332,5 +333,10 @@ growl-notification.fading.ng-leave.ng-leave-active {
 
 .tituloCentral{
     font-size: medium;
+}
+
+#formlogin{
+    float: left;
+    margin-right: 60px;
 }
 

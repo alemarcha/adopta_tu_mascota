@@ -17,3 +17,7 @@ exports.find = function (query) {
 exports.inserting = function (usuario) {
     return mongodb.inserting(mongoCol, usuario);
 }
+
+exports.updating = function (usuario, query) {
+    return mongodb.updating(mongoCol, query, usuario);
+}

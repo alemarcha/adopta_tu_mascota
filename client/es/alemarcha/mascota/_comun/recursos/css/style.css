@@ -91,7 +91,7 @@ body#home {min-height:100%;min-width:100%;overflow:hidden;}
 /*** Main product view ***/
 #mainview #breadcrumb {margin-bottom:10px;}
 #description {float:right;width:500px;}
-	#description h1 {font-family: 'Terminal Dosis', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: xx-large;
+	#description h1 {font-size: xx-large;
     font-weight: bold;
     line-height: initial;}
 	#description p {padding:0px 0px 14px 0px;}
@@ -165,7 +165,7 @@ div.right {font-size:1.167em;padding-top:10px;width:350px;}
 	#login form button {float:right;}
 
 /*** Bill & Ship Addresses ***/
-#address #ship {border-left:none;background:#f5f5f5;}
+#address #register {border-left:none;float: right}
 	#address h1, #address h2 {font-family: 'Terminal Dosis', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size:2em;font-weight:300;}
 	#address p {clear:both;margin:10px 0px;}
 	#address form p {clear:both;margin:10px 0px 0px;}

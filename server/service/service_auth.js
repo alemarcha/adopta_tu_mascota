@@ -12,7 +12,9 @@ module.exports.service_auth = function (app) {
 
     app.post('/api/auth/login', function (req, res, next) {
         var element = req.body.email;
-        var pass = req.body.password;
+        var pass = app.sha1(req.body.password);
+
+
         console.log("LOGIN SERVER" + element);
 
         usuariosData.findingByEmailPassword(element, pass)
@@ -64,9 +66,7 @@ module.exports.service_auth = function (app) {
         var element = req.body.usuario;
 
         console.log("REGISTER SERVER" + element);
-        var user = {
-            email: element.email
-        };
+        element.password = app.sha1(element.password);
         usuariosData.inserting(element)
             .then(function (data) {
                 if (data) {
