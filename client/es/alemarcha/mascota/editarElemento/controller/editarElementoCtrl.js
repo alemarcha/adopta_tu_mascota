@@ -1,22 +1,24 @@
 (function () {
     angular
         .module('adoptaTuMascotaApp')
-        .controller('NewElementCtrl', newElementCtrl);
+        .controller('EditarElementoCtrl', editarElementoCtrl);
 
-    newElementCtrl.$inject = ['$routeParams', 'altaElementoFactory', '$rootScope', 'Upload'];
+    editarElementoCtrl.$inject = ['$routeParams', 'altaElementoFactory', '$rootScope', 'Upload', 'editarElementoFactory'
+        , 'elementService', 'elementFactory', '$http','$location'];
 
-    function newElementCtrl($routeParams, altaElementoFactory, $rootScope, Upload) {
+    function editarElementoCtrl($routeParams, altaElementoFactory, $rootScope, Upload, editarElementoFactory, elementService, elementFactory, $http, $location) {
         var vm = this;
-        vm.create = create;
+        vm.id = $routeParams.id;
+        //vm.create = create;
         vm.initialize = initialize;
         vm.checkForm = checkForm;
-        vm.upload = upload;
+        //vm.upload = upload;
         initialize();
 
         console.log("empieza creacion");
 
         function initialize() {
-            vm.element = {};
+            vm.otrasImagenesActual = [];
             altaElementoFactory.getTiposMascotas.query(
                 function (data) {
                     if (data) {
@@ -27,32 +29,56 @@
                     console.log("ERROR");
 
                 });
+
+            elementFactory.elementById.query({
+                    id: vm.id
+                }, function (data) {
+                    if (data) {
+                        vm.element = data;
+                        alert(JSON.stringify(vm.element));
+
+                        for (var i in vm.element.imagenes) {
+                            vm.otrasImagenesActual.push({
+                                thumb: '/imgs/' + vm.id + '/_preview_' + vm.element.imagenes[i].name,
+                                img: '/imgs/' + vm.id + '/' + vm.element.imagenes[i].name
+                            });
+                        }
+
+                    } else {
+
+                    }
+                },
+                function (error) {
+                    console.log("ERROR");
+
+                });
+
         }
-
-
 
         function checkForm(form) {
             console.log(form);
             if (form.$valid) {
-                create(vm.element);
+                edit(vm.element);
             }
         }
 
-        function create(element) {
+
+        function edit(element) {
             //console.log("Nombre:"+element.name);
-            element.date_creacion = new Date();
-            element.usuario = $rootScope.usuarioLogged;
+            element.date_modificacion = new Date();
             vm.entry = new altaElementoFactory.insertElement();
             vm.entry.element = element;
+            vm.entry._id = element._id;
 
-
-            vm.entry.$save(function (data) {
+            vm.entry.$update(function (data) {
                 console.log(data);
                 $rootScope.indexNotificacion++;
-                $rootScope.notifications[$rootScope.indexNotificacion++] = "Se ha añadiddo correctamente " + element.name;
+                $rootScope.notifications[$rootScope.indexNotificacion++] = "Se ha editado correctamente " + element.name;
                 //console.log(JSON.stringify(data.element));
                 console.log("Id nuevo elemento" + JSON.parse(JSON.stringify(data)));
-                upload(vm.images, vm.imagePrincipal, data);
+                if (vm.images || vm.imagePrincipal) {
+                    upload(vm.images, vm.imagePrincipal, element);
+                }
             });
         }
 
@@ -67,10 +93,9 @@
                     info: Upload.json(elemento)
                 },
             }).then(function (response) {
-                vm.images = [];
-                vm.imagePrincipal = [];
-                initialize();
-                console.log("Subido");
+                alert("Subido");
+                $location.url('/element/'+vm.id);
+
             }, function (response) {
                 console.log("NO SUBIDO: " + response);
                 $rootScope.notifications[$rootScope.indexNotificacion++] = "Se ha producido un error al adjuntar las imágenes. Intente añadirlas más tarde. ";
@@ -83,6 +108,5 @@
 
         }
     }
-
 
 }());

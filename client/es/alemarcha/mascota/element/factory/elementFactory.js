@@ -12,7 +12,7 @@
     
         factory.elementById = $resource("/api/pub/element/:id",
                                         {id:"@id"},
-                                        {query: {cache:true}});
+                                        {query: {cache:false}});
 
         return factory;
     }

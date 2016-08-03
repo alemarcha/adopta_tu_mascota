@@ -1,31 +1,31 @@
 <article id="grid">
-	<div id="breadcrumb"><a ng-href="#/">Home</a> > <a href="search.html">Dresses</a> <h1>Summer Dress</h1></div>
-    <header>  
-        <div class="paging"> 
-            <dir-pagination-controls direction-links="true" boundary-links="true" on-page-change="central.pageChangeHandler(newPageNumber)"             template-url="main/view/dirPagination.tpl.html" max-size="7" pagination-id="drinksPagination" ></dir-pagination-controls>
+    <header>
+        <div class="paging">
+            <dir-pagination-controls direction-links="true" on-page-change="central.pageChangeHandler(newPageNumber)" template-url="main/view/dirPagination.tpl.html" max-size="8" pagination-id="drinksPagination"></dir-pagination-controls>
         </div>
-        <form action="#" >
-        <select onchange="javascript:addSort();" name="sortBy" id="sortBy">
-            <option value="">Todos</option>
-            <option value="PriceHiLo">Desaparecidos</option>
-            <option value="PriceLoHi">Encontrados</option>
-            <option value="pID">Se regalan</option>
-        </select> &nbsp; Mostrando {{central.numElementInitial}} - {{central.numElementFinal}} de {{central.numTotalElements}} mascotas
-        <input type="text" placeholder="Search ABC comp..." /><button type="submit">Search</button>
+        <form action="#">
+            <input type="text" id="searchFocus" focus ng-model="central.search" placeholder="Buscar..." ng-change="central.addSearch();" ng-model-options='{ debounce: 500 }'/>
+            <select ng-model="central.filtro" ng-change="central.addFilter();" name="sortBy" id="sortBy"
+                    ng-options="option.categoria for option in central.options track by option.id"
+                    ng-model="central.filter">
+                <option value="">Sin filtros</option>
+            </select> &nbsp;{{central.numElementInitial}} - {{central.numElementFinal}} de {{central.numTotalElements}}
+
         </form>
-        
+
     </header>
     <ul id="items">
         <li dir-paginate="item in central.items|itemsPerPage:central.pageSize" current-page="central.currentPage" total-items="central.numTotalElements" pagination-id="drinksPagination">
             <span class="sale" ng-show="{{item.valor%2 === 0}}">Sale</span>
-            <a title="{{item.name}}" ng-href="#/element/{{item._id}}"><img src="_comun/recursos/images/thumb.png" alt="Elegant evening Dress"/></a>
-            <a ng-href="#/element/{{item._id}}" class="title">{{item.name}}</a>
-            <strong title="{{item.description}}" class="subtitle" >&pound;{{item.description}}</strong>
+            <a title="{{item.name}}" ng-href="#/element/{{item._id}}"><img ng-if="item.imagenPrincipal" ng-src="/imgs/{{item._id}}/_preview_{{item.imagenPrincipal}}" onerror="this.src='_comun/recursos/images/default.jpeg'" alt="Elegant evening Dress" /><img ng-if="!item.imagenPrincipal" ng-src="_comun/recursos/images/default.jpeg" alt="Elegant evening Dress" /></a>
+            <strong class="tituloCentral"><a ng-href="#/element/{{item._id}}" title="{{item.description}}" class="title">{{item.name}}</a></strong>
+
+            <i class="fa fa-clock-o" aria-hidden="true">&nbsp;{{item.date_creacion | date:'dd/MM/yyyy HH:mm:ss'}}</i>
+
+
         </li>
     </ul>
     <footer>
-        <div class="paging">
-             <dir-pagination-controls direction-links="true" boundary-links="true" on-page-change="central.pageChangeHandler(newPageNumber)" template-url="main/view/dirPagination.tpl.html" max-size="7" pagination-id="drinksPagination" ></dir-pagination-controls>
-        </div>
+
     </footer>
 </article>

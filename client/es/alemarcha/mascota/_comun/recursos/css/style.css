@@ -13,7 +13,7 @@ box-shadow: inset 0px 1px 0px 0px #ffa9a9;font-size:1.167em;padding:5px 10px;-we
 button.continue:hover {background:#333;border-color:#333;color:#fff;-webkit-box-shadow: inset 0px 1px 0px 0px #999;-moz-box-shadow: inset 0px 1px 0px 0px #999;
 box-shadow: inset 0px 1px 0px 0px #999;}
 
-a:link, a:visited {color:#b29f90;}
+a:link, a:visited {color:black}
 a:hover {text-decoration:none;color:#ff5454;}
 a img {border:none;}
 strong {font-weight:bold;}
@@ -51,8 +51,8 @@ header {float:left;margin-top:34px;height:95px;position:relative;width:100%;back
 	#social a.twitter:link, #social a.twitter:visited {background-position:-30px 0px;}
 		#social a.twitter:hover {background-position:-30px -30px;}
 
-#action-bar {line-height:24px;position:absolute;top:0px;right:0px;color:#fff;}
-	#action-bar a:link, #action-bar a:visited {color:#fff;margin:0px 5px;}
+#action-bar {line-height:24px;position:absolute;top:0px;right:0px;}
+	#action-bar a:link, #action-bar a:visited {margin:0px 5px;text-decoration: blink;}
 
 article {display:block;text-align:left;width:960px;margin:0px auto;clear:both;min-height:400px;}
 	article footer {-webkit-box-shadow:none;-moz-box-shadow: none;box-shadow:none;}
@@ -75,23 +75,23 @@ body#home {min-height:100%;min-width:100%;overflow:hidden;}
 
 /*** Product grid ***/
 #breadcrumb {border-bottom:1px solid #ececec;padding:10px 0px;margin-bottom: 1%;}
-#grid header, #grid footer {height:24px;width:940px;margin:0px;padding:10px;background:#fff;background:#E7FBF7;margin-bottom:10px;}
+#grid header, #grid footer {height:24px;width:940px;margin:0px;padding:10px;background:#fff;background:#E7FBF7;margin-bottom:2%;margin-top: 2%;}
 	#grid footer a {margin:0px;}
 #grid h1 {display:inline;}
 .paging {float:right;line-height:24px;}
 #items li {float:left;width:172px;padding:10px;height:333px;position:relative;}
 	#items li span {position:absolute;top:20px;right:0px;padding:5px;line-height:normal;text-align:right;color:#fff;background:#ff5454;font-family: 'Terminal Dosis', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;text-transform:uppercase;-webkit-animation: delay 1.5s;-moz-animation: delay 1.5s;}
 	#items a {display:block;text-decoration:none;}
-	#items a.title {height:40px;}
+
 		#items a img {width:170px;border:1px solid #fff;-webkit-box-shadow:0px 0px 5px 0px rgba(180, 160, 145, 0.2);-moz-box-shadow:0px 0px 5px 0px rgba(180, 160, 145, 0.2);box-shadow:0px 0px 5px 0px rgba(180, 160, 145, 0.2);}
 		#items a:hover img {-webkit-box-shadow:0px 0px 5px 0px rgba(180, 160, 145, 0.8);-moz-box-shadow:0px 0px 5px 0px rgba(180, 160, 145, 0.8);box-shadow:0px 0px 5px 0px rgba(180, 160, 145, 0.8);}
-	#items strong {border-bottom: 1px solid #ececec;display:block;padding-bottom:5px;}
+	#items strong {display:block;padding-bottom:5px;}
 		#items strong em {float:right;font-weight:normal;font-size:0.833em;}
 
 /*** Main product view ***/
 #mainview #breadcrumb {margin-bottom:10px;}
 #description {float:right;width:500px;}
-	#description h1 {font-family: 'Terminal Dosis', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: xx-large;
+	#description h1 {font-size: xx-large;
     font-weight: bold;
     line-height: initial;}
 	#description p {padding:0px 0px 14px 0px;}
@@ -165,7 +165,7 @@ div.right {font-size:1.167em;padding-top:10px;width:350px;}
 	#login form button {float:right;}
 
 /*** Bill & Ship Addresses ***/
-#address #ship {border-left:none;background:#f5f5f5;}
+#address #register {border-left:none;float: right}
 	#address h1, #address h2 {font-family: 'Terminal Dosis', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size:2em;font-weight:300;}
 	#address p {clear:both;margin:10px 0px;}
 	#address form p {clear:both;margin:10px 0px 0px;}

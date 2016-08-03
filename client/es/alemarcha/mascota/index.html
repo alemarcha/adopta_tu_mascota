@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="_comun/recursos/css/style.css" />
     <link rel="stylesheet" href="_comun/recursos/css/mystyle.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/bower_components/ngGallery/src/css/ngGallery.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="_comun/recursos/css/social-share-kit.css">
     <link href='https://fonts.googleapis.com/css?family=Terminal+Dosis' rel='stylesheet' type='text/css'>
     <link rel="icon" type="image/png" href="_comun/recursos/images/Tourism-icon-3.png" sizes="32x32">
     <meta name="description" content="Aplicación donde podrás buscar una nueva mascota" />
@@ -20,9 +23,10 @@
 </head>
 
 <body>
-    <div id="principal" ng-cloak>
+    <div id="principal" >
+
         <header>
-            <div class="wrapper">
+            <div class="wrapper" ng-cloak>
                 <h1><a ng-href="#/" id="brand" title="ABC comp">ABC comp</a></h1>
                 <nav>
                     <ul ng-controller="MenuCtrl as menu">
@@ -34,6 +38,9 @@
                         </li>
                         <li>
                             <a href="search.html">Favoritos</a>
+                        </li>
+                        <li>
+                            <a ng-href="#/{{'new'}}">Nuevo</a>
                         </li>
                         <li>
                             <a href="search.html">Accessories</a>
@@ -60,7 +67,9 @@
                     <li><a href="#" class="twitter" title="follow us on twitter">follow us on twitter</a></li>
                 </ul>
                 <div ng-if="!auth" id="action-bar"><a ng-href="#/{{'login'}}">Login/Register</a></div>
-                <div ng-if="auth" id="action-bar">Bienvenido {{usuarioLogged.nombre}} <a ng-href="#" ng-click="registroCtrl.logout()">Cerrar sesión</a> // <a ng-href="#/{{'new'}}">Your bag (3) &nbsp; &pound;148</a></div>
+                <div ng-if="auth" id="action-bar" class="colorText"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;
+                     Bienvenido {{usuarioLogged.nombre}} <a ng-href="#" ng-click="registroCtrl.logout()"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;
+                        Cerrar sesión</a></div>
             </div>
         </aside>
         <div class="view-animate-container" ng-cloak>
@@ -71,11 +80,11 @@
                 </growl-notification>
             </div>
             <span us-spinner="{radius:30, width:8, length: 16}" spinner-on="loading"></span>
-            <div ng-hide="loading">
+
                 <div ng-view>
                     <!-- AQUI VA EL CUERPO DE CADA PÁGINA -->
                 </div>
-            </div>
+
         </div>
     </div>
     <footer>
@@ -99,6 +108,10 @@
     <script src="/bower_components/jstz-detect/jstz.min.js"></script>
     <script src="/bower_components/angular-socialshare/dist/angular-socialshare.min.js"></script>
     <script src="/bower_components/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
+    <script src="/bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="/bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script type="text/javascript" src="/bower_components/ngGallery/src/js/ngGallery.js"></script>
+
 
     <script src="_comun/recursos/js/dirPagination.js"></script>
     <script src="_comun/recursos/js/spin.js"></script>
@@ -110,6 +123,7 @@
     <script src="_comun/app.js"></script>
     <script src="_comun/httpLog.js"></script>
     <script src="_comun/appSecurity.js"></script>
+    <script src="_comun/constants.js"></script>
 
     <!-- CONTROLLERS -->
     <script src="comun/controller/comunCtrl.js"></script>
@@ -118,12 +132,17 @@
     <script src="element/controller/elementCtrl.js"></script>
     <script src="main/controller/centralCtrl.js"></script>
     <script src="altaElemento/controller/newElementCtrl.js"></script>
+    <script src="editarElemento/controller/editarElementoCtrl.js"></script>
 
     <!-- FACTORY -->
     <script src="main/factory/centralFactory.js"></script>
     <script src="element/factory/elementFactory.js"></script>
     <script src="altaElemento/factory/altaElementoFactory.js"></script>
+    <script src="editarElemento/factory/editarElementoFactory.js"></script>
     <script src="registro/factory/auth.js"></script>
+
+    <!-- SERVICE -->
+    <script src="element/service/elementService.js"></script>
 
 
 </body>

@@ -1,6 +1,6 @@
 <article id="address">
 
-    <div id="container" class="formularioEstilo">
+    <div id="container" class="formularioEstilo" encType="multipart/form-data">
         <form name="formulario" ng-submit="newElement.checkForm(formulario)">
             <h1>Nueva mascota</h1>
             <p>
@@ -35,7 +35,23 @@
                 <span style="display: none;" class="helper">Please enter your <strong>phone number</strong>.<br>We might need to contact you with regards to your order.</span>
                 <input id="phone" name="phone" type="tel" required="true" ng-model="newElement.element.phone"><span class="alert">*</span>
             </p>
+            <p>
+                <label for="email">Imagen principal:</label>
+                <input type="file" name="filePrincipal" ngf-select ngf-multiple="false" multiple="false" ngf-keep="false" ng-model="newElement.imagePrincipal" accept="image/*" ngf-max-size="2MB" ngf-select-disabled="true" ngf-model-invalid="errorFile">
+            </p>
+            <div>
+                <img ng-repeat="n in newElement.imagePrincipal track by $index" class="fotosSubiendo" ngf-thumbnail="n" />
+            </div>
 
+            <p>
+                <label for="email">Otras imágenes:</label>
+                <input type="file" name="file" ngf-select ngf-multiple="true" multiple="true" ngf-keep="true" ng-model="newElement.images" accept="image/*" ngf-max-size="2MB" ngf-select-disabled="true" ngf-model-invalid="errorFile">
+            </p>
+            <div>
+                <img ng-repeat="n in newElement.images track by $index" class="fotosSubiendo" ngf-thumbnail="n" />
+            </div>
+
+            <!--            <button ng-click="newElement.upload(newElement.image)">Submit</button>-->
             <p>
                 <label>&nbsp;</label>
                 <button type="submit" class="continue">Crear</button>
@@ -45,8 +61,6 @@
                 <button type="button" type="reset" ng-click="newElement.initialize()" class="reset">Reset</button>
             </p>
         </form>
-
-
 
         <section>
 

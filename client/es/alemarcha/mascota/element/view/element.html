@@ -1,46 +1,85 @@
 <article id="grid">
 
     <div id="container">
-        <div id="breadcrumb"><a href="index.html">Home</a> > <a href="search.html">Dresses</a> > <a href="search.html">Summer Dress</a> > Summer Dress</div>
+        <div id="breadcrumb"><a href="index.html">Home</a> > <a href="search.html">Dresses</a> > <a href="search.html">Summer
+            Dress</a> > Summer Dress
+        </div>
         <div id="description">
-            <h1>{{element.elementoActual.name}} <button class="fa fa-star favorito"/></h1>
-            <ul>
+            <h1>{{element.elementoActual.name}}</h1>
 
-                <li title="{{element.elementoActual.dateFormat}}" class="fechas">
-                    {{element.elementoActual.fromNow}} </li>
+            <ul>
+                <li ng-if="auth && usuarioLogged.email == element.elementoActual.usuario.email" title="Editar"
+                    class="fechas"><a ng-href="#/{{'editarElemento'}}/{{element.id}}">
+                    Editar</a></li>
+                <li title="{{element.dateFormat}}" class="fechas">
+                    {{element.fromNow}}
+                </li>
                 <li>Autor: {{element.elementoActual.usuario.nombre}} {{element.elementoActual.usuario.apellidos}}</li>
-                <li><a href="#tabs-2">{{element.elementoActual.type.categoria}} </a> / <a href="#tabs-2">{{element.elementoActual.raza}} </a></li>
+                <li>{{element.elementoActual.type.categoria}} / {{element.elementoActual.raza}}
+                </li>
             </ul>
+
             <p>{{element.elementoActual.description}} </p>
+
+            <p class="compartir">
+                <a class="ssk ssk-icon ssk-twitter" socialshare socialshare-provider="twitter"
+                   socialshare-text="Compartiendo noticia {{element.elementoActual.name}}"
+                   socialshare-hashtags="angularjs, angular-socialshare" socialshare-url="http://adoptomimascota.com">
+                </a>
+                <a class="ssk ssk-icon ssk-facebook" socialshare socialshare-provider="facebook"
+                   socialshare-type="sharer" socialshare-text="720kb" socialshare-url="https://adoptomimascota.com/"
+                   socialshare-popup-height="300" socialshare-popup-width="400" socialshare-trigger="click">
+                </a>
+                <a class="ssk ssk-icon ssk-google-plus" socialshare socialshare-provider="google"
+                   socialshare-url="http://720kb.net" socialshare-popup-height="300" socialshare-popup-width="400"
+                   socialshare-media="https://www.google.it/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+                   socialshare-trigger="click">
+                </a>
+                <a class="ssk ssk-icon ssk-linkedin" socialshare socialshare-provider="linkedin"
+                   socialshare-text="{{test.testValue}}" socialshare-url="http://720kb.net"
+                   socialshare-description="720kb linkedin summary" socialshare-source="720kb"
+                   socialshare-popup-height="300" socialshare-popup-width="400" socialshare-trigger="click">
+                </a>
+                <a class="ssk ssk-icon ssk-tumblr" socialshare socialshare-provider="tumblr" socialshare-type="link"
+                   socialshare-text="720kb" socialshare-url="http://720kb.net" socialshare-popup-height="300"
+                   socialshare-popup-width="540" socialshare-trigger="click">
+                </a>
+            </p>
 
             <h1>Contacto</h1>
             <ul>
-                <li>Telefono: {{element.elementoActual.phone}}</li>
-                <li>Email: {{element.elementoActual.email}}</li>
-                <li>Dirección: {{element.elementoActual.address}}</li>
+                <li><i class="fa fa-phone fa-2x fa-fw" aria-hidden="true"></i>&nbsp;{{element.elementoActual.phone}}</li>
+                <li><i class="fa fa-envelope fa-2x fa-fw" aria-hidden="true"></i>&nbsp;
+                    {{element.elementoActual.email}}</li>
+                <li><i class="fa fa-street-view fa-2x fa-fw" aria-hidden="true"></i>&nbsp;{{element.elementoActual.address}}</li>
             </ul>
 
             <div map-lazy-load="https://maps.google.com/maps/api/js">
-                <ng-map zoom="15" center="{{element.elementoActual.address}}" style="width:600px; height:400px">
+                <ng-map zoom="15" center="{{element.elementoActual.address}}" style="height:400px">
                     <marker position="{{element.elementoActual.address}}"></marker>
                     <marker position="{{element.elementoActual.address}}"></marker>
                 </ng-map>
             </div>
 
-            <p>
-                <a class="fa fa-twitter fa-3" ng-href="javascript: return false;" socialshare socialshare-provider="twitter" socialshare-text="Compartiendo noticia {{element.elementoActual.name}}" socialshare-hashtags="angularjs, angular-socialshare" socialshare-url="http://adoptomimascota.com">
-
-                </a>
-            </p>
         </div>
+
         <div id="images">
-            <a href="_comun/recursos/images/main.jpg"><img src="_comun/recursos/images/main.jpg"></a>
-            <p>Rollover to zoom. Click to enlarge.</p>
-            <span class="sale" ng-show="{{element.elementoActual.precio%2 === 0}}">Sale</span>
+
+
+            <img class="imagenPrincipalElemento" ng-if="element.elementoActual.imagenPrincipal"
+                 ng-src="/imgs/{{element.elementoActual._id}}/{{element.elementoActual.imagenPrincipal}}"
+                 onerror="this.src='_comun/recursos/images/thumb1.jpg'" alt="Elegant evening Dress"/><img
+                ng-if="!element.elementoActual.imagenPrincipal" ng-src="_comun/recursos/images/main.jpg"
+                alt="Elegant evening Dress"/>
+
+            <span class="sale">Nuevo</span>
+
+            <p>Más imagenes.</p>
+
             <div id="productthumbs">
-                <a href="#"><img src="_comun/recursos/images/thumb1.jpg" /></a>
-                <a href="#"><img src="_comun/recursos/images/thumb2.jpg" /></a>
-                <a href="#"><img src="_comun/recursos/images/thumb3.jpg" /></a>
+                <ng-gallery images="element.images" thumbs-num="11">
+                </ng-gallery>
+
             </div>
         </div>
     </div>

@@ -30,32 +30,45 @@ function finding(mongoCol, query) {
         .then(function (colDb) {
             colDb.find(query).toArray(function (err, result) {
                 callback2Promise(err, result, deferred);
-                console.log("En el finding OK" + JSON.stringify(result));
+                //console.log("En el finding OK" + JSON.stringify(result));
             });
         })
         .fail(function (err) {
             callback2Promise(err, result, deferred);
 
-            console.log("En el finding fails");
+            //console.log("En el finding fails");
         });
     return deferred.promise;
 }
 
-function findingAllEnabled(mongoCol, query, skip, limit) {
+function findingAllEnabled(mongoCol, skip, limit, sortby, filterby) {
     var deferred = Q.defer();
     console.log("En el finding");
+    //console.log("Sort2: " + JSON.stringify(sortby));
     connecting(mongoCol)
         .then(function (colDb) {
-            colDb.find().skip(skip).limit(limit).toArray(function (err, result) {
-                callback2Promise(err, result, deferred);
-                console.log("En el finding OK" + JSON.stringify(result));
-            });
+            if (filterby) {
+                console.log('Entrando en el filtro: ' + JSON.stringify(filterby) + ' skip ' + skip + ' sort ' + JSON.stringify( sortby )+ ' limit ' + limit);
+                console.log("Consulta: colDb.find("+JSON.stringify(filterby)+").skip("+skip+").limit("+limit+").sort("+JSON.stringify(sortby)+")");
+                colDb.find(filterby).skip(skip).limit(limit).sort(sortby).toArray(function (err, result) {
+                    callback2Promise(err, result, deferred);
+                    //console.log("En el finding OK" + JSON.stringify(result));
+                });
+            } else {
+                colDb.find().skip(skip).limit(limit).sort(sortby).toArray(function (err, result) {
+                    callback2Promise(err, result, deferred);
+                   // console.log("En el finding OK" + JSON.stringify(result));
+                });
+            }
+
         })
         .fail(function (err) {
             callback2Promise(err, result, deferred);
 
             console.log("En el finding fails");
-        });
+        }).catch(function (error) {
+        console.log('catch findingall '+ error);
+    });
     return deferred.promise;
 }
 
@@ -84,7 +97,11 @@ function updating(mongoCol, query, document) {
         })
         .fail(function (err) {
             callback2Promise(err, result, deferred);
-        });
+        }).catch(function () {
+        console.log("catch mongo");
+        deferred.reject();
+
+    });
     return deferred.promise;
 }
 

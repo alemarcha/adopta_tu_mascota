@@ -3,8 +3,8 @@ var mongodb = require('./mongodb.js');
 var mongoCol = "mascotas";
 
 
-exports.findAllEnabled = function (query, skip, limit) {
-    return mongodb.findingAllEnabled(mongoCol, query, skip, limit);
+exports.findAllEnabled = function (skip, limit, sortby, filterby) {
+    return mongodb.findingAllEnabled(mongoCol, skip, limit, sortby, filterby);
 }
 
 exports.find = function (idElemento) {
@@ -19,6 +19,10 @@ exports.inserting = function (mascota) {
     return mongodb.inserting(mongoCol, mascota);
 }
 
-exports.counting = function () {
-    return mongodb.counting(mongoCol);
+exports.counting = function (query) {
+    return mongodb.counting(mongoCol,query);
+}
+
+exports.updating = function (mascota, query) {
+    return mongodb.updating(mongoCol, query, mascota);
 }

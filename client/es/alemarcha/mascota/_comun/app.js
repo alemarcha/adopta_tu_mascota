@@ -1,12 +1,12 @@
-angular.module('adoptaTuMascotaApp', ['ngRoute', 'ngResource', 'angularUtils.directives.dirPagination', 'angularSpinner', 'growlNotifications', 'satellizer', 'ngMap', 'angularMoment', '720kb.socialshare']);
+angular.module('adoptaTuMascotaApp', ['ngRoute', 'ngResource', 'angularUtils.directives.dirPagination', 'angularSpinner', 'growlNotifications', 'satellizer', 'ngMap', 'angularMoment', '720kb.socialshare', 'ngFileUpload', 'jkuri.gallery']);
 
 angular.module('adoptaTuMascotaApp').config(['$routeProvider', '$authProvider',
-  function ($routeProvider, $authProvider) {
+    function ($routeProvider, $authProvider) {
 
         // No additional setup required for Twitter
         $authProvider.httpInterceptor = function () {
-                return true;
-            },
+            return true;
+        },
             $authProvider.baseUrl = '/api';
         $authProvider.loginUrl = '/auth/login';
         $authProvider.signupUrl = '/private/auth/register';
@@ -36,6 +36,14 @@ angular.module('adoptaTuMascotaApp').config(['$routeProvider', '$authProvider',
             },
             controllerAs: 'newElement'
         }).
+        when('/editarElemento/:id', {
+            templateUrl: 'editarElemento/view/editarElemento.html',
+            controller: 'EditarElementoCtrl',
+            access: {
+                restricted: true
+            },
+            controllerAs: 'editarElementoCtrl'
+        }).
         when('/404', {
             templateUrl: 'error/404/404.html'
         }).
@@ -49,7 +57,7 @@ angular.module('adoptaTuMascotaApp').config(['$routeProvider', '$authProvider',
         });
 
 
-  }]);
+    }]);
 
 angular.module('adoptaTuMascotaApp').run(['$rootScope', '$location', '$route', 'authFactory', '$auth', function ($rootScope, $location, $route, authFactory, $auth) {
     $rootScope.$on('$routeChangeStart', function (e, curr, prev) {
@@ -63,12 +71,11 @@ angular.module('adoptaTuMascotaApp').run(['$rootScope', '$location', '$route', '
             authFactory.isAuthenticated().then(function (data) {
                 if (curr.access && curr.access.restricted) {
 
-                    if (!$rootScope.auth === true) {
+                    if (!$rootScope.auth) {
                         $location.path('/login');
                         $route.reload();
-
                     } else {
-                        alert("adelante");
+                        alert("Entrando en lugar restringido: " + $rootScope.usuarioLogged.nombre);
                     }
                 }
             }, function (data) {
@@ -84,16 +91,12 @@ angular.module('adoptaTuMascotaApp').run(['$rootScope', '$location', '$route', '
 
         } else {
             if (curr.access && curr.access.restricted) {
-                //eliminaVariablesLogueoSession();
                 $location.path('/login');
             }
         }
 
     });
-  }]);
-
-
-
+}]);
 
 
 angular.module('adoptaTuMascotaApp').run(

@@ -1,0 +1,19 @@
+##############
+README##############
+1. Para instalar necesitamos npm install, bower install
+2. Instalar https: //github.com/aheckmann/gm en la máquina para que funcione graphicMagick
+--linux
+sudo add-apt-repository ppa:dhor/myway
+sudo apt-get update
+sudo apt-get install graphicsmagick
+sudo apt-get install imagemagick
+--mac
+brew install graphicsmagick
+
+git clone -b desarrollo --single-branch https://github.com/alemarcha/adopta_tu_mascota.git
+
+
+##### COMANDOS #####
+
+CADDY
+./caddy -conf="./CaddyFile"
