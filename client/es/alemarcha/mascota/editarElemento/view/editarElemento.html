@@ -1,6 +1,5 @@
-<article id="address">
-
-    <div id="container" class="formularioEstilo">
+<article id="address" ng-show="loading == false" >
+    <div id="container" ng-cloak class="formularioEstilo" >
         <form name="formulario" encType="multipart/form-data" ng-submit="editarElementoCtrl.checkForm(formulario)">
             <h1>Editar mascota</h1>
 
@@ -20,7 +19,7 @@
             <p>
                 <label for="address">Categoría:</label>
                 <select name="type" id="singleSelect" ng-model="editarElementoCtrl.element.type"
-                        ng-options="option.categoria for option in  editarElementoCtrl.options track by option.id"
+                        ng-options="option.categoria for option in  comun.optionsTypeMascotas track by option.id"
                         required>
                 </select><span class="alert">*</span>
             </p>
@@ -29,6 +28,15 @@
                 <label for="name">Raza:</label>
                 <input id="raza" name="raza" type="text" required="true"
                        ng-model="editarElementoCtrl.element.raza"><span class="alert">*</span>
+            </p>
+             <p>
+                <label for="provincia">Provincia:</label>
+                <select name="provincia" id="provincia" ng-model="editarElementoCtrl.element.provincia" ng-change="comun.filterByProvincia(editarElementoCtrl);" ng-options="option.provincia for option in comun.provincias track by option.identificador" required>
+                </select><span class="alert">*</span>            </p>
+            <p>
+                <label for="municipio">Municipio:</label>
+                <select name="municipio" id="municipio" ng-model="editarElementoCtrl.element.municipio" ng-options="option.nombre for option in editarElementoCtrl.municipios track by option.identificador" required>
+                </select><span class="alert">*</span>            </p>
             </p>
 
             <p>

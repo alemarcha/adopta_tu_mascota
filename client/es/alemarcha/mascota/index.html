@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <div id="principal" >
+    <div id="principal" ng-controller="ComunCtrl as comun">
 
         <header>
             <div class="wrapper" ng-cloak>
@@ -53,8 +53,8 @@
                                 <li><a href="search.html">Gloves</a></li>
                             </ul>
                         </li>
-                        <li><a href="search.html">Coats &amp; Jackets </a></li>
-                        <li><a href="search.html">Brands</a></li>
+                        <li><a href="search.html">Sobre nosotros</a></li>
+                        <li><a href="search.html">Contacto</a></li>
                     </ul>
                 </nav>
             </div>
@@ -66,7 +66,7 @@
                     <li><a href="#" class="facebook" title="like us us on Facebook">like us us on Facebook</a></li>
                     <li><a href="#" class="twitter" title="follow us on twitter">follow us on twitter</a></li>
                 </ul>
-                <div ng-if="!auth" id="action-bar"><a ng-href="#/{{'login'}}">Login/Register</a></div>
+                <div ng-if="!auth" id="action-bar"><a ng-href="#/{{'login'}}">Entrar/Registrar</a></div>
                 <div ng-if="auth" id="action-bar" class="colorText"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;
                      Bienvenido {{usuarioLogged.nombre}} <a ng-href="#" ng-click="registroCtrl.logout()"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;
                         Cerrar sesión</a></div>
@@ -142,7 +142,9 @@
     <script src="registro/factory/auth.js"></script>
 
     <!-- SERVICE -->
+    <script src="comun/service/comunService.js"></script>
     <script src="element/service/elementService.js"></script>
+
 
 
 </body>

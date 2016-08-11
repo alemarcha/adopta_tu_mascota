@@ -8,7 +8,7 @@ angular
 		$httpProvider.interceptors.push(funcionInterceptoraSeguridad);
 	}
 
-	function funcionInterceptoraSeguridad($q, $log, $location, $rootScope, SatellizerConfig) {
+	function funcionInterceptoraSeguridad($q, $log, $location, $rootScope, SatellizerConfig, CONSTANTS) {
 
 		var interceptor = {};
 		interceptor.request = function (request) {
@@ -37,18 +37,18 @@ angular
 		interceptor.response = function (response) {
             $log.info('RESPONSE SECURITY CLIENTE RESPONSE');
            if (response.status === 200) {
-                $log.info('200 SECURITY CLIENTE');	
+                $log.info('200 SECURITY CLIENTE');
                 $rootScope.loading=false;
                 return $q.resolve(response);
             };
 			return $q.reject(response);
 		}
         
-         interceptor.responseError = function (response) {
+    interceptor.responseError = function (response) {
             $log.info('RESPONSE SECURITY CLIENTE');
             $rootScope.loading=false;
       if (response.status === 401) {
-				$rootScope.mensaje = "No hay derecho!!!";
+        $rootScope.notifications[$rootScope.indexNotificacion++]=CONSTANTS.ERROR_LOGIN;
 				$log.info('401 SECURITY CLIENTE');			 
         $location.url('/login');
 			} else if (response.status === 419) {
@@ -59,7 +59,7 @@ angular
                 $log.info('404 SECURITY CLIENTE');			 
 				$location.url('/404');
 			} else if (response.status === 500) {
-                $rootScope.notifications[$rootScope.indexNotificacion++]="Error 500";
+                $rootScope.notifications[$rootScope.indexNotificacion++]=CONSTANTS.ERROR;
             };
 			return $q.reject(response);
 		}

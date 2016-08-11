@@ -1,6 +1,6 @@
 var elementosData = require('../data/elementosData.js')
 module.exports.service_central = function (app) {
-    var fields_query=['name','description','address','raza'];
+    var fields_query=['name','description','address','raza', 'provincia.provincia', 'municipio.nombre'];
     app.get('/api/pub/elements', function (req, res, next) {
         var items = {
             elementos: []

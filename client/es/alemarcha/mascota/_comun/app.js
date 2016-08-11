@@ -7,9 +7,9 @@ angular.module('adoptaTuMascotaApp').config(['$routeProvider', '$authProvider',
         $authProvider.httpInterceptor = function () {
             return true;
         },
-            $authProvider.baseUrl = '/api';
-        $authProvider.loginUrl = '/auth/login';
-        $authProvider.signupUrl = '/private/auth/register';
+        $authProvider.baseUrl = '/api';
+        $authProvider.loginUrl = '/pub/auth/login';
+        $authProvider.signupUrl = '/pub/auth/register';
         $authProvider.tokenName = 'token';
         $authProvider.tokenPrefix = 'adoptaTuMascotaApp';
         $authProvider.authHeader = 'Authorization';
@@ -39,9 +39,12 @@ angular.module('adoptaTuMascotaApp').config(['$routeProvider', '$authProvider',
         when('/editarElemento/:id', {
             templateUrl: 'editarElemento/view/editarElemento.html',
             controller: 'EditarElementoCtrl',
-            access: {
-                restricted: true
-            },
+            access: function($scope){
+                return {
+                    restricted: true,
+                    unique: true      
+                }
+            }(),
             controllerAs: 'editarElementoCtrl'
         }).
         when('/404', {
@@ -49,6 +52,9 @@ angular.module('adoptaTuMascotaApp').config(['$routeProvider', '$authProvider',
         }).
         when('/401', {
             templateUrl: 'error/401/401.html'
+        }).
+        when('/500', {
+            templateUrl: 'error/500/500.html'
         }).
         otherwise({
             templateUrl: 'main/view/central.html',
@@ -75,7 +81,22 @@ angular.module('adoptaTuMascotaApp').run(['$rootScope', '$location', '$route', '
                         $location.path('/login');
                         $route.reload();
                     } else {
-                        alert("Entrando en lugar restringido: " + $rootScope.usuarioLogged.nombre);
+                        console.log($route);
+                        if(curr.access.unique){
+                            authFactory.canEditElement($route.current.params.id)
+                            .then(function(){
+                               //alert("accediendo") ;
+                            },
+                            function (data) {
+                                //alert("no accede");
+                                $location.path('/404');
+                                $route.reload();
+                            })
+
+                        }else{
+                            alert("Entrando en lugar restringido: " + $rootScope.usuarioLogged.nombre);    
+                        }
+                        
                     }
                 }
             }, function (data) {
