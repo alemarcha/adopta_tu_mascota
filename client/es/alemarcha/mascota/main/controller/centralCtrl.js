@@ -81,6 +81,8 @@
                         if (vm.numTotalPage < vm.pageSize) {
                             vm.numElementFinal = vm.numTotalElements;
                         }
+                        console.log(JSON.stringify(data));
+
                     }
                 );
 

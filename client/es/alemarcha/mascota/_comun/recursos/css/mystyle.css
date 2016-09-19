@@ -340,3 +340,19 @@ growl-notification.fading.ng-leave.ng-leave-active {
     margin-right: 60px;
 }
 
+
+.span-category-Perros{
+    background: blue !important;
+}
+
+.span-category-Gatos{
+    background: green !important;
+}
+
+.span-category-Pajaros{
+    background: yellow !important;
+}
+
+.span-category-Conejos{
+    background: purple !important;
+}
