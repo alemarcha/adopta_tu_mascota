@@ -4,9 +4,9 @@
         .controller('EditarElementoCtrl', editarElementoCtrl);
 
     editarElementoCtrl.$inject = ['$routeParams', 'altaElementoFactory', '$rootScope', 'Upload', 'editarElementoFactory'
-        , 'elementService', 'elementFactory', '$http','$location'];
+        , 'elementService', 'elementFactory', '$http','$location', 'comunService'];
 
-    function editarElementoCtrl($routeParams, altaElementoFactory, $rootScope, Upload, editarElementoFactory, elementService, elementFactory, $http, $location) {
+    function editarElementoCtrl($routeParams, altaElementoFactory, $rootScope, Upload, editarElementoFactory, elementService, elementFactory, $http, $location, comunService) {
         var vm = this;
         vm.id = $routeParams.id;
         //vm.create = create;
@@ -19,24 +19,12 @@
 
         function initialize() {
             vm.otrasImagenesActual = [];
-            altaElementoFactory.getTiposMascotas.query(
-                function (data) {
-                    if (data) {
-                        vm.options = data;
-                    }
-                },
-                function (error) {
-                    console.log("ERROR");
-
-                });
-
+        
             elementFactory.elementById.query({
                     id: vm.id
                 }, function (data) {
                     if (data) {
                         vm.element = data;
-                        alert(JSON.stringify(vm.element));
-
                         for (var i in vm.element.imagenes) {
                             vm.otrasImagenesActual.push({
                                 thumb: '/imgs/' + vm.id + '/_preview_' + vm.element.imagenes[i].name,
@@ -44,8 +32,9 @@
                             });
                         }
 
+                        comunService.filterByProvincia(vm);
                     } else {
-
+                        $location('404');
                     }
                 },
                 function (error) {

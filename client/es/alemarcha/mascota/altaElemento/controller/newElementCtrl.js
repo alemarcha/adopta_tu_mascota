@@ -13,20 +13,8 @@
         vm.upload = upload;
         initialize();
 
-        console.log("empieza creacion");
-
         function initialize() {
             vm.element = {};
-            altaElementoFactory.getTiposMascotas.query(
-                function (data) {
-                    if (data) {
-                        vm.options = data;
-                    }
-                },
-                function (error) {
-                    console.log("ERROR");
-
-                });
         }
 
 
@@ -50,7 +38,6 @@
                 console.log(data);
                 $rootScope.indexNotificacion++;
                 $rootScope.notifications[$rootScope.indexNotificacion++] = "Se ha añadiddo correctamente " + element.name;
-                //console.log(JSON.stringify(data.element));
                 console.log("Id nuevo elemento" + JSON.parse(JSON.stringify(data)));
                 upload(vm.images, vm.imagePrincipal, data);
             });
@@ -82,6 +69,7 @@
 
 
         }
+
     }
 
 

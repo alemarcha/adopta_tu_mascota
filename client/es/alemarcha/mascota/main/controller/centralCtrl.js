@@ -93,7 +93,6 @@
                 if(vm.filtro){
                     if(vm.filtro.id){
                         filter["type.id"] = vm.filtro.id;
-
                     }
                 }
                 vm.dataJson.filter = filter;

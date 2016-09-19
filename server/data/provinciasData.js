@@ -1,14 +1,10 @@
 var Q = require('q');
 var mongodb = require('./mongodb.js');
-var mongoCol = "mascotas";
+var mongoCol = "provincias";
 
 
-exports.findAllEnabled = function (skip, limit, sortby, filterby) {
-    limit = limit - skip;
-    return mongodb.findingAllEnabled(mongoCol, skip, limit, sortby, filterby);
-}
 
-exports.find = function (idElemento) {
+exports.findById = function (idElemento) {
     console.log("Buscando elemento 2: " + idElemento);
     return mongodb.finding(mongoCol, {
         _id: new mongodb.ObjectId(idElemento)
@@ -16,8 +12,14 @@ exports.find = function (idElemento) {
 }
 
 
-exports.inserting = function (mascota) {
-    return mongodb.inserting(mongoCol, mascota);
+exports.findAll = function (query, campos) {
+
+    return mongodb.findingAllEnabled(mongoCol, null, null, {provincia:1}, query, campos);
+}
+
+
+exports.inserting = function (provincia) {
+    return mongodb.inserting(mongoCol, provincia);
 }
 
 exports.counting = function (query) {

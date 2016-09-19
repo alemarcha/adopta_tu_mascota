@@ -3,9 +3,9 @@
     .module('adoptaTuMascotaApp')
     .controller('RegistroCtrl', registroCtrl);
     
-    registroCtrl.$inject = ['$routeParams','$auth','$location', 'SatellizerConfig','$rootScope','authFactory'];
+    registroCtrl.$inject = ['$routeParams','$auth','$location', 'SatellizerConfig','$rootScope','authFactory', 'CONSTANTS'];
     
-    function registroCtrl($routeParams, $auth, $location, config, $rootScope, authFactory) {
+    function registroCtrl($routeParams, $auth, $location, config, $rootScope, authFactory, CONSTANTS) {
         var vm = this;
         vm.login = login;
         vm.register = register;
@@ -16,7 +16,6 @@
 
         function initialize () {
             vm.usuario = {};
-            //alert($auth.getToken());
         }
             
         function login (form) {
@@ -24,44 +23,44 @@
             // Comprobamos que los campos requeridos estan rellenos
             if(vm.usuario.email 
                     && vm.usuario.password){
-            console.log($auth.getToken());
-            $auth.login({
-                email: vm.usuario.email,
-                password: vm.usuario.password
-            })
-            .then(function(response) {
-                // Redirect user here after a successful log in.+
-                if(response && response.data){
-                 var token = response.data[config.tokenName];
-                 //alert(response.data[config.tokenName]);
-                 if (token) {
-                    $rootScope.auth=true;    
-                    $auth.setToken(token);
-                    $rootScope.notifications[$rootScope.indexNotificacion++]="Usuario logueado correctamente";
-                    $location.url('/');
-                 } else {
-                    alert("Usuario incorrecto");
-                    $rootScope.notifications[$rootScope.indexNotificacion++]="Usuario incorrecto";
-                 }
-                }else{
-                     alert("Usuario incorrecto");
-                     $rootScope.notifications[$rootScope.indexNotificacion++]="Usuario incorrecto";
-                }
-            },function(reason) {
-                // error: handle the error if possible and
-                //        resolve promiseB with newPromiseOrValue,
-                //        otherwise forward the rejection to promiseB
-                console.log("promise reject");
-            })
-            .catch(function(response) {
-                console.log("catch");
-                // Handle errors here, such as displaying a notification
-                // for invalid email and/or password.
-            });
+                $auth.login({
+                    email: vm.usuario.email,
+                    password: vm.usuario.password
+                })
+                .then(function(response) {
+                    // Redirect user here after a successful log in.+
+                    if(response && response.data.code == 200 ){
+                         var token = response.data.response[config.tokenName];
+                         //alert(response.data[config.tokenName]);
+                         if (token) {
+                            $rootScope.auth=true;    
+                            $auth.setToken(token);
+                            $rootScope.notifications[$rootScope.indexNotificacion++]=CONSTANTS.LOGIN;
+                            $location.url('/');
+                         } else {
+                            alert("Usuario incorrecto");
+                            $rootScope.notifications[$rootScope.indexNotificacion++]=CONSTANTS.ERROR_LOGIN;
+                         }
+                    } else {
+                        alert("Usuario incorrecto");
+                    }
+                },function(reason) {
+                    // error: handle the error if possible and
+                    //        resolve promiseB with newPromiseOrValue,
+                    //        otherwise forward the rejection to promiseB
+                    alert("promise reject");
+                })
+                .catch(function(response) {
+                    alert("catch");
+                    // Handle errors here, such as displaying a notification
+                    // for invalid email and/or password.
+                    $rootScope.notifications[$rootScope.indexNotificacion++] = CONSTANTS.ERROR;
+
+                });
             }else{
                    // Si los campos no se han rellenado correctamente
                 form.$valid=false;    
-                $rootScope.notifications[$rootScope.indexNotificacion++] = "Complete los campos requeridos.";
+                $rootScope.notifications[$rootScope.indexNotificacion++] = CONSTANTS.REQUIRE_FIELDS;
             }
         }
         
@@ -90,48 +89,49 @@
                 .then(function(response) {
                     // Si se ha registrado correctamente,
                     // Redirigimos a la pantalla de inicio y mostramos mensaje de registro
-                    if(response && response.data){
-                     var token = response.data[config.tokenName];
+                    if(response && response.data && response.data.code== 200 ){
+                     var token = response.data.response[config.tokenName];
                      //alert(response.data[config.tokenName]);
                      if (token) {
                         $auth.setToken(token);
-                        $rootScope.notifications[$rootScope.indexNotificacion++] = "Usuario registrado correctamente" + $auth.getToken();
+                        $rootScope.notifications[$rootScope.indexNotificacion++] = CONSTANTS.REGISTER_USER + $auth.getToken();
                         $location.url('/');
                      } else {
-                        $rootScope.notifications[$rootScope.indexNotificacion++] = "Se ha producido un error";
+                        $rootScope.notifications[$rootScope.indexNotificacion++] = CONSTANTS.ERROR;
                      }
+                    }else if(response.data.code == -1){
+                        $rootScope.notifications[$rootScope.indexNotificacion++] = CONSTANTS.ERROR_EMAIL_EXISTE;
+                    
                     }else{
-                         $rootScope.notifications[$rootScope.indexNotificacion++] = "Se ha producido un error";
+                        console.log(JSON.stringify(response));
+                         $rootScope.notifications[$rootScope.indexNotificacion++] = CONSTANTS.ERROR;
                     }
 
                 })
                 .catch(function(response) {
                     // Si ha habido errores durante el registro del usuario, llegaremos a esta función
-                     $rootScope.notifications[$rootScope.indexNotificacion++] = "Se ha producido un error. Inténtelo más tarde.";
+                     $rootScope.notifications[$rootScope.indexNotificacion++] = CONSTANTS.ERROR;
                 });   
             }else{
                 // Si los campos no se han rellenado correctamente
                 form.$valid=false;   
-                $rootScope.notifications[$rootScope.indexNotificacion++] = "Complete los campos requeridos.";
+                $rootScope.notifications[$rootScope.indexNotificacion++] = CONSTANTS.REQUIRE_FIELDS;
             }
         }
         
             
         function logout () {
             
-            // Comprobamos que los campos requeridos estan rellenos
-           
-            
+                // Comprobamos que los campos requeridos estan rellenos
                 $auth.logout()
                 .then(function(response) {
-                   $rootScope.notifications[$rootScope.indexNotificacion++] = "Ha cerrado sesión correctamente";
+                    $rootScope.notifications[$rootScope.indexNotificacion++] = CONSTANTS.LOGOUT;
                     delete $rootScope.usuarioLogged;
                     $rootScope.auth=false;
-
                 })
                 .catch(function(response) {
-                    // Si ha habido errores durante el registro del usuario, llegaremos a esta función
-                     $rootScope.notifications[$rootScope.indexNotificacion++] = "Se ha producido un error. Inténtelo más tarde.";
+                    // Si ha habido errores durante el logout del usuario, llegaremos a esta función
+                     $rootScope.notifications[$rootScope.indexNotificacion++] = CONSTANTS.ERROR;
                 });   
          
     }

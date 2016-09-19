@@ -18,6 +18,6 @@ exports.inserting = function (usuario) {
     return mongodb.inserting(mongoCol, usuario);
 }
 
-exports.updating = function (usuario, query) {
-    return mongodb.updating(mongoCol, query, usuario);
+exports.updating = function (usuario, query, fields) {
+    return mongodb.updating(mongoCol, query, fields);
 }
