@@ -24,24 +24,24 @@
             <p class="compartir">
                 <a class="ssk ssk-icon ssk-twitter" socialshare socialshare-provider="twitter"
                    socialshare-text="Compartiendo noticia {{element.elementoActual.name}}"
-                   socialshare-hashtags="angularjs, angular-socialshare" socialshare-url="http://adoptomimascota.com">
+                   socialshare-hashtags="angularjs, angular-socialshare" socialshare-url="{{window.location}}">
                 </a>
                 <a class="ssk ssk-icon ssk-facebook" socialshare socialshare-provider="facebook"
-                   socialshare-type="sharer" socialshare-text="720kb" socialshare-url="https://adoptomimascota.com/"
+                   socialshare-type="sharer" socialshare-text="720kb" {{window.location}}
                    socialshare-popup-height="300" socialshare-popup-width="400" socialshare-trigger="click">
                 </a>
                 <a class="ssk ssk-icon ssk-google-plus" socialshare socialshare-provider="google"
-                   socialshare-url="http://720kb.net" socialshare-popup-height="300" socialshare-popup-width="400"
+                   socialshare-url="{{window.location}}" socialshare-popup-height="300" socialshare-popup-width="400"
                    socialshare-media="https://www.google.it/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
                    socialshare-trigger="click">
                 </a>
                 <a class="ssk ssk-icon ssk-linkedin" socialshare socialshare-provider="linkedin"
-                   socialshare-text="{{test.testValue}}" socialshare-url="http://720kb.net"
+                   socialshare-text="{{test.testValue}}" socialshare-url="{{window.location}}"
                    socialshare-description="720kb linkedin summary" socialshare-source="720kb"
                    socialshare-popup-height="300" socialshare-popup-width="400" socialshare-trigger="click">
                 </a>
                 <a class="ssk ssk-icon ssk-tumblr" socialshare socialshare-provider="tumblr" socialshare-type="link"
-                   socialshare-text="720kb" socialshare-url="http://720kb.net" socialshare-popup-height="300"
+                   socialshare-text="720kb" socialshare-url="{{window.location}}" socialshare-popup-height="300"
                    socialshare-popup-width="540" socialshare-trigger="click">
                 </a>
             </p>

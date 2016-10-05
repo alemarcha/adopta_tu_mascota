@@ -14,6 +14,7 @@ module.exports.service_auth = function (app) {
         var resJson = {response : '' , code: 200 ,msg : "OK"};
         var element = req.body.email;
         var pass = app.sha1(req.body.password);
+        res.type('application/json');
 
 
         console.log("LOGIN SERVER");
@@ -21,9 +22,12 @@ module.exports.service_auth = function (app) {
         usuariosData.findingByEmailPassword(element, pass)
             .then(function (data) {
                 if (data && data.length == 1) {
-                   // console.log('email logueado:' + JSON.stringify(data));
+
+
+                   console.log('email logueado:' + JSON.stringify(data));
                     resJson.response = {
-                        token: createJWT(data[0])
+                        token: createJWT(data[0]),
+                        data:data[0]
                     };
 
                     res.send(resJson);

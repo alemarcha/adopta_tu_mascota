@@ -4,10 +4,11 @@
         .controller('EditarElementoCtrl', editarElementoCtrl);
 
     editarElementoCtrl.$inject = ['$routeParams', 'altaElementoFactory', '$rootScope', 'Upload', 'editarElementoFactory'
-        , 'elementService', 'elementFactory', '$http','$location', 'comunService'];
+        , 'elementService', 'elementFactory', '$http','$location', 'comunService','$scope'];
 
-    function editarElementoCtrl($routeParams, altaElementoFactory, $rootScope, Upload, editarElementoFactory, elementService, elementFactory, $http, $location, comunService) {
+    function editarElementoCtrl($routeParams, altaElementoFactory, $rootScope, Upload, editarElementoFactory, elementService, elementFactory, $http, $location, comunService, $scope) {
         var vm = this;
+        alert($rootScope.permiso_acceso_restringido);
         vm.id = $routeParams.id;
         //vm.create = create;
         vm.initialize = initialize;
@@ -15,7 +16,7 @@
         //vm.upload = upload;
         initialize();
 
-        console.log("empieza creacion");
+        console.log($scope.accommodation);
 
         function initialize() {
             vm.otrasImagenesActual = [];

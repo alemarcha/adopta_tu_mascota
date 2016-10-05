@@ -36,6 +36,15 @@ angular
 		};
 		interceptor.response = function (response) {
             $log.info('RESPONSE SECURITY CLIENTE RESPONSE');
+            $rootScope.auth =  window.localStorage.getItem("auth") == 'true';
+            //alert($rootScope.auth);
+            if($rootScope.auth){
+                $rootScope.usuarioLogged = JSON.parse(window.localStorage.getItem("usuarioLogged"));
+
+            }else{
+                $rootScope.usuarioLogged = null;
+            }
+
            if (response.status === 200) {
                 $log.info('200 SECURITY CLIENTE');
                 $rootScope.loading=false;
@@ -47,10 +56,12 @@ angular
     interceptor.responseError = function (response) {
             $log.info('RESPONSE SECURITY CLIENTE');
             $rootScope.loading=false;
-      if (response.status === 401) {
-        $rootScope.notifications[$rootScope.indexNotificacion++]=CONSTANTS.ERROR_LOGIN;
+            window.localStorage.setItem("usuarioLogged", angular.toJson({}));
+            window.localStorage.setItem("auth", false);
+            if (response.status === 401) {
+                $rootScope.notifications[$rootScope.indexNotificacion++]=CONSTANTS.ERROR_LOGIN;
 				$log.info('401 SECURITY CLIENTE');			 
-        $location.url('/login');
+                $location.url('/login');
 			} else if (response.status === 419) {
 				$rootScope.mensaje = "Estoy caduco!!!";
 				$cookieStore.remove("sessionId")

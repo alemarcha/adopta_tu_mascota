@@ -33,13 +33,13 @@
                         <li>
                             <a ng-href="#/" ng-class="{activeMenu: menu.isActive('/')}">Inicio</a>
                         </li>
-                        <li>
+                        <li ng-if="auth" >
                             <a href="search.html">Perfil</a>
                         </li>
-                        <li>
+                        <li ng-if="auth" >
                             <a href="search.html">Favoritos</a>
                         </li>
-                        <li>
+                        <li ng-if="auth" >
                             <a ng-href="#/{{'new'}}">Nuevo</a>
                         </li>
                         <li>

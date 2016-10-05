@@ -31,10 +31,18 @@
                     // Redirect user here after a successful log in.+
                     if(response && response.data.code == 200 ){
                          var token = response.data.response[config.tokenName];
-                         //alert(response.data[config.tokenName]);
+                        var data = response.data.response.data;
+
+                        //alert(response.data[config.tokenName]);
                          if (token) {
-                            $rootScope.auth=true;    
-                            $auth.setToken(token);
+                             window.localStorage.setItem("usuarioLogged", angular.toJson(data));
+                             window.localStorage.setItem("auth", true);
+                             $rootScope.auth=true;
+                             $rootScope.usuarioLogged = data;
+
+                             alert($rootScope.usuarioLogged.nombre);
+
+                             $auth.setToken(token);
                             $rootScope.notifications[$rootScope.indexNotificacion++]=CONSTANTS.LOGIN;
                             $location.url('/');
                          } else {
@@ -121,13 +129,20 @@
         
             
         function logout () {
-            
+
+
                 // Comprobamos que los campos requeridos estan rellenos
+            alert("logout");
                 $auth.logout()
                 .then(function(response) {
+                    alert("logout 2");
+
+                    window.localStorage.setItem("usuarioLogged", null);
+                    window.localStorage.setItem("auth", false);
                     $rootScope.notifications[$rootScope.indexNotificacion++] = CONSTANTS.LOGOUT;
-                    delete $rootScope.usuarioLogged;
+                    $rootScope.usuarioLogged =window.localStorage.getItem("usuarioLogged");
                     $rootScope.auth=false;
+                    alert(JSON.stringify($rootScope.usuarioLogged));
                 })
                 .catch(function(response) {
                     // Si ha habido errores durante el logout del usuario, llegaremos a esta función

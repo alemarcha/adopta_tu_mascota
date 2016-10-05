@@ -1,7 +1,7 @@
 angular.module('adoptaTuMascotaApp', ['ngRoute', 'ngResource', 'angularUtils.directives.dirPagination', 'angularSpinner', 'growlNotifications', 'satellizer', 'ngMap', 'angularMoment', '720kb.socialshare', 'ngFileUpload', 'jkuri.gallery']);
 
 angular.module('adoptaTuMascotaApp').config(['$routeProvider', '$authProvider',
-    function ($routeProvider, $authProvider) {
+    function ($routeProvider, $authProvider ) {
 
         // No additional setup required for Twitter
         $authProvider.httpInterceptor = function () {
@@ -45,6 +45,14 @@ angular.module('adoptaTuMascotaApp').config(['$routeProvider', '$authProvider',
                     unique: true      
                 }
             }(),
+            resolve:{
+                "accommodation": function(authFactory) {
+                    return authFactory.authToAccess({
+                        restricted: true,
+                        unique: true
+                    });
+                }
+            },
             controllerAs: 'editarElementoCtrl'
         }).
         when('/404', {
@@ -65,59 +73,14 @@ angular.module('adoptaTuMascotaApp').config(['$routeProvider', '$authProvider',
 
     }]);
 
-angular.module('adoptaTuMascotaApp').run(['$rootScope', '$location', '$route', 'authFactory', '$auth', function ($rootScope, $location, $route, authFactory, $auth) {
-    $rootScope.$on('$routeChangeStart', function (e, curr, prev) {
+//angular.module('adoptaTuMascotaApp').run(['authFactory','$rootScope', function (authFactory, $rootScope) {
+//    $rootScope.$on('$routeChangeStart', function (e, curr, prev) {
+//        return authFactory.authToAccess(curr);
+//    });
+//}]);
 
-        // Show a loading message until promises aren't resolved
-        $rootScope.loading = true;
 
 
-        if ($auth.isAuthenticated()) {
-
-            authFactory.isAuthenticated().then(function (data) {
-                if (curr.access && curr.access.restricted) {
-
-                    if (!$rootScope.auth) {
-                        $location.path('/login');
-                        $route.reload();
-                    } else {
-                        console.log($route);
-                        if(curr.access.unique){
-                            authFactory.canEditElement($route.current.params.id)
-                            .then(function(){
-                               //alert("accediendo") ;
-                            },
-                            function (data) {
-                                //alert("no accede");
-                                $location.path('/404');
-                                $route.reload();
-                            })
-
-                        }else{
-                            alert("Entrando en lugar restringido: " + $rootScope.usuarioLogged.nombre);    
-                        }
-                        
-                    }
-                }
-            }, function (data) {
-
-                // Since this segment of the promise signals that the user is not
-                // logged in, if the page is not publicly accessible, redirect to login
-
-                $location.path('/login');
-
-            }).catch(function (response) {
-                $location.path('/login');
-            });
-
-        } else {
-            if (curr.access && curr.access.restricted) {
-                $location.path('/login');
-            }
-        }
-
-    });
-}]);
 
 
 angular.module('adoptaTuMascotaApp').run(

@@ -357,4 +357,11 @@ growl-notification.fading.ng-leave.ng-leave-active {
     background: purple !important;
 }
 
+.loaded {
+    display: block !important;
+}
+
+.loading{
+    display:none;
+}
 
