@@ -66,13 +66,13 @@
         <div id="images">
 
 
-            <img class="imagenPrincipalElemento" ng-if="element.elementoActual.imagenPrincipal"
+            <img id="imagenPrincipal" class="imagenPrincipalElemento" ng-if="element.elementoActual.imagenPrincipal"
                  ng-src="/imgs/{{element.elementoActual._id}}/{{element.elementoActual.imagenPrincipal}}"
-                 onerror="this.src='_comun/recursos/images/thumb1.jpg'" alt="Elegant evening Dress"/><img
-                ng-if="!element.elementoActual.imagenPrincipal" ng-src="_comun/recursos/images/main.jpg"
-                alt="Elegant evening Dress"/>
+                 onerror="this.src='_comun/recursos/images/default.gif'" alt="Elegant evening Dress"/><img
+                ng-if="!element.elementoActual.imagenPrincipal" ng-src="_comun/recursos/images/default-element.jpg"
+                alt="Elegant evening Dress" class="imagenPrincipalElemento"/>
 
-            <span class="sale">Nuevo</span>
+            <span class="sale span-category-{{element.elementoActual.type.categoria}}" >{{element.elementoActual.type.categoria}}</span>
 
             <p>Más imagenes.</p>
 

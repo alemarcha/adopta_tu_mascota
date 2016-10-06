@@ -17,7 +17,7 @@
     <ul id="items">
         <li dir-paginate="item in central.items|itemsPerPage:central.pageSize" current-page="central.currentPage" total-items="central.numTotalElements" pagination-id="drinksPagination">
             <span class="sale span-category-{{item.type.categoria}}" ng-show="{{item.type.categoria != null}}">{{item.type.categoria}}</span>
-            <a title="{{item.name}}" ng-href="#/element/{{item._id}}"><img ng-if="item.imagenPrincipal" ng-src="/imgs/{{item._id}}/_preview_{{item.imagenPrincipal}}" onerror="this.src='_comun/recursos/images/default.jpeg'" alt="{{item.name}}" /><img ng-if="!item.imagenPrincipal" ng-src="_comun/recursos/images/default.jpeg" alt="{{item.name}}" /></a>
+            <a title="{{item.name}}" ng-href="#/element/{{item._id}}"><img ng-if="item.imagenPrincipal" ng-src="/imgs/{{item._id}}/_preview_{{item.imagenPrincipal}}" onerror="this.src='_comun/recursos/images/default.jpeg'" alt="{{item.name}}" /><img ng-if="!item.imagenPrincipal" ng-src="_comun/recursos/images/default-element.jpg" alt="{{item.name}}" /></a>
             <strong class="tituloCentral"><a ng-href="#/element/{{item._id}}" title="{{item.description}}" class="title">{{item.name}}</a></strong>
             <i ng-show="item.municipio.nombre" class="fa fa-street-view" aria-hidden="true">&nbsp;
            {{item.municipio.nombre}}, {{item.provincia.provincia}}</i>
