@@ -17,3 +17,7 @@ git clone -b desarrollo --single-branch https://github.com/alemarcha/adopta_tu_m
 
 CADDY
 ./caddy -conf="./CaddyFile"
+
+Mongodb
+killall mondod
+export LC_ALL=C
